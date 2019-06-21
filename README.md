@@ -144,7 +144,7 @@
     <div v-if="comprou" :style="{background: cor}">
         <input v-model="cor" type="color"> {{cor}}
         <!--<p v-bind:style="{backgroundColor: color}" ></p>-->
-        <p :style="{backgroundColor: color}" ></p>
+        <p :style="{backgroundColor: cor}" ></p>
         <a :href="comprou ? href : ''">{{href}}</a>
     </div>
 </div>
@@ -182,6 +182,80 @@
 
 ## <a name="parte2"> Vue para iniciantes</a>
 
+- função construtora, Instância e this 
+
+```vue
+<div id="app">
+
+<!--    {{instrumento}}-->
+    {{nomeProduto}}
+
+</div>
+
+<script>
+ /*   function vueClone(options) {
+        this.options = options;
+        this.el = document.querySelector(options.el);
+        this.data = options.data;
+    }
+    const vm = new vueClone({
+        el:"#app",
+        data:{
+            produto: "Camisa"
+        }
+    });
+    console.log(vueClone());*/
+
+    const vmv = new Vue({
+        el:"#app",
+        data:{
+            instrumento: "Violão",
+            cor: "Marrom"
+        },
+        computed:{
+            nomeProduto(){
+                //console.log(this.cor);
+                return this.instrumento + ' ' + this.cor;
+            }
+        }
+
+
+    });
+
+
+</script>
+```
+
+- Prática
+
+```vue
+<div id="app1">
+    {{ferramenta}}, {{cor}}
+</div>
+<div id="app2">
+    {{instrumento}}, {{cor}}
+</div>
+
+<script>
+    const vm1 = new Vue({
+        el:"#app1",
+        data:{
+            ferramenta: "Martelo",
+            cor: "Marrom"
+        },
+    });
+
+    const vm2 = new Vue({
+        el:"#app2",
+        data:{
+            instrumento: "Violino",
+            cor: vm1.cor,
+        },
+    });
+
+
+</script>
+```
 
 
 [Voltar ao Índice](#indice)

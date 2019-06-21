@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Instância</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+
+<!--    {{instrumento}}-->
+    {{nomeProduto}}
+
+</div>
+
+<script>
+ /*   function vueClone(options) {
+        this.options = options;
+        this.el = document.querySelector(options.el);
+        this.data = options.data;
+    }
+    const vm = new vueClone({
+        el:"#app",
+        data:{
+            produto: "Camisa"
+        }
+    });
+    console.log(vueClone());*/
+
+    const vmv = new Vue({
+        el:"#app",
+        data:{
+            instrumento: "Violão",
+            cor: "Marrom"
+        },
+        computed:{
+            nomeProduto(){
+                //console.log(this.cor);
+                return this.instrumento + ' ' + this.cor;
+            }
+        }
+
+
+    });
+
+
+</script>
+</body>
+</html>

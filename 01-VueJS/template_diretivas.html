@@ -22,7 +22,7 @@
     <div v-if="comprou" :style="{background: cor}">
         <input v-model="cor" type="color"> {{cor}}
         <!--<p v-bind:style="{backgroundColor: color}" ></p>-->
-        <p :style="{backgroundColor: color}" ></p>
+        <p :style="{backgroundColor: cor}" ></p>
         <a :href="comprou ? href : ''">{{href}}</a>
     </div>
 </div>
