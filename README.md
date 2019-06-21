@@ -16,7 +16,164 @@
 
 ## <a name="parte1">Vue.JS</a>
 
+- https://vuejs.org/
 
+```vue
+<!doctype html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <title>Curso Vue</title>
+</head>
+<body>
+
+<div id="app">
+    {{nome}}, {{idade}}, {{faculdade.possui}} de {{faculdade.curso}}
+</div>
+
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            nome: "José Malcher",
+            idade: 34,
+            faculdade: {
+                possui:"sim",
+                curso:"Analista de Sistemas"
+            }
+        }
+    });
+    
+    vm.nome = "José Junior";
+
+    console.log(vm);
+
+</script>
+</body>
+</html>
+```
+
+- ex de Reatividade : 01-VueJS/exemplo-reatividade.html
+
+```vue
+<!doctype html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <title>Curso Vue</title>
+</head>
+<body>
+
+<div id="app">
+    <p>Computador - R$<span>{{preco}}</span></p>
+    <button @click="total++">Adicionar</button>
+    <button @click="total--">Remover</button>
+    <span>{{total}}</span>
+    <p>Total = R$ <span>{{preco * total}}</span></p>
+</div>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            preco: 1500,
+            total: 0
+            }
+    });
+</script>
+</body>
+</html>
+```
+
+- Expressões 
+
+```vue
+
+<div id="app">
+    <h1>{{titulo}}</h1>
+    <p>{{conteudo}}</p>
+    <p>{{lado * lado / 100}}</p>
+    <p>{{comprou ? 'POSTIVO' : 'NEGATIVO...'}}</p>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            titulo: "Curso De JS VUE",
+            conteudo: "JS e Vue.js",
+            lado: 200,
+            comprou: false,
+        }
+    });
+
+</script>
+```
+
+- Template e diretivas
+
+```vue
+<!doctype html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <title>Curso Vue</title>
+</head>
+<body>
+
+<div id="app">
+    <h1>{{titulo}}</h1>
+    <p>{{conteudo}}</p>
+    <p>{{lado * lado / 100}}</p>
+    <p>{{comprou ? 'POSTIVO' : 'NEGATIVO...'}}</p>
+</div>
+
+<div id="cliente">
+    <p>Cliente PRO: {{comprou}}</p>
+    <div v-if="comprou" :style="{background: cor}">
+        <input v-model="cor" type="color"> {{cor}}
+        <!--<p v-bind:style="{backgroundColor: color}" ></p>-->
+        <p :style="{backgroundColor: color}" ></p>
+        <a :href="comprou ? href : ''">{{href}}</a>
+    </div>
+</div>
+
+<script>
+
+    new Vue({
+        el: "#cliente",
+        data: {
+            cor: "#444",
+            comprou: true,
+            href:"https://josemalcher.net"
+        }
+    });
+
+    new Vue({
+        el: "#app",
+        data: {
+            titulo: "Curso De JS VUE",
+            conteudo: "JS e Vue.js",
+            lado: 200,
+            comprou: false,
+        }
+    });
+
+</script>
+</body>
+</html>
+```
 
 [Voltar ao Índice](#indice)
 

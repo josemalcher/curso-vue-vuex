@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <title>Curso Vue</title>
+</head>
+<body>
+
+<div id="app">
+    <p>Computador - R$<span>{{preco}}</span></p>
+    <button @click="total++">Adicionar</button>
+    <button @click="total--">Remover</button>
+    <span>{{total}}</span>
+    <p>Total = R$ <span>{{preco * total}}</span></p>
+</div>
+
+
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            preco: 1500,
+            total: 0
+            }
+    });
+
+
+</script>
+</body>
+</html>
