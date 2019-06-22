@@ -257,6 +257,109 @@
 </script>
 ```
 
+- A propriedade data é responsável por dar a reatividade aos estados definidos os seus getters e setters.
+Ela recebe um objeto ou uma função
+
+```js
+<div id="app">
+    <h1>{{cor}}</h1>
+</div>
+
+<script>
+    const vm = new Vue({
+        el:"#app",
+        data:{
+            cor:"vermelho"
+        }
+    });
+
+</script>
+```
+
+- Proxy
+
+Toda propriedade dentro de data, é também representada diretamente no objeto Vue(proxy). Se começar com $ ou _ não é feito proxy para envitar conflito com as propriedades de Vue.
+
+
+```js
+<div id="app2">
+    <h1>{{titulo}}</h1>
+    <h1>{{preco}}</h1>
+    <!-- <h1>{{$data.$preco}}</h1> -->
+</div>
+
+<script>
+    const vm2 = new Vue({
+        el:"#app2",
+        data:{
+            titulo: "Vue.js completo",
+            $preco: 60,
+        }
+    });
+    vm2.$data.titulo; // Vue.js completo
+    vm2.titulo; // Vue.js completo
+    
+    vm2.$data.$preco;  // 60
+    vm2.$preco;  // undefined
+
+</script>
+```
+
+- Sempre definir
+
+Sempre definir os estados na data, mesmo que ainda não possua o valor. É o registro no data que garante a reatividade.
+
+```js
+<div id="app3">
+    <p>{{logado}}</p>
+</div>
+
+<script>
+      const vm3 = new Vue({
+        el: "#app3",
+        data: {
+            logado: ""
+        }
+    });
+
+    setTimeout(()=>{
+        vm3.logado = "SIM, Logado agora"
+    }, 2000);
+
+</script>
+```
+
+- Diferentes tipos
+
+Qualquer tipo de dado aceito por uma propriedade, pode ser utilizado em data.
+
+```js
+<div id="app4">
+    <p>{{frutas[0]}}</p>
+    <p>{{frutas[1]}}</p>
+    <p>{{objeto.item}}</p>
+    <p>{{comprou}}</p>
+</div>
+
+<script>
+    const vm4 = new Vue({
+        el:"#app4",
+        data:{
+            comprou: true,
+            total: 49,
+            vitalicio: null,
+            objeto:{
+                item: "Item 1"
+            },
+            frutas: ["Banana","Melão"]
+        }
+    });
+
+</script>
+```
+
+
+
 
 [Voltar ao Índice](#indice)
 
