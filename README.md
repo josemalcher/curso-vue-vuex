@@ -358,8 +358,143 @@ Qualquer tipo de dado aceito por uma propriedade, pode ser utilizado em data.
 </script>
 ```
 
+### Methods
+
+Métodos pode ser criados para serem utilizados na instância e também em diretivas. Lembrando que métodos são funções.
+
+```js
+<div id="app">
+    <h1>{{total}}</h1>
+    <button @click="incrementar">Imcrementar +1</button>
+    <button @click="diminuir">Decrementar -1</button>
+</div>
+
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data:{
+            total: 0
+        },
+        methods: {
+            incrementar(){
+                this.total++;
+            },
+            diminuir(){
+                this.total--;
+            }
+
+        },  
+    })
+</script>
+```
+
+- Parâmetros e Argumentos
+
+Podemos utilizar parâmetros dentro dos métodos.
+
+```js
+<div id="app2">
+    <h1>{{comprar}}</h1>
+    <button @click="mudarCompra('guitarra')">Guitarra</button>
+    <button @click="mudarCompra('violão')">Violão</button>
+    <button @click="verEvento">Evento</button>
+</div>
 
 
+<script>
+    const vm2 = new Vue({
+        el: "#app2",
+        data:{
+            comprar:"",
+        },
+        methods: {
+            mudarCompra(instrumento){
+                this.comprar = instrumento;
+            },
+            verEvento(event){
+                console.log(event);
+            }
+        },
+    });
+
+</script>
+```
+
+- Método dentro de Método
+
+O this possui acesso aos métodos também
+
+```js
+<div id="app3">
+    <p>{{preco}}</p>
+    <button @click="adicionarCopom">Adicionar Cupom</button>
+    <p>{{alerta}}</p>
+</div>
+
+<script>
+    const vm3 = new Vue({
+        el: "#app3",
+        data:{
+            preco:100,
+            alerta:"",
+        },
+        methods: {
+            adicionarCopom(instrumento){
+                this.preco *= 0.9;
+                this.alertaCopom();
+                this.teste();
+            },
+            alertaCopom(){
+                this.alerta = "Copom Adicionado"
+                this.teste();
+            },
+            teste(){
+                console.log("Método ativado")
+            }
+        },
+    });
+
+</script>
+```
+
+- Prática:
+
+Utilizando a API: 
+https://api.iextrading.com/1.0/stock/aapl/quote
+
+Crie um método que faça o fetch da resposta acima
+O método deve ser ativado ao clique no botão Ver o Preço
+
+Coloque a resposta json do feth em uma data e mostre o valor de latestPrice, latestTime e 
+o companyName na interface.
+
+```js
+<div id="app">
+    <p>latest TIme: {{acoes.latestTime}}</p>
+    <p>latest Price: {{acoes.latestPrice}}</p>
+    <p>latest Name: {{acoes.companyName}}</p>
+</div>
+
+
+<script>
+const vm = new Vue({
+    el: "#app",
+    data{
+        acoes: {},
+    },
+    methods:{
+        puxarAcoes(){
+            fetch("")
+                .then(response => response.json())
+                .then(json => {
+                    this.acoes = json;
+                })
+        }
+    }
+});
+
+</script>
+```
 
 [Voltar ao Índice](#indice)
 

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <h1>{{total}}</h1>
+    <button @click="incrementar">Imcrementar +1</button>
+    <button @click="diminuir">Decrementar -1</button>
+</div>
+
+<div id="app2">
+    <h1>{{comprar}}</h1>
+    <button @click="mudarCompra('guitarra')">Guitarra</button>
+    <button @click="mudarCompra('violão')">Violão</button>
+    <button @click="verEvento">Evento</button>
+</div>
+
+<div id="app3">
+    <p>{{preco}}</p>
+    <button @click="adicionarCopom">Adicionar Cupom</button>
+    <p>{{alerta}}</p>
+</div>
+
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data:{
+            total: 0
+        },
+        methods: {
+            incrementar(){
+                this.total++;
+            },
+            diminuir(){
+                this.total--;
+            }
+
+        },  
+    });
+    const vm2 = new Vue({
+        el: "#app2",
+        data:{
+            comprar:"",
+        },
+        methods: {
+            mudarCompra(instrumento){
+                this.comprar = instrumento;
+            },
+            verEvento(event){
+                console.log(event);
+            }
+        },
+    });
+
+    const vm3 = new Vue({
+        el: "#app3",
+        data:{
+            preco:100,
+            alerta:"",
+        },
+        methods: {
+            adicionarCopom(instrumento){
+                this.preco *= 0.9;
+                this.alertaCopom();
+                this.teste();
+            },
+            alertaCopom(){
+                this.alerta = "Copom Adicionado"
+                this.teste();
+            },
+            teste(){
+                console.log("Método ativado")
+            }
+        },
+    });
+
+</script>
+</body>
+</html>
