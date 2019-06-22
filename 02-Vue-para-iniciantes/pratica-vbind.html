@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="vue.js"></script>
+  <title>Vue.js</title>
+</head>
+
+<body>
+
+  <style>
+    .verde {
+      color: green
+    }
+    .vermelho {
+      color: red
+    }
+  </style>
+
+  <div id="app">
+    <div>
+      <p>{{google.companyName}}</p>
+      <p :class="google.marketCap > apple.marketCap ? 'verde' : 'vermelho'">{{google.marketCap}}</p>
+    </div>
+    <div>
+      <p>{{apple.companyName}}</p>
+      <p :class="apple.marketCap > google.marketCap ? 'verde' : 'vermelho'">{{apple.marketCap}}</p>
+    </div>
+    
+    <button @click="puxarDados">Puxar Dados</button>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        google: {},
+        apple: {},
+      },
+      methods: {
+        fetchGoogle() {
+          fetch("https://api.iextrading.com/1.0/stock/googl/quote")
+          .then(r => r.json())
+          .then(google => {
+            this.google = google;
+          })
+        },
+        fetchApple() {
+          fetch("https://api.iextrading.com/1.0/stock/aapl/quote")
+          .then(r => r.json())
+          .then(apple => {
+            this.apple = apple;
+          })
+        },
+        puxarDados() {
+          this.fetchGoogle();
+          this.fetchApple();
+        }
+      }
+    })
+  </script>
+  <!--
+  Utilizando as API's
+  https://api.iextrading.com/1.0/stock/aapl/quote
+  https://api.iextrading.com/1.0/stock/googl/quote
+
+  - Compare o marketCap (valor de
+  mercado) entre ambas.
+
+  - Mostre o nome das empresas e o valor
+  na interface (companyName e marketCap).
+
+  - Mude a cor para verde o nome da empresa com
+  maior marketCap e vermelho a com menor.
+-->
+
+</body>
+
+</html>

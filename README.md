@@ -556,6 +556,55 @@ atributo permitir aepnas um valor, o último será utilizado.
 </script>
 ```
 
+
+- Prática
+- 02-Vue-para-iniciantes/pratica-vbind.html
+
+
+- **v-on**
+
+- O v-on é um diretiva que permite observarmos eventos nas tags; "@"
+
+- Modificacores: Algumas diretivas possuem modificadores. Estes são utilizados através do ".". No caso de eventos, event.preventDefault() pode ser adicionado com o @click.prevent.
+  
+```js
+<div id="app">
+        <button @click="contador++">Clique Aqui</button>
+        {{contador}}
+        <button @click="ativo = !ativo">Toggle</button>
+        <p v-if="ativo">Mostrar texto</p>
+        {{ativo}}
+        <a href="#interno" @click.prevent.once="handleClick">Link Interno</a>
+        <input type="text" @keyup.enter="handleClick">
+        <p @mousemove="handleMove">Esse é o mouse x: {{mouse.x}}</p>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                contador: 0,
+                ativo: true,
+                mouse: ""
+            },
+            methods: {
+                handleClick(event) {
+                    console.log(event.key);
+                },
+                handleMove(event) {
+                    this.mouse = event;
+                }
+            }
+        })
+    </script> 
+```
+
+
+
+
+
+
+
 [Voltar ao Índice](#indice)
 
 ---
