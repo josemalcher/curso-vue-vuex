@@ -496,6 +496,66 @@ const vm = new Vue({
 </script>
 ```
 
+- v-bond
+
+O v-bind é uma diretiva que permite a utilização de expressões dentro de atributos html
+
+```js
+<div id="app">
+    <a v-bind:href="link">Link Google</a>
+    <p v-bind:class="cor">Paragrafo</p>
+</div>
+
+<script>
+    const vm = new Vue({
+        el:"#app",
+        data: {
+            link: "https://www.google.com.br",
+            cor: "azul"
+        }
+    });
+</script>
+```
+
+- Podemos utilizar os atributos
+
+É possível utilizar os atrivutos normais juntos com as directivas. Se o 
+atributo permitir aepnas um valor, o último será utilizado.
+
+```js
+<div id="app">
+    <a v-bind:href="link" href="http://josemalcher.net">Link Google</a>
+    <p v-bind:class="cor" class="p1">Paragrafo</p>
+</div>
+
+<script>
+    const vm = new Vue({
+        el:"#app",
+        data: {
+            link: "https://www.google.com.br",
+            cor: "azul"
+        }
+    });
+</script>
+```
+
+- Expressões podem ser utilizados dentro dos valores
+
+```js
+<div id="app2">
+    <p :class="comprou? 'verde' : 'vermelho'">COMPROU</p>
+</div>
+
+<script>
+    const vm2 = new Vue({
+        el:"#app2",
+        data: {
+            comprou: false,
+        }
+    });
+</script>
+```
+
 [Voltar ao Índice](#indice)
 
 ---
