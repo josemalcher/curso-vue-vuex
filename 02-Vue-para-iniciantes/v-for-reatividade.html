@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <ul>
+        <li v-for="item in lista">{{item}}</li>
+    </ul>
+    <button @click="removerItem">Remover</button>
+    <button @click="mudarItem">Mudar</button>
+</div>
+
+
+<script>
+
+const vm = new Vue({
+    el: "#app",
+    data:{
+        lista: ["html","CSS","JS","wordpress","PHP"]
+    },
+    methods: {
+        removerItem(){
+            this.lista.pop(); // ativa reatividade
+        },
+        mudarItem(){
+            this.lista[0] = "html" // não ativa reatividade
+            this.$set(this.lista, 0 , "BANANA"); // com reatividade
+        }
+    },
+});
+
+
+</script>
+</body>
+</html>

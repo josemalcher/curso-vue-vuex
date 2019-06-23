@@ -735,6 +735,131 @@ const vm = new Vue({
 </script>
 ```
 
+- v-for: renderiza uma lista de itens. Assim com o for loop, ele irá executar para cada item da array/objeto
+
+```js
+<div id="app">
+    <ul>
+        <li v-for="(curso, index) in cursos">{{index}} - {{curso}}</li>
+    </ul>
+</div>
+
+<script>
+
+const vm = new Vue({
+    el: "#app",
+    data:{
+        cursos: ["html","CSS","JS","wordpress","PHP"]
+    }
+});
+
+</script>
+```
+
+- v-for objetos
+
+```js
+<div id="app2">
+    <!-- <div v-for="estado in estados"> -->
+    <div v-for="(estado , key) in estados">
+        <p>{{key}} - {{estado.nome}} - {{estado.populacao}}</p>
+    </div>
+</div>
+
+<script>
+const vm2 = new Vue({
+    el: "#app2",
+    data:{
+        estados:{
+            sp:{
+                nome: "São Paulo",
+                populacao: "45 mil"
+            },
+            pa:{
+                nome: "Pará",
+                populacao: "15 mil"
+            },
+            RJ:{
+                nome: "RIO DE JANEIRO",
+                populacao: "20 mil"
+            }
+        }
+    }
+});
+
+</script>
+```
+
+- :key : cria uma identificação única para o item. Sem o Key, bugs podem ocorrer principalmente em componentes mais complexos.
+
+```js
+<div id="app">
+    <div v-for="fruta in frutas" :key="fruta.id">
+        <p>{{fruta.nome}} - {{fruta.cor}}</p>
+    </div>
+    <span v-for="numero in 5">{{numero}}- </span> 
+    <!-- 1- 2- 3- 4- 5- -->
+</div>
+
+<script>
+const vm = new Vue({
+    el: "#app",
+    data:{
+        frutas:[{
+            id: "banana-1",
+            nome: "Banana",
+            cor: "amarela"
+        },
+        {
+            id: "melancia-1",
+            nome: "MELANCIA",
+            cor: "verde"
+        },
+        {
+            id: "Abacate-1",
+            nome: "Abacate",
+            cor: "verde"
+        }
+    ]
+    }
+});
+
+</script>
+```
+
+- Reatividade: modificar diretamente o valor de uma array, não irá ativar a reatividade do Vue
+
+```js
+
+<div id="app">
+    <ul>
+        <li v-for="item in lista">{{item}}</li>
+    </ul>
+    <button @click="removerItem">Remover</button>
+    <button @click="mudarItem">Mudar</button>
+</div>
+<script>
+
+const vm = new Vue({
+    el: "#app",
+    data:{
+        lista: ["html","CSS","JS","wordpress","PHP"]
+    },
+    methods: {
+        removerItem(){
+            this.lista.pop(); // ativa reatividade
+        },
+        mudarItem(){
+            this.lista[0] = "html" // não ativa reatividade
+            this.$set(this.lista, 0 , "BANANA"); // com reatividade
+        }
+    },
+});
+</script>
+```
+
+
+
 
 [Voltar ao Índice](#indice)
 
