@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <div v-html="link"></div>
+    <div>{{link}}</div>
+</div>
+
+<script>
+
+const vm = new Vue({
+    el: "#app",
+    data:{
+        link: "<a href='https://josemalcher.net'>José Malcher jr</a>"
+    },
+    methods:{
+        
+    }
+});
+
+</script>
+</body>
+</html>

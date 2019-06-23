@@ -668,6 +668,72 @@ const vm2 = new Vue({
     </script>
 ```
 
+- v-html: renderiza conteúdo html dentro de uma tag. Modifica o innerHtml do elemento
+
+```js
+<div id="app">
+    <div v-html="link"></div>
+    <div>{{link}}</div>
+</div>
+<script>
+const vm = new Vue({
+    el: "#app",
+    data:{
+        link: "<a href='https://josemalcher.net'>José Malcher jr</a>"
+    },
+    methods:{
+    }
+});
+
+</script>
+```
+
+- v-text: renderiza texto dentro de uma tag.
+
+```js
+<div id="app">
+    <div v-text="fruta"></div>
+    <div>{{fruta}}</div>
+</div>
+
+<script>
+
+const vm = new Vue({
+    el: "#app",
+    data:{
+        fruta: "<b>banana</b>"
+    },
+    methods:{
+        
+    }
+});
+```
+
+- v-once: renderiza uma única vez o conteúdo e não torna ele reativo
+
+```js
+<div id="app">
+    <p v-once>Valor inicial R$ {{total}}</p>
+    <button @click="gasto += 5">Comprar banana R$ 5</button>
+    <p>Gasto R$ {{gasto}}</p>
+    <p>Gasto R$ {{total - gasto}}</p>
+</div>
+
+<script>
+
+const vm = new Vue({
+    el: "#app",
+    data:{
+        total: 150,
+        gasto: 0
+    },
+    methods:{
+        
+    }
+});
+
+</script>
+```
 
 
 [Voltar ao Índice](#indice)

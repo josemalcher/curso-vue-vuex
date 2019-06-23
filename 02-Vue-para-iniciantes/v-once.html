@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <p v-once>Valor inicial R$ {{total}}</p>
+    <button @click="gasto += 5">Comprar banana R$ 5</button>
+    <p>Gasto R$ {{gasto}}</p>
+    <p>Gasto R$ {{total - gasto}}</p>
+</div>
+
+<script>
+
+const vm = new Vue({
+    el: "#app",
+    data:{
+        total: 150,
+        gasto: 0
+    },
+    methods:{
+        
+    }
+});
+
+</script>
+</body>
+</html>
