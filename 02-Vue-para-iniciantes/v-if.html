@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <p v-if="logado === 1">Você está logado</p>
+    <p v-else-if="logado === 2">LOGIN TIPO 2</p>
+    <p v-else>Você NÃO está logado</p>
+</div>
+
+<div id="app2">
+    <template v-if="logado">
+        <p>VOcÊ está LOGADO!</p>
+        <button @click="logado = false">DESLOGAR :(</button>
+    </template>
+    <template v-else>
+            <p>VOcÊ NÂOOOO está LOGADO!</p>
+            <button @click="logado = true">LOGAR :) </button>
+        </template>
+</div>
+<!-- Exite o v-else-if="condition" -->
+
+<script>
+
+const vm = new Vue({
+    el: "#app",
+    data:{
+        logado: 2
+    },
+    methods:{
+        
+    }
+});
+const vm2 = new Vue({
+    el: "#app2",
+    data:{
+        logado: true
+    },
+    methods:{
+        
+    }
+});
+
+</script>
+</body>
+</html>

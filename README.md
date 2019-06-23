@@ -599,9 +599,74 @@ atributo permitir aepnas um valor, o último será utilizado.
     </script> 
 ```
 
+v-if: é uma diretiva que permite utilizarmos condicionais para mostrar ou não um elemento. podemos utilizar também o v-else que deve vir logo após o if para funcionar.
 
+```js
 
+<div id="app">
+    <p v-if="logado === 1">Você está logado</p>
+    <p v-else-if="logado === 2">LOGIN TIPO 2</p>
+    <p v-else>Você NÃO está logado</p>
+</div>
 
+<div id="app2">
+    <template v-if="logado">
+        <p>VOcÊ está LOGADO!</p>
+        <button @click="logado = false">DESLOGAR :(</button>
+    </template>
+    <template v-else>
+            <p>VOcÊ NÂOOOO está LOGADO!</p>
+            <button @click="logado = true">LOGAR :) </button>
+        </template>
+</div>
+<!-- Exite o v-else-if="condition" -->
+
+<script>
+
+const vm = new Vue({
+    el: "#app",
+    data:{
+        logado: 2
+    },
+    methods:{
+        
+    }
+});
+const vm2 = new Vue({
+    el: "#app2",
+    data:{
+        logado: true
+    },
+    methods:{
+        
+    }
+});
+
+</script>
+```
+
+- v-show x v-if: o v-if remove o elemento, o v-show apaenas adiciona o display:none; o v-show é preferido se for mudar constantemente o estado. por ser mais rápido.
+
+```js
+    <div id="app">
+        <p v-show="logado">SHOW logado</p>
+        <p v-if>IF logado</p>
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                logado: false
+            },
+            methods: {
+
+            }
+        });
+
+    </script>
+```
 
 
 

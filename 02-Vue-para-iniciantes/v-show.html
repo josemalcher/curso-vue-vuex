@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <p v-show="logado">SHOW logado</p>
+        <p v-if>IF logado</p>
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                logado: false
+            },
+            methods: {
+
+            }
+        });
+
+    </script>
+</body>
+
+</html>
