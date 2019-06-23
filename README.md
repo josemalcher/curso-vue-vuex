@@ -858,7 +858,92 @@ const vm = new Vue({
 </script>
 ```
 
+- computed: Quando precisamos modificar um dado usando JS, podemos utilizar uma propriedade dentro de computed.
 
+- Watch: é possível ativar uma função toda vez que um dado reativo é modificado. Para isso usamos uma propriedade dentro de watch
+
+```js
+<div id="app">
+        <div>{{total}}</div>
+    </div>
+
+    <div id="app2">
+        <ul>
+            <li v-for="carro in carrosAzuis">
+                {{carro.marca}}
+            </li>
+            <button @click="removerCarro">Remover</button>
+
+            <p>{{contador}}</p>
+            <button @click="contador++">Adicionar</button>
+        </ul>
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                preco: 100,
+                desconto: 10
+            },
+            methods: {
+
+            },
+            computed: {
+                total() {
+                    return "R$ " + (this.preco - this.desconto);
+                }
+            },
+        });
+        const vm2 = new Vue({
+            el: "#app2",
+            data: {
+                contador: 0,
+                carros: [
+                    {
+                        marca: "VW",
+                        cor: "Azul"
+                    },
+                    {
+                        marca: "Ford",
+                        cor: "Preto"
+                    },
+                    {
+                        marca: "Tesla",
+                        cor: "Azul"
+                    }
+                ]
+            },
+            computed: {
+                carrosAzuis() {
+                    return this.carros.filter(({ cor }) => cor === "Azul");
+                }
+            },
+            methods: {
+                removerCarro() {
+                    this.carros.pop();
+                }
+            },
+            watch: {
+                contador(valorNovo, valorAntigo) {
+                    console.log(valorNovo);
+                    console.log(valorAntigo);
+                },
+                carros(valorNovo, valorAntigo) {
+                    console.log(valorNovo);
+                }
+            }
+        });
+
+    </script>
+```
+
+- Watch assincrono: O watch se diferencia do computec principalmente pela sua capacidade de receber eventos assincronos.
+
+```js
+
+```
 
 
 [Voltar ao Índice](#indice)

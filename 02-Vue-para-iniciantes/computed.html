@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <div>{{total}}</div>
+    </div>
+
+    <div id="app2">
+        <ul>
+            <li v-for="carro in carrosAzuis">
+                {{carro.marca}}
+            </li>
+            <button @click="removerCarro">Remover</button>
+
+            <p>{{contador}}</p>
+            <button @click="contador++">Adicionar</button>
+        </ul>
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                preco: 100,
+                desconto: 10
+            },
+            methods: {
+
+            },
+            computed: {
+                total() {
+                    return "R$ " + (this.preco - this.desconto);
+                }
+            },
+        });
+        const vm2 = new Vue({
+            el: "#app2",
+            data: {
+                contador: 0,
+                carros: [
+                    {
+                        marca: "VW",
+                        cor: "Azul"
+                    },
+                    {
+                        marca: "Ford",
+                        cor: "Preto"
+                    },
+                    {
+                        marca: "Tesla",
+                        cor: "Azul"
+                    }
+                ]
+            },
+            computed: {
+                carrosAzuis() {
+                    return this.carros.filter(({ cor }) => cor === "Azul");
+                }
+            },
+            methods: {
+                removerCarro() {
+                    this.carros.pop();
+                }
+            },
+            watch: {
+                contador(valorNovo, valorAntigo) {
+                    console.log(valorNovo);
+                    console.log(valorAntigo);
+                },
+                carros(valorNovo, valorAntigo) {
+                    console.log(valorNovo);
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>
