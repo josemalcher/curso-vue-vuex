@@ -942,7 +942,34 @@ const vm = new Vue({
 - Watch assincrono: O watch se diferencia do computec principalmente pela sua capacidade de receber eventos assincronos.
 
 ```js
+  <div id="app">
+    <input type="text" placeholder="cep" maxlength="8" v-model="cep">
+    <h1>{{cep}}</h1>
+    <ul>
+      <li v-for="(valor, chave) in endereco">{{chave}}: {{valor}}</li>
+    </ul>
+  </div>
 
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        cep: "",
+        endereco: {},
+      },
+      watch: {
+        cep(valor) {
+          if(valor.length === 8) {
+            fetch(`https://viacep.com.br/ws/${valor}/json/`)
+            .then(r => r.json())
+            .then(r => {
+              this.endereco = r;
+            });
+          }
+        }
+      }
+    });
+  </script>
 ```
 
 
