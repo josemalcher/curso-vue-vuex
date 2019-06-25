@@ -980,6 +980,143 @@ const vm = new Vue({
 
 ## <a name="parte3"> Directivas e Hooks</a>
 
+![](imgs/termos.png)
+
+- https://br.vuejs.org/v2/api/index.html#watch
+
+- :class - Manipulação de classe é comum quando desejamos criar efeitos com JavaScript. Por isso o vue.js trata a directiva v-bind:class ou :class de forma diferente
+
+```js
+    <style>
+        .azul{
+            color: blue;
+        }
+        .red{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <p :class="cor">Texto Azul</p>
+</div>
+
+<script>
+
+const vm = new Vue({
+    el: "#app",
+    data:{
+        cor: "red"
+    },
+});
+
+</script>
+```
+
+- :class e objetos - Podemos passar objetos no :class, a propriedade que tiver valor true será adicionada como classe.
+
+```js
+
+ <style>
+       .ativo{
+           background: red;
+       }
+       .verde{
+           color: green;
+       }
+        </style>
+<body>
+
+<div id="app">
+    <p :class="{ativo: estaAtivo, cor: possuiCor, verde: elementoVerde}">Texto ativo</p>
+    <button @click="estaAtivo = !estaAtivo" > Ativar / Desativar</button>
+</div>
+
+<script>
+
+const vm = new Vue({
+    el: "#app",
+    data:{
+        estaAtivo: true,
+        possuiCor: false,
+        elementoVerde: true
+    },
+});
+
+</script>
+
+```
+
+- :class e array - Array's devem ser utilizadas quando precisamos passar mais de uma classe.
+
+```js
+    <style>
+        .ativo {
+            background: red;
+        }
+
+        .verde {
+            color: green;
+        }
+
+        .background {
+            background: red;
+        }
+    </style>
+
+<body>
+
+    <div id="app">
+        <p :class="[cor, {ativo: !estaAtivo}]">Texto azul</p>
+        <p :class="{ativo: estaAtivo, verde: elementoVerde}">Texto ativo</p>
+        <button @click="estaAtivo = !estaAtivo"> Ativar / Desativar</button>
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                cor: "verde",
+                backgraund: "vermelho",
+                estaAtivo: true,
+                possuiCor: false,
+                elementoVerde: true
+            },
+        });
+
+    </script>
+```
+
+- :style - é possivel passar um objeto com os estilos, quease como fazemos com CSS direto, Utilizar camelCase, ao invés de font-size use fontSize, até para usar font-size mas teria que ser entre aspas.
+
+```js
+
+    <div id="app">
+        <p :style="{background: bgColor, color: textColor, fontSize: tamanho + 'px'} ">Texto azul</p>
+        <button @click="tamanho++"> Aumentar Letra</button>
+        <p :style="estiloBotao">Estolo botão </p>
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                bgColor: "red",
+                textColor: "#44f",
+                tamanho: 20,
+                estiloBotao: {
+                    background: "black",
+                    color: "#fff",
+                    fonteSize: "20px",
+                }
+            },
+        });
+
+    </script>
+```
 
 
 [Voltar ao Índice](#indice)
