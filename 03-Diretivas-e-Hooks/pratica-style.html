@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="vue.js"></script>
+  <title>Vue.js</title>
+</head>
+
+<body>
+  <div id="app">
+    <button @click="colunaAtiva = !colunaAtiva">Mudar Coluna</button>
+    <ul :class="{column: colunaAtiva}" @click="gerarCor">
+      <li :style="{background: bgColor}">Sobre</li>
+      <li :style="{background: bgColor}">Produtos</li>
+      <li :style="{background: bgColor}">Serviços</li>
+      <li :style="{background: bgColor}">Contato</li>
+    </ul>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        colunaAtiva: false,
+        bgColor: "",
+      },
+      methods: {
+        gerarCor() {
+          const color = `hsl(${Math.random() * 360}, 100%, 50%)`
+          this.bgColor = color;
+        }
+      }
+    });
+  </script>
+
+  <style>
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      font-family: monospace;
+      list-style: none;
+      padding: 0px;
+      margin: 0px;
+    }
+    .column {
+      flex-direction: column;
+    }
+    li {
+      padding: 20px;
+      background: #84e;
+      color: white;
+      border-radius: 4px;
+      margin: 10px;
+      flex: 1;
+      text-align: center;
+    }
+  </style>
+</body>
+</html>
