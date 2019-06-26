@@ -1118,6 +1118,101 @@ const vm = new Vue({
     </script>
 ```
 
+- v-model: é utilizado para tornar reativo o conteúdo de formulários. Chamado de two-way data binding.
+
+```js
+<div id="app">
+    <input type="text" v-model="nome" />
+    <textarea name="mensagens" id="" cols="30" rows="10" v-model="mensagem"></textarea>
+    <p>{{nome}}</p>
+    <p>{{mensagem}}</p>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        nome: "",
+        mensagem: ""
+      }
+    });
+  </script>
+
+```
+
+--two-way vs one-way : por padrão todo o conteúdo do Vue.js é onw-way, isso significa que mudanças no JS criam mudanças no DOM. Já no two-way, tanto mudanças no DOM como no JS, mudam o ocnteúdo.
+
+```js
+<div id="app2">
+    <input type="text" v-model="nome" />
+    <input type="text" :value="email" />
+    
+    <p>nome: {{nome}}</p>
+    <p>email: {{email}}</p>
+  </div>
+
+  <script>
+
+    const vm2 = new Vue({
+      el: "#app2",
+      data: {
+        nome: "José Stélio",
+        email:"jose@jose.com"
+      }
+    });
+  </script>
+```
+
+- Checkbox : retorna um valor false ou true
+
+```js
+<div id="app">
+    <input type="checkbox" v-model="receberEmail" id="receberEmail" />
+    <label for="receberEmail">Receber email</label> <br>
+    <input type="checkbox"  v-model="termos" id="termos" />
+    <label for="termos"> Termos e condições </label>
+
+    <p>receberEmail: {{receberEmail}}</p>
+    <p>Termos: {{termos}}</p>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        receberEmail: true,
+        termos: false,
+        mensagem: ""
+      }
+    });
+    
+  </script>
+```
+
+- Radio : retorna o valor do campo seleciona.
+
+```js
+<div id="app">
+    <input type="radio" v-model="cor" value="azul" id="azul" />
+    <label for="azil">AZUL</label>
+    <input type="radio" v-model="cor" value="vermelho" id="vermelho" />
+    <label for="azil">VERMELHO</label>
+    <p>COR: {{cor}}</p>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        cor: ""
+      }
+    });
+    
+  </script>
+```
+
+- Select : é importante colocar uma opção inicial desabilitada com valor vazio, para resolver um bug no IOS.
+
 
 [Voltar ao Índice](#indice)
 
