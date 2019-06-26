@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./vue.js"></script>
+  <title>Vue.js</title>
+</head>
+
+<body>
+<!-- 
+  1 - Crie um criador de botões.
+
+  O usuário poderá definir:
+  width,
+  height,
+  font-size,
+  font-family,
+  text-align,
+  background,
+  color,
+  border-radius,
+
+  As escolhas serão feitas em campos de
+  formulário. Cada escolha deverá ser 
+  refletida em um elemento (o botão).
+
+
+  2 - Crie um formulário com, nome, email, telefone e mensagem.
+  Ao clicar em enviar, as informações preenchidas no formulário
+  devem aparecer abaixo do mesmo. (previna o comportamento padrão do botão enviar)
+ -->
+
+
+  <div id="app">
+    <form>
+      <label for="nome">Nome</label>
+      <input type="text" name="nome" id="nome" v-model="nome">
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" v-model="email">
+      <label for="telefone">Telefone</label>
+      <input type="text" name="telefone" id="telefone" v-model="telefone">
+      <label for="mensagem">Mensagem</label>
+      <textarea name="mensagem" id="mensagem" v-model="mensagem"></textarea>
+      <br>
+      <input @click.prevent="enviarFormulario" type="submit">
+    </form>
+    <div>
+      <ul>
+        <li v-for="(valor, chave) in resultado">
+          {{chave}}: {{valor}}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        nome: "",
+        email: "",
+        telefone: "",
+        mensagem: "",
+        resultado: {}
+      },
+      methods: {
+        enviarFormulario() {
+          this.resultado = {
+            nome: this.nome,
+            email: this.email,
+            telefone: this.telefone,
+            mensagem: this.mensagem,
+          }
+        }
+      }
+    });
+  </script>
+
+  <style>
+    label {
+      display: block;
+    }
+  </style>
+</body>
+</html>
