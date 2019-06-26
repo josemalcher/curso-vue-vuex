@@ -1213,6 +1213,55 @@ const vm = new Vue({
 
 - Select : é importante colocar uma opção inicial desabilitada com valor vazio, para resolver um bug no IOS.
 
+```js
+<div id="app">
+    <select v-model="fruta">
+      <option value=""disabled>Selecione uma fruta</option>
+      <option value="banana">Banana</option>
+      <option value="morango">Morango</option>
+      <option value="uva">Uva</option>
+    </select>
+    <p>FRUTA: {{fruta}}</p>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        fruta: ""
+      }
+    });
+    
+  </script>
+
+```
+
+- Modifiers : com o .lazy, a reatividade só acontecendo ao change(quando o usuário muda o campo). O .number irá automativamente transformar o input em um número e naõ string. O .trim automaticamente elimina espaços em branco.
+
+```js
+<div id="app">
+    <textarea v-model.lazy="mensagem"></textarea>
+    <input v-model.number="total">
+    <input v-model.trin="email">
+
+    <p>TEXTO: {{mensagem}}</p>
+    <p>Total: {{total}}</p>
+    <p>Email: {{email}}</p>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        mensagem: "",
+        total: 0,
+        email: ""
+      }
+    });
+    
+  </script>
+```
+
 
 [Voltar ao Índice](#indice)
 
