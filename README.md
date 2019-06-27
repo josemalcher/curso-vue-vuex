@@ -1262,6 +1262,92 @@ const vm = new Vue({
   </script>
 ```
 
+- v-on:key - Podemos utilizar modificadores diretamente no evento, para intertificarmos a tecla clicada.
+
+```js
+
+ <div id="app">
+        <input @keyup="ativar" />
+        <input @keyup.enter="ativar" />
+        <input @keyup.esc="ativar" />
+        <input @keyup.up="ativar" />
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {},
+      methods: {
+          ativar(event){
+              console.log("ATIVADO");
+          }
+      },
+    });
+    
+  </script>
+
+```
+
+
+- v-on:click
+
+```js
+<div id="app2">
+        <p @click="ativar">click</p>
+        <p @click.alt="ativar">click ALT</p>
+        <p @click.right="ativar">click Esquerdo</p>
+        <p @click.middle="ativar">click Meio</p>
+    </div>
+
+    <script>
+        const vm2 = new Vue({
+            el: "#app2",
+            data: {},
+            methods: {
+                ativar(event) {
+                    console.log("ATIVADO");
+                }
+            },
+        });
+
+    </script>
+```
+
+- Eventos GLobais : com o vue.js você não consegue adicionar diretamente eventos ao body utilizando directivas. Para isso utilize JS normal.
+
+```js
+
+<div id="app">
+        <p style="position: fixed;">{{totalScroll}}</p>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                totalScroll: 0
+            },
+            methods: {
+                handleScroll(event){
+                    console.log(event);
+                    this.totalScroll = window.scrollY;
+                }
+            },
+            created() {
+                console.log("ATIVOU!!!");
+                window.addEventListener("scroll", this.handleScroll);
+            },
+        });
+
+    </script>
+
+    <style>
+        body{
+            height: 3000px;
+        }
+    </style>
+
+```
 
 [Voltar ao Índice](#indice)
 
