@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <title>Vue.js</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <button @click="contador++">Total: {{contador}}</button>
+        <button @click="destruir">Destruir</button>
+    </div> 
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                contador: 0,
+            },
+            methods: {
+                destruir() {
+                    this.$destroy();
+                }
+            },
+            beforeUpdate() {
+                console.log("teste");
+            },
+            updated() {
+                console.log("teste updateds");
+            },
+            beforeDestroy() {
+                console.log("Vai destruir");
+            },
+            destroyed() {
+                console.log("Destruiu");
+            }
+        });
+    </script>
+
+    <style>
+
+    </style>
+</body>
+
+</html>

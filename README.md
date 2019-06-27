@@ -1349,6 +1349,101 @@ const vm = new Vue({
 
 ```
 
+### Lifecycle Hooks
+
+Métodos que são ativados durante o ciclo de vida de um componente vue.js 
+
+- https://br.vuejs.org/v2/guide/instance.html#Diagrama-do-Ciclo-de-Vida
+
+![](https://br.vuejs.org/images/lifecycle.png)
+
+```js
+  <div id="app">
+        <p>{{mensagem}}</p>
+        <div>{{github}}</div>
+        <button @click="puxarGithub">Puxar Github</button>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                mensagem: "Essa é uma mensagem",
+                github: {},
+            },
+            methods: {
+                puxarGithub() {
+                    fetch("https://api.github.com/users/josemalcher")
+                        .then(r => r.json())
+                        .then(r => {
+                            this.github = r;
+                        })
+                }
+            },
+            beforeCreate() {
+                console.log(this.mensagem);
+            },
+            created() {
+                this.puxarGithub();
+                console.log(this.mensagem);
+                console.log("Elemento", this.$el)
+            },
+            beforeMount() {
+                console.log("BeforeMount", this.mensagem)
+                console.log("Elemento", this.$el)
+
+            },
+            mounted() {
+                console.log("Elemento", this.$el)
+            }
+        });
+    </script>
+```
+
+- updated
+
+O beforeUpdate acontece sempre que houver uma mudança em um dado reativo. em seguida o hook updated acontece, este após o dom ser modificado.
+
+- destroyed
+
+O beforeDestroy acontece antes do componente ser destruído. em seguida o hook destroyed acontece, este após o componente ser destruído.
+
+é utilizado quando dividimos a interface em componentes...
+
+```js
+ <div id="app">
+        <button @click="contador++">Total: {{contador}}</button>
+        <button @click="destruir">Destruir</button>
+    </div> 
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                contador: 0,
+            },
+            methods: {
+                destruir() {
+                    this.$destroy();
+                }
+            },
+            beforeUpdate() {
+                console.log("teste");
+            },
+            updated() {
+                console.log("teste updateds");
+            },
+            beforeDestroy() {
+                console.log("Vai destruir");
+            },
+            destroyed() {
+                console.log("Destruiu");
+            }
+        });
+    </script>
+```
+
+
 [Voltar ao Índice](#indice)
 
 ---
