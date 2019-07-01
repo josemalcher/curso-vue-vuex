@@ -341,7 +341,7 @@ body {
     .produto_titulo {
         font-size: 1.5rem;
     }
-    /*.modal {
+    .modal {
         padding: 10px;
     }
     .modal_container {
@@ -362,7 +362,7 @@ body {
     }
     .modal_btn {
         margin-top: 20px;
-    }*/
+    }
     .reviews {
         grid-column: 1;
         padding: 10px;
