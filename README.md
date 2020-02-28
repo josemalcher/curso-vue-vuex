@@ -17,7 +17,39 @@
 
 ## <a name="parte1">1 - Vue.JS</a>
 
+#### 0104 Instalação do Vuejs
 
+- vuejs\index.html
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue - Hello word</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{nome}}, {{idade}}, {{faculdade.possui}}
+    </div>
+<script>
+    const vm = new Vue({
+        el:"#app",
+        data:{
+            nome: "José",
+            idade: 35,
+            faculdade:{
+                possui: "SIM",
+                curso: "Design"
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
+```
 
 [Voltar ao Índice](#indice)
 
