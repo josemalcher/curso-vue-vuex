@@ -83,6 +83,46 @@
 </html>
 ```
 
+#### Diretivas
+
+```vue
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue - Hello word</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <h1>{{titulo}}</h1>
+    <div v-show="comprou" :style="{background: cor}">
+        <p>Área do Quadrado: {{lado * lado}}</p>
+        <p>Perímetro quadrado: {{lado * 10}}</p>
+        <p>Curso Liberado: {{comprou ? 'Sim' : 'Não'}}</p>
+        <input type="cor" v-model="cor">
+    </div>
+    <a :href="comprou ? href : ''">{{href}}</a>
+</div>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            titulo: "Curso de JS",
+            conteudo: "Esse curso é bom...",
+            lado: 5,
+            comprou: true,
+            cor: "#333",
+            href: "www.josemalcher.net"
+        }
+    });
+</script>
+</body>
+</html>
+```
+
+
 [Voltar ao Índice](#indice)
 
 ---

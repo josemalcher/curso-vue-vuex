@@ -8,18 +8,25 @@
 <body>
 
 <div id="app">
-    <p>Área do Quadrado: {{lado * lado}}</p>
-    <p>Perímetro quadrado: {{lado * 4}}</p>
-    <p>Curso Liberado: {{comprou ? 'Sim' : 'Não'}}</p>
+    <h1>{{titulo}}</h1>
+    <div v-show="comprou" :style="{background: cor}">
+        <p>Área do Quadrado: {{lado * lado}}</p>
+        <p>Perímetro quadrado: {{lado * 10}}</p>
+        <p>Curso Liberado: {{comprou ? 'Sim' : 'Não'}}</p>
+        <input type="cor" v-model="cor">
+    </div>
+    <a :href="comprou ? href : ''">{{href}}</a>
 </div>
 <script>
     new Vue({
         el: "#app",
-        data:{
+        data: {
             titulo: "Curso de JS",
             conteudo: "Esse curso é bom...",
             lado: 5,
-            comprou: false,
+            comprou: true,
+            cor: "#333",
+            href: "www.josemalcher.net"
         }
     });
 </script>
