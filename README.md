@@ -122,14 +122,76 @@
 </html>
 ```
 
-
 [Voltar ao Índice](#indice)
 
 ---
 
-
 ## <a name="parte2">2 - Vue para iniciantes</a>
 
+- 0201 Instância - Aula
+
+```vue
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+ <div id="app">
+        {{instrumento}} {{cor}}
+ </div>
+<script>
+    function VueClone(option){
+        this.option = option
+        this.el     = document.querySelector(option.el)
+        this.data   = option.data;
+    }
+
+    const vmClone = new VueClone({
+        el: "#app",
+        data:{
+            produto: "Camisa"
+        }
+    });
+    console.log(vmClone);
+
+    const vm = new Vue({
+        el:"#app",
+        data: {
+            instrumento: "violão",
+            cor: "Vermelho",
+        },
+        computed: {
+            nomeProduto(){
+                setTimeout(()=>{
+                    console.log('Aqui é o TimeOut: ', this.instrumento);
+                },1000)
+                return this.instrumento + ' ' + this.cor;
+            }
+        },
+    });
+    console.log(vm);
+</script>
+</body>
+</html>
+```
+
+- 0201 Instância - Exercício
+
+
+
+- 0202 Data
+- 0203 Methods
+- 0204 v-bind
+- 0205 v-on
+- 0206 v-if
+- 0207 v-html e v-text
+- 0208 v-for 1
+- 0208 v-for 2
+- 0209 Computed e Watch 1
+- 0209 Computed e Watch 2
 
 
 [Voltar ao Índice](#indice)
