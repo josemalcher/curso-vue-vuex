@@ -21,7 +21,7 @@
 
 - vuejs\index.html
 
-```js
+```vue
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,6 +47,38 @@
     });
 </script>
 
+</body>
+</html>
+```
+
+#### Expressões
+
+```vue
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue - Hello word</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <p>Área do Quadrado: {{lado * lado}}</p>
+    <p>Perímetro quadrado: {{lado * 4}}</p>
+    <p>Curso Liberado: {{comprou ? 'Sim' : 'Não'}}</p>
+</div>
+<script>
+    new Vue({
+        el: "#app",
+        data:{
+            titulo: "Curso de JS",
+            conteudo: "Esse curso é bom...",
+            lado: 5,
+            comprou: false,
+        }
+    });
+</script>
 </body>
 </html>
 ```
