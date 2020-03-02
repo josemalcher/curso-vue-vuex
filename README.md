@@ -363,7 +363,93 @@ const vm2 = new Vue({
 </script>
 ```
 
+
 - 0203 Methods
+  
+  - Mehotdos: Métodos podem ser criados para serm utilizados na instância e também em diretivas. Lembrando que métodos são funções
+
+```vue
+<div id="app">
+    <p>{{contador}}</p>
+      <button @click="incrementar">Incrementar</button>
+      <button @click="decrementar">Decrementar</button>
+</div>
+<script>
+const vm = new Vue({
+  el:"#app",
+  data:{
+      contador: 0
+  },
+    methods:{
+        incrementar() {
+            this.contador++;
+        },
+        decrementar () {
+            this.contador--;
+        }
+    }
+});
+</script>
+```
+
+  - Parâmetros e argumentos: podemos passar parâmetros dentro dos métodos.
+
+```vue
+  <div id="app2">
+      <p>{{compra}}</p>
+      <button @click="mudarCompra('Guitarra')">Guitarra</button>
+      <button @click="mudarCompra('Violão')">Violão</button>
+      <button @click="verEvento">Evento</button>
+  </div>
+
+<script>
+const vm2 = new Vue({
+    el:"#app2",
+    data:{
+        compra: "",
+    },
+    methods:{
+        mudarCompra(intrumento){
+            this.compra = intrumento;
+        },verEvento(event){
+          console.log(event)
+        }
+
+    }
+});
+</script>
+
+```
+  - Método dentro do método: O this possui acesso aos métodos também.
+  
+```vue
+  <div id="app3">
+      <p>{{preco}}</p>
+      <button @click="adicionarCupom" >Adicionar Copom</button>
+      <p>{{alerta}}</p>
+  </div>
+<script>
+const vm3 = new Vue({
+    el: "#app3",
+    data:{
+        preco: 0,
+        alerta: " "
+    },methods:{
+        adicionarCupom(){
+            this.preco *= 0.9;
+            this.aletaCopom();
+        },
+        aletaCopom(){
+            this.alerta = "Cupom Adicionado";
+        }
+    }
+});
+</script>
+```
+
+  - Exercício: 
+
+
 - 0204 v-bind
 - 0205 v-on
 - 0206 v-if
