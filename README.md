@@ -232,6 +232,137 @@ const vm2 = new Vue({
 
 
 - 0202 Data
+  - Data: A propriedade data é responsável por dar reatividade aos estados definindo os seus getters e setters. Ela recebe um objeto ou uma função
+  
+```vue
+<div id="app">
+    {{cor}}
+</div>
+
+<script>
+const vm  = new Vue({
+    el:"#app",
+    data:{
+        cor:"Vermelho"
+    }
+});
+```
+
+
+  - Proxy: Toda propriedade dentro de data, é também representada diretamente no objeto Vue(proxy). Se começar com $ ou "-" não é feito proxy para evitar conflito com as propriedades de Vue.
+
+```vue
+  <div id="app">
+    {{cor}}
+  </div>
+  <div id="app2">
+    <p>{{titulo}}</p>
+    <p>{{$preco}}</p>
+  </div>
+
+<script>
+  const vm  = new Vue({
+    el:"#app",
+    data:{
+      cor:"Vermelho",
+    }
+  });
+  const vm2 = new Vue({
+    el: "#app2",
+    data:{
+      titulo: "Vue completo!",
+      $preco: 390,
+    }
+  });
+  /* 
+  vm2.$data.titulo; // Vue completo
+  vm2.titulo; // Vue completo
+
+  vm2.$data.$preco // 59
+  vm2.$preco/ // undefined
+  */
+
+```
+
+  - Sempre Definir: Sempre defina os estados no data, mesmo que ainda não possua o valor. É o registro no data que garante a reatividade.
+
+```vue
+ <div id="app3">
+    <h2>{{logado}}</h2>
+  </div>
+
+<script>
+const vm3 = new Vue({
+  el: "#app3",
+  data:{
+    logado: ""
+  }
+});
+setTimeout(()=>{
+  vm3.logado = "SIM"
+}, 4000 );
+```
+
+  - Diferentes Tipos: Qualquer tipo de dado aceito por uma propriedade, pode ser utilizado em data.
+
+```vue
+  <div id="app4">
+    <p>{{frutas[0]}}</p>
+    <p>{{frutas[1]}}</p>
+    <p>{{objeto.item}}</p>
+    <p>{{comprou}}</p>
+  </div>
+  <script>
+  
+  
+  const vm4 = new Vue({
+  el:"#app4",
+  data: {
+    comprou: true,
+    tatal: 55,
+    vitalicio: null,
+    objeto:{
+      item: "Item 1"
+    },
+    frutas:["Banana", "Uva"]
+  }
+});
+</script>
+```
+
+- 02-Vue-js_Para_Iniciantes\0202-Data-exerc.html
+
+```vue
+  <div id="app">
+    <h1>{{empresa}}</h1>
+    <p>{{produto}}</p>
+  </div>
+  <div id="quadrado">
+    <p>Lado = {{lado}}</p>
+    <p>Perímetro = {{lado * 4}}</p>
+    <p>Área = {{lado * lado}}</p>
+  </div>
+
+<script>
+
+const vm = new Vue({
+  el:"#app",
+  data:{
+    empresa: "Apple",
+    produto:"iphone"
+  }
+});
+
+const vm2 = new Vue({
+  el: "#quadrado",
+  data:{
+    lado: 30,
+  }
+});
+ 
+</script>
+```
+
 - 0203 Methods
 - 0204 v-bind
 - 0205 v-on
