@@ -501,6 +501,47 @@ de lalestPrice, latestTime e o companyName na interface
 ```
 
 - 0204 v-bind
+
+  - Ov-bind é uma diretiva que permite a utilização de expressões dentro de atributos html.
+  
+  - Podemos utilizar os Atributos:  é possivel utilizar os atributos normais junto com as diretivas. Se o atributo permitir apenas um valor, o último será o utilizado.
+
+```vue
+<div id="app">
+    <a v-bind:href="link">Link do GOogle</a>
+    <p :class="cor">Parágrafo</p>
+    <p :class="cor" class="ativo">Parágrafo</p>
+</div>
+
+<script>
+
+const vm = new Vue({
+    el:"#app",
+    data:{
+        link: "http://google.com",
+        cor: "azul"
+    }
+
+});
+```
+
+  - Expressões em Diretivas: podem ser utilizados dentro dos valores
+
+```vue
+   <p :class="comprou ? 'verde' : 'vermelho'">COMPROU</p>
+<script>
+const vm = new Vue({
+    el:"#app",
+    data:{
+        comprou: true,
+    }
+
+});
+</script>
+
+```  
+
+
 - 0205 v-on
 - 0206 v-if
 - 0207 v-html e v-text
