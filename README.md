@@ -543,6 +543,48 @@ const vm = new Vue({
 
 
 - 0205 v-on
+  - é uma diretiva que permite observamos eventos nas tags.
+
+```vue
+ <div id="app">
+        <!-- <button v-on:click="handleClick">Click aqui</button> -->
+        <button @click="handleClick">Click aqui</button>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data:{
+          
+          },
+        methods: {
+            handleClick(event){
+              console.log(event);
+            }
+
+        },
+      });
+    </script>
+```
+ 
+  - não precisa ser necessariamente um método, podemos usar expressões dentro dos eventos.
+
+```vue
+ <div id="app2">
+        <button @click="ativo = !ativo">Click aqui Segundo Exempli</button>
+        <p :class="ativo ? 'verde': 'vermelho'">Texto de teste</p>
+        <p v-if="ativo" >Mostra texto!</p>
+  </div>
+  const vm2 = new Vue({
+        el: "#app2",
+        data:{
+                ativo: true,
+            },
+        });
+
+```
+
+
 - 0206 v-if
 - 0207 v-html e v-text
 - 0208 v-for 1

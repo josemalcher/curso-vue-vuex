@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="vue.js"></script>
+    <style>
+        .verde{
+            background-color: green;
+        }
+        .vermelho{
+            background-color: red;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+        <!-- <button v-on:click="handleClick">Click aqui</button> -->
+        <button @click="handleClick">Click aqui</button>
+    </div>
+
+    <div id="app2">
+        <button @click="ativo = !ativo">Click aqui Segundo Exempli</button>
+        <p :class="ativo ? 'verde': 'vermelho'">Texto de teste</p>
+        <p v-if="ativo" >Mostra texto!</p>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data:{
+
+        },
+        methods: {
+            handleClick(event){
+                console.log(event);
+            }
+
+        },
+      });
+
+      const vm2 = new Vue({
+        el: "#app2",
+        data:{
+                ativo: true,
+            },
+        });
+
+    </script>
+  </body>
+</html>
