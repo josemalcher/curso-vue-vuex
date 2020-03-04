@@ -6,20 +6,67 @@
     <script src="vue.js"></script>
   </head>
   <body>
-<!-- 
+    <!-- 
 Utilizando as API's 
-- 
-- 
+- https://www.mercadobitcoin.net/api/BTC/ticker/
+
+- https://www.mercadobitcoin.net/api/BTC/day-summary/2020/03/02
+
+Usar data anterior!
 
 - compare o marketCap (valor de mercado) entre ambas
 - mostre o nome da sempresas e o valor na inteface (companyName e MarketCap)
 - mude a cor para verde o nome da empresa com maior marketCap e vermelha a menor
 
-
-
-
  -->
+    <!-- <div id="app">
+      {{btcAnterior}}
+    </div> -->
+    <div id="app">
+      <h2>{{btcAnterior}}</h2>
+      <button @click="dados()">BTC</button>
+  </div>
+
+
     <script>
+      const vm = new Vue({
+        el:"#app",
+        data:{
+          //btcDia: {},
+          btcAnterior:"",
+          //datahoje: ""
+        },
+        methods(){
+          //api com preços do dia https://www.mercadobitcoin.net/api/BTC/ticker/
+          // btcDia(){
+          //     fetch("https://www.mercadobitcoin.net/api/BTC/ticker/")
+          //     .then(r => r.json())
+          //     .then(btcDia => {
+          //       this.btcDia = btcDia;
+          //     });
+          // },
+          // Pega contações anteriores https://www.mercadobitcoin.net/api/BTC/day-summary/2020/03/02
+          btcAnterior(){
+              let hoje = new Date();
+              let ano = hoje.getFullYear;
+              let mes = hoje.getMonth;
+              let dia = hoje.getDay - 1 ;
+              if(dia === 0){
+                dia = 28;
+                mes--; // sim... gambiarra temporária!!! ^^
+              }
+              fetch(`https://www.mercadobitcoin.net/api/BTC/day-summary/${ano}/${mes}/${dia}`)
+              .then(r => r.json())
+              .then(btcAntes => {
+                this.btcAnterior = btcAntes;
+                console.log(this.btcAnterior);
+              });
+          },
+          dados(){
+            this.btcAnterior();
+          }
+      },
+      });
     </script>
   </body>
 </html>

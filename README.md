@@ -588,7 +588,6 @@ const vm = new Vue({
   - Modificadores: algumas directivas possuem modificadores. Estes são utilizados através do ".". No caso de eventos, event.preventDefault() pode ser adicionar com o elemento @click.prevent
 
 ```vue
-
     <div id="app3">
       <a @click.prevent="scrollSuave" href="#interno">Prevent</a>
       <a @click.once="scrollSuave" href="#interno">ONCE</a>
@@ -606,6 +605,38 @@ const vm = new Vue({
         });
 </script>
 ```
+
+  - Outros eventos: podemos adicionar diversos eventos como @keyup @mouseenter, @change e mais...
+  - 02-Vue-js_Para_Iniciantes\0205-v-on-aula.html
+
+
+```js
+  <div id="app4">
+      <br>
+      <div @mousemove="handleMousex"> Mouse X: {{mouse.x}}</div>
+      <input @keyup="handleClickUp" type="text"><br>
+      <!-- Evento dispara quando tem a letra f -->
+      <input @keyup.f="handleClickUp" type="text"><label for="">Letra F</label><br>
+      <!-- Evento dispara quando tecla Enter -->
+      <input @keyup.enter="handleClickUp" type="text"><label for="">Enter</label><br>
+    </div>  
+    <script>
+    const vm4 = new Vue({
+          el:"#app4",
+          data:{
+              mouse: ""
+          }, 
+          methods:{
+            handleClickUp(event){
+                console.log(event);
+            },
+            handleMousex(event){
+                this.mouse = event
+            }
+          }
+        });
+    </script>
+```  
 
 - 0206 v-if
 - 0207 v-html e v-text
