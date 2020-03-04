@@ -6,7 +6,7 @@
     <script src="vue.js"></script>
   </head>
   <body>
-      <!-- 
+    <!-- 
             Simule a adição de um produto no carrinho
             este produto possui estoque de 7 itens
             (utilize a mesma ideia do contador)
@@ -17,11 +17,32 @@
             Remova também o botão de adicionar itens.
        -->
     <div id="app">
-
+      <p>Banana - Estoque = <big>{{estoqueBanana}}</big></p>
+      <button v-show="estoqueBanana" @click="adicionarItem">[  +  ]</button>
+      <p v-show="estoqueBanana === 0">Não temos mais Bananas no Estoque</p>
+      <br><br>
+      <button v-show="carrinho" @click="removerItem">[  -  ]</button>
+      <p>Carrinho: <big>{{carrinho}}</big></p>
     </div>
 
     <script>
-
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          estoqueBanana: 7,
+          carrinho: 0,
+        },
+        methods: {
+            adicionarItem(){
+                this.carrinho++;
+                this.estoqueBanana--;
+            },
+            removerItem(){
+                this.carrinho--;
+                this.estoqueBanana++;
+            }
+        },
+      });
     </script>
   </body>
 </html>
