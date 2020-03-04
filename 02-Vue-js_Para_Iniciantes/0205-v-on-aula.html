@@ -25,6 +25,12 @@
         <p v-if="ativo" >Mostra texto!</p>
     </div>
 
+    <div id="app3">
+      <a @click.prevent="scrollSuave" href="#interno">Prevent</a>
+      <a @click.once="scrollSuave" href="#interno">ONCE</a>
+      <a @click.prevent.once="scrollSuave" href="#interno">Prevent ONCE</a>
+    </div>
+
     <script>
       const vm = new Vue({
         el: "#app",
@@ -44,6 +50,15 @@
         data:{
                 ativo: true,
             },
+        });
+        const vm3 = new Vue({
+          el:"#app3",
+          methods:{
+            scrollSuave(){
+              //event.preventDefault();
+              console.log("Scroll SUAVE");
+            }
+          }
         });
 
     </script>

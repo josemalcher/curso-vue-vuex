@@ -575,15 +575,37 @@ const vm = new Vue({
         <p :class="ativo ? 'verde': 'vermelho'">Texto de teste</p>
         <p v-if="ativo" >Mostra texto!</p>
   </div>
+  <script>
   const vm2 = new Vue({
         el: "#app2",
         data:{
                 ativo: true,
             },
         });
-
+</script>
 ```
 
+  - Modificadores: algumas directivas possuem modificadores. Estes são utilizados através do ".". No caso de eventos, event.preventDefault() pode ser adicionar com o elemento @click.prevent
+
+```vue
+
+    <div id="app3">
+      <a @click.prevent="scrollSuave" href="#interno">Prevent</a>
+      <a @click.once="scrollSuave" href="#interno">ONCE</a>
+      <a @click.prevent.once="scrollSuave" href="#interno">Prevent ONCE</a>
+    </div>
+<script>
+  const vm3 = new Vue({
+          el:"#app3",
+          methods:{
+            scrollSuave(){
+              //event.preventDefault();
+              console.log("Scroll SUAVE");
+            }
+          }
+        });
+</script>
+```
 
 - 0206 v-if
 - 0207 v-html e v-text
