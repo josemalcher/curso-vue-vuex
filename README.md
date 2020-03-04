@@ -639,6 +639,68 @@ const vm = new Vue({
 ```  
 
 - 0206 v-if
+  - é uma diretiva que permite utilizarmos condicionais para mostrar ou não um elemento. Podemos utilizar também o "v-else" que deve vir logo após o if para funcionar.
+
+```vue
+     <div id="app">
+        <p v-if="logado">Logado</p>
+        <p v-if="logado === 1">Logado 1</p>
+        <p v-else-if="logado === 2">Logado 2 </p>
+        <p v-else="logado">Deslogado</p>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data:{
+                logado: 2,
+            }
+        });
+    </script>
+```
+  - GRUPOS: poremos agrupar um conteúdo com a tag <template>
+
+```vue
+<div id="app">
+        <template v-if="logado">
+            <p>Você está Logado</p>
+            <button @click="logado = false">Deslogar</button>
+        </template>
+        <template  v-else>
+            <p>Você não está logado</p>
+            <button @click="logado = true">Logar</button>
+        </template>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data:{
+                logado: true,
+            }
+        });
+    </script>
+```
+
+  - v-show vs v-if: o v-if remove o elemento, v-show apenas adiciona o display:none; o v-show é preferido se você for mudar constantemente o estado, por ser mais rápido.
+
+```vue
+  <div id="app">
+        <p v-show="logado">SHOW LOGADO</p>
+        <p v-if="logado">if LOGADO</p>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data:{
+                logado: false,
+            }
+        });
+    </script>
+```
+
+
 - 0207 v-html e v-text
 - 0208 v-for 1
 - 0208 v-for 2
