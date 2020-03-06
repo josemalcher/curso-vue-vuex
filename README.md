@@ -756,6 +756,74 @@ const vm = new Vue({
 
 
 - 0207 v-html e v-text
+  - Renderiza conteúdo html dentro de uma TAG. Modifica o InnerHtml do elemento
+
+```vue
+  <div id="app">
+        <div v-html="link2"></div>
+        <div>{{link}}</div>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+            link: "https://josemalcher.net",
+            link2: "<a href='https://josemalcher.net'>Site José Malcher Jr.</a>"
+        }
+      });
+```
+
+  - v-text: Renderiza texto dentro de uma tag.
+
+```vue
+    <div id="app2">
+        <div v-text="fruta"> Custa R$ 100,00 </div><!-- Não renderiza "Custa R$..." -->
+        <div>{{fruta}}</div>
+        <div>{{fruta2}}</div>
+    </div>
+
+    <script>
+      const vm2 = new Vue({
+        el: "#app2",
+        data: {
+            fruta: "Banana",
+            fruta2: "<b>Banana</b>"
+        }
+      });
+      </script>
+<!-- 
+Site José Malcher Jr.
+https://josemalcher.net
+Banana
+Banana
+<b>Banana</b>
+ -->
+
+```
+
+  - V-once : Renderiza uma única vez o conteúdo e não rorna ele reativo
+
+```vue
+    <div id="app3"> 
+        <p v-once>Valor inicial: R$ {{total - gasto}}</p>
+        <button @click="gasto += 5" > Comprar Banana R$ 5</button>
+        <p>Gasto: R$ {{gasto}}</p>
+        <p>Saldo: R$ {{total - gasto}}</p>
+    </div>
+
+    <script>
+      const vm3 = new Vue({
+        el: "#app3",
+        data: {
+            total: 150,
+            gasto:0
+        }
+      });
+    </script>
+```
+
+
 - 0208 v-for 1
 - 0208 v-for 2
 - 0209 Computed e Watch 1
