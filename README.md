@@ -823,6 +823,28 @@ Banana
     </script>
 ```
 
+  - Exercício
+
+  ```vue
+      <!-- 
+        Renderize o conteudo, apenas uma vez (não torne o mesmo reativo)
+        Lista "<ul><li>Item 1</li><li>Item 2</li><li>Item 3</li></ul>"
+       -->
+       
+    <div id="app">
+      <div v-html="lista" v-once></div>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          lista: "<ul><li>Item 1</li><li>Item 2</li><li>Item 3</li></ul>"
+        },
+      });
+    </script>
+  ```
+
 
 - 0208 v-for 1
 - 0208 v-for 2
