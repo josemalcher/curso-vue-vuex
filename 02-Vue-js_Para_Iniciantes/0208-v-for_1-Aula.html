@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+        <ul>
+            <li v-for="(curso, index) in cursos">{{index}} - {{curso}}</li>
+        </ul>
+    </div>
+
+    <div id="app2">
+        <div v-for="(estado, chave) in estados">
+            <p>{{chave}} - {{estado.nome}} - {{estado.populacao}}</p>
+        </div>
+    </div>
+
+    <div id="app3">
+        <div v-for="fruta in frutas" :key="fruta.id">
+            <p>{{fruta.id}} - {{fruta.nome}} - {{fruta.cor}}</p>
+        </div>
+    </div>
+
+    <div id="app4">
+        <span v-for="numeto in 5">{{numero}}</span>
+    </div>
+
+    <div id="app5">
+        <ul>
+            <li v-for="item in lista">{{item}}</li>
+        </ul>
+        <button @click="removerItem">Remover</button>
+        <button @click="mudarItem">Mudar</button>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el:"#app",
+            data:{
+                cursos: ["html", "css", "PHP", "Wordpress","SASS"]
+            }
+        });
+
+        const vm2 = new Vue({
+            el:"#app2",
+            data:{
+                estados:{
+                    sp:{
+                        populacao: "45 milhões",
+                        nome: "São Paulo"
+                    },
+                    pa:{
+                        populacao: "2 milhoes",
+                        nome: "Pará"
+                    }
+                }
+            }
+        });
+
+        const vm3 = new Vue({
+            el:"#app3",
+            data:{
+                frutas: [
+                    {
+                        id: "banana-1",
+                        nome: "Banana",
+                        cor: "Amarela",
+                    },
+                    {
+                        id: "melancia-1",
+                        nome: "Melancia",
+                        cor:"Verde",
+                    }
+                ]
+            }
+        });
+
+        const vm4 = new Vue({
+            el:"#app4",
+            data:{
+               numero: " - Teste " ,
+            }
+        });
+
+        const vm5 = new Vue({
+            el:"#app5",
+            data:{
+               lista: ["Item 1", "Item 2", "Item 3"]
+            },
+            methods: {
+                removerItem(){
+                    this.lista.pop(); // Ativa reatividade
+                },
+                mudarItem(){
+                    // Verificar no console VUE
+                    this.lista[0] = "Banana"; // não ativa Reatividade
+                    
+                    // Para executar a modificação:
+                    //this.$set(this.lista, 0, "Banana");
+                }
+            },
+        });
+    </script>
+  </body>
+</html>

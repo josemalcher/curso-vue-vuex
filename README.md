@@ -847,6 +847,137 @@ Banana
 
 
 - 0208 v-for 1
+  - Renderiza uma lista de itens. Assim como o loop, ele irá executar para cada item do array/objeto.
+
+```vue
+<div id="app">
+        <ul>
+            <li v-for="(curso, index) in cursos">{{index}} - {{curso}}</li>
+        </ul>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el:"#app",
+            data:{
+                cursos: ["html", "css", "PHP", "Wordpress","SASS"]
+            }
+        });
+    </script>
+```
+
+  - v-for Objetos
+
+```vue
+    <div id="app2">
+        <div v-for="(estado, chave) in estados">
+            <p>{{chave}} - {{estado.nome}} - {{estado.populacao}}</p>
+        </div>
+    </div>
+
+    <script>
+        const vm2 = new Vue({
+            el:"#app2",
+            data:{
+                estados:{
+                    sp:{
+                        populacao: "45 milhões",
+                        nome: "São Paulo"
+                    },
+                    pa:{
+                        populacao: "2 milhoes",
+                        nome: "Pará"
+                    }
+                }
+            }
+        });
+    </script>
+```
+
+  - :key : cria uma identificação unica para o item. Sem o Key, bugs podem 
+  ocorrer principalmente em componentes mais complexos
+
+```vue
+<div id="app3">
+        <div v-for="fruta in frutas" :key="fruta.id">
+            <p>{{fruta.id}} - {{fruta.nome}} - {{fruta.cor}}</p>
+        </div>
+    </div>
+
+    <script>
+        const vm3 = new Vue({
+            el:"#app3",
+            data:{
+                frutas: [
+                    {
+                        id: "banana-1",
+                        nome: "Banana",
+                        cor: "Amarela",
+                    },
+                    {
+                        id: "melancia-1",
+                        nome: "Melancia",
+                        cor:"Verde",
+                    }
+                ]
+            }
+        });
+    </script>
+```
+
+  - numero in 10
+
+```vue
+
+    <div id="app4">
+        <span v-for="numeto in 5">{{numero}}</span>
+    </div>
+
+    <script>
+
+        const vm4 = new Vue({
+            el:"#app4",
+            data:{
+               numero: " - Teste " ,
+            }
+        });
+    </script>
+```
+
+  - Reatividade : modificar diretamente o valor de um array, não irá ativar a reatividade o Vue.
+
+```vue
+<div id="app5">
+        <ul>
+            <li v-for="item in lista">{{item}}</li>
+        </ul>
+        <button @click="removerItem">Remover</button>
+        <button @click="mudarItem">Mudar</button>
+    </div>
+
+    <script>
+        const vm5 = new Vue({
+            el:"#app5",
+            data:{
+               lista: ["Item 1", "Item 2", "Item 3"]
+            },
+            methods: {
+                removerItem(){
+                    this.lista.pop(); // Ativa reatividade
+                },
+                mudarItem(){
+                    // Verificar no console VUE
+                    this.lista[0] = "Banana"; // não ativa Reatividade
+                    
+                    // Para executar a modificação:
+                    //this.$set(this.lista, 0, "Banana");
+                }
+            },
+        });
+    </script>
+```
+
+
 - 0208 v-for 2
 - 0209 Computed e Watch 1
 - 0209 Computed e Watch 2
