@@ -977,8 +977,103 @@ Banana
     </script>
 ```
 
-
 - 0208 v-for 2
+
+- Exercício Cursos
+
+```vue
+ <body>
+      <!-- 
+            Utilizando a API:
+            http://viacep.com.br/ws/04538133/json
+
+            Mostre o CEP, logradouro, complemento bairro, localidade, etc
+
+            Use o arquivo json da aula, para listar os recursos e as matérias
+
+       -->
+    <div id="app">
+        <button @click="puxarCursos">Puxar Cursos</button>
+       <ul>
+           <div v-for="curso in cursos">
+               <h1><a :href="curso.link">{{curso.curso}}</a></h1>
+               <ul>
+                   <li v-for="{nome, tempo} in curso.aulas">
+                        {{tempo}} - {{nome}}
+                   </li>
+               </ul>
+           </div>
+       </ul>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el:"#app",
+            data:{
+                cursos: {}
+            },
+            methods: {
+                puxarCursos(){
+                    fetch("./cursos.json")
+                    .then(r => r.json())
+                    .then(r => {
+                        this.cursos = r;
+                    })
+                }
+            },
+        });
+
+     
+    </script>
+  </body>
+```
+
+- Exercício CEP
+
+```vue
+<body>
+      <!-- 
+            Utilizando a API:
+            http://viacep.com.br/ws/04538133/json
+
+            Mostre o CEP, logradouro, complemento bairro, localidade, etc
+
+            Use o arquivo json da aula, para listar os recursos e as matérias
+
+       -->
+    <div id="app">
+        <button @click="puxarCEP">Puxar CEP</button>
+       <!-- <div>{{local}}</div> -->
+       <ul>
+           <li v-for="dado, key in local">
+               {{key}}: dado
+           </li>
+       </ul>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el:"#app",
+            data:{
+                local: {}
+            },
+            methods: {
+                puxarCEP(){
+                    fetch("http://viacep.com.br/ws/04538133/json")
+                    .then(r => r.json())
+                    .then(r => {
+                        this.local = r
+                    })
+                }
+            },
+        });
+
+     
+    </script>
+  </body>
+```
+
+
 - 0209 Computed e Watch 1
 - 0209 Computed e Watch 2
 
