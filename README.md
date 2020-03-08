@@ -1075,6 +1075,97 @@ Banana
 
 
 - 0209 Computed e Watch 1
+
+  - Computed: quando precisamos modificar um dado usando o JS, podemos utilizar uma propriedad dentro de computed.
+
+```vue
+<body>
+    <div id="app">
+      <p>{{total}}</p>
+    </div>
+
+    <div id="app2">
+      <p v-for="carro in carrosAzuis">{{carro.marca}}</p>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          preco: 50,
+          desconto: 10
+        },
+        computed: {
+          total() {
+            return "R$ " + (this.preco - this.desconto);
+          }
+        }
+      });
+
+      const vm2 = new Vue({
+        el: "#app2",
+        data: {
+          carros: [
+            {
+              marca: "VW",
+              cor: "Azul"
+            },
+            {
+              marca: "Ford",
+              cor: "Preto"
+            },
+            {
+              marca: "Renalt",
+              cor: "Verde"
+            }
+          ]
+        },
+        computed: {
+          carrosAzuis() {
+            const filtro = this.carros.filter(({ cor }) => cor === "Azul");
+            return filtro;
+          }
+        }
+      });
+    </script>
+  </body>
+```
+
+  - Watch: é possível ativar uma função toda vez que um dado reativo é modificado. Para isso usamos uma propriedade dentro do watch.
+
+```vue
+    <div id="app3">
+      <p>{{contador}}</p>
+      <button @click="contador++">Adicionar</button>
+    </div>
+
+    <script>
+  
+      // Watch
+      const vm3 = new Vue({
+          el: "#app3",
+          data:{
+              contador: 0
+          },
+          watch: {
+              contador(valorNovo, valorAntigo){
+                  console.log(this.contador);
+                  console.log(valorNovo);
+                  console.log(valorAntigo);
+              }
+          },
+      });
+    </script>
+  </body>
+```
+
+  - Watch assincrono: o watch se direfencia do computed principalmente pela sua capacidade de receber eventos assincronos.
+
+```vue
+
+```
+
+
 - 0209 Computed e Watch 2
 
 
