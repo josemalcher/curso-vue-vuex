@@ -20,13 +20,11 @@
     </div>
 
     <div id="app4">
-        <input type="text" v-model="cep" placeholder="CEP" maxlength="8">
-        <p>{{cep}}</p>
-        <ul>
-            <li v-for="(valor, chave) in endereco">
-                {{chave}} : {{valor}}
-            </li>
-        </ul>
+      <input type="text" placeholder="cep" maxlength="8" v-model="cep" />
+      <h1>{{cep}}</h1>
+      <ul>
+        <li v-for="(valor, chave) in endereco">{{chave}}: {{valor}}</li>
+      </ul>
     </div>
 
     <script>
@@ -70,31 +68,37 @@
       });
       // Watch
       const vm3 = new Vue({
-          el: "#app3",
-          data:{
-              contador: 0
-          },
-          watch: {
-              contador(valorNovo, valorAntigo){
-                  console.log(this.contador);
-                  console.log(valorNovo);
-                  console.log(valorAntigo);
-              }
-          },
+        el: "#app3",
+        data: {
+          contador: 0
+        },
+        watch: {
+          contador(valorNovo, valorAntigo) {
+            console.log(this.contador);
+            console.log(valorNovo);
+            console.log(valorAntigo);
+          }
+        }
       });
 
       // watch assincrono
       const vm4 = new Vue({
-          el:"#app4",
-          data:{
-              cep: "",
-              endereco: {}
-          },
-          watch:{
-                cep(){
-                    
-                }
+        el: "#app4",
+        data: {
+          cep: "",
+          endereco: {}
+        },
+        watch: {
+          cep(valor) {
+            if (valor.length === 8) {
+              fetch(`https://viacep.com.br/ws/${valor}/json/`)
+                .then(r => r.json())
+                .then(r => {
+                  this.endereco = r;
+                });
+            }
           }
+        }
       });
     </script>
   </body>

@@ -1162,7 +1162,37 @@ Banana
   - Watch assincrono: o watch se direfencia do computed principalmente pela sua capacidade de receber eventos assincronos.
 
 ```vue
+<body>
+   
+    <div id="app4">
+      <input type="text" placeholder="cep" maxlength="8" v-model="cep" />
+      <h1>{{cep}}</h1>
+      <ul>
+        <li v-for="(valor, chave) in endereco">{{chave}}: {{valor}}</li>
+      </ul>
+    </div>
 
+    <script>
+   // watch assincrono
+      const vm4 = new Vue({
+        el: "#app4",
+        data: {
+          cep: "",
+          endereco: {}
+        },
+        watch: {
+          cep(valor) {
+            if (valor.length === 8) {
+              fetch(`https://viacep.com.br/ws/${valor}/json/`)
+                .then(r => r.json())
+                .then(r => {
+                  this.endereco = r;
+                });
+            }
+          }
+        }
+      });
+    </script>
 ```
 
 
