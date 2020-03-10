@@ -1295,6 +1295,19 @@ Banana
 
 ## <a name="parte3">3 - Directivas e Hooks</a>
 
+- 0301 Arguments e Modifiers
+  - https://br.vuejs.org/v2/api/index.html
+
+![](imgs/argumentos-modifiers.png)
+
+
+- 0302 Class e Style 1
+- 0302 Class e Style 2
+- 0303 v-model 1
+- 0303 v-model 2
+- 0304 v-on e Eventos Globais
+- 0305 Lifecycle Hooks 1
+- 0305 Lifecycle Hooks 2
 
 
 [Voltar ao Índice](#indice)
