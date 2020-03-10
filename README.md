@@ -1302,6 +1302,84 @@ Banana
 
 
 - 0302 Class e Style 1
+  
+  - :class - Manipulação de classes é comum quando desejamos criar efeitos com JavaScript. Por isso o vue.js trata a diretiva v-bind:class ou :class de forma diferente
+
+```vue
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <title>03 Diretivas e Hooks</title>
+    <script src="vue.js"></script>
+    <style>
+        .azul{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+ <h1>03 Diretivas e Hooks</h1>
+ <hr>
+
+<div id="app">
+    <p :class="cor">Texto AZUL</p>
+</div>
+
+<script>
+    const vm = new Vue({
+        el:"#app",
+        data: {
+            cor:"azul"
+        }
+    });
+</script>
+</body>
+</html>
+```
+
+  - :class e objetos - Podemos passar objetos no :class. a propriedade que tiver valor "true" será adicionada como classe.
+
+```vue
+    <style>
+        .azul{
+            color: blue;
+        }
+        .verde{
+            color: green;
+        }
+        .ativo{
+            background-color: brown;
+        }
+    </style>
+
+
+<div id="app2">
+    <p :class="cor">Texto AZUL</p>
+    <p :class="{ativo: estaAtivo, cor:possuiCor }">Texto AZUL</p>
+    <button @click="estaAtivo = !estaAtivo" > Ativar/Desativar </button>
+</div>
+
+<script>
+    const vm2 = new Vue({
+        el:"#app2",
+        data: {
+            cor:"azul",
+            estaAtivo: false,
+            possuiCor: false,
+        }
+    });
+</script>
+
+```
+
+  - :class e array - Array's devem ser utilizadas quando precisamos passar mais de uma classe.
+
+```vue
+
+```
+
+
 - 0302 Class e Style 2
 - 0303 v-model 1
 - 0303 v-model 2
