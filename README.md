@@ -1198,6 +1198,95 @@ Banana
 
 - 0209 Computed e Watch 2
 
+```vue
+<!DOCTYPE html>
+<html lang="pt_BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <!-- 
+
+      você possui o nome e sobrenome do usuário em data,
+      crie uma propriedade computed que retorne o nome completo
+
+      Utilize a reat API para puxar as capitais dos paises.
+      Use um campo Select, onde o usuário pode selecionar o país.
+      http://restcountries.eu/rest/v2/all
+
+      com uma junção watch, mude a capital de acordo com o país selecionado
+
+      ex de campo select
+
+      <select name="paises" id="paises" v-model="selecionado">
+        <option v-for="pais in paises" :value="pais.name">
+          {{pais.nome}}
+        </option> 
+      </select>
+
+
+     -->
+
+    <div id="app">
+      {{nomeCompleto}}
+    </div>
+    <br />
+
+    <div id="app2">
+      <button @click="carregaPaises">Carregar Paises</button>
+      <select name="paises" id="paises" v-model="paisSelecionado">
+        <option v-for="pais in paises" :value="pais.name">
+          {{pais.name}}
+        </option> 
+      </select>
+      <br>
+      <p>{{capital.capital}}</p>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          nome: "José",
+          sobrenome: "Stélio"
+        },
+        computed: {
+          nomeCompleto() {
+            return this.nome + " " + this.sobrenome;
+          }
+        }
+      });
+
+      const vm2 = new Vue({
+        el: "#app2",
+        data: {
+          paises: {},
+          paisSelecionado: "",
+          capital: ""
+        },
+        methods: {
+          carregaPaises() {
+            fetch("http://restcountries.eu/rest/v2/all")
+              .then(r => r.json())
+              .then(r => {
+                this.paises = r;
+              });
+          }
+        },
+        watch: {
+          paisSelecionado(valor){
+            this.capital = this.paises.find((pais)=> pais.name === valor)
+          }
+        },
+      });
+    </script>
+  </body>
+</html>
+
+```
+
 
 [Voltar ao Índice](#indice)
 
