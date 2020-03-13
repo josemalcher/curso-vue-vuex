@@ -1447,6 +1447,76 @@ Banana
 ```
 
 - 0302 Class e Style 2
+  - \03-Diretivas_e_Hooks\0302-Class_e_Style_2-exerc.html
+
+```vue
+<body>
+<!-- 
+
+    Crie um botão que troque a orientação da lista, ou seja, ao invés de 4 colunas, 
+    uma unica coluna de 4 linhasbundleRenderer.renderToStream
+    
+     O botão será responsável por trocar para lista e também responsável por reverter esse processo.
+     Utilize adição/remoção de classe para atingir este efeitobundleRenderer.renderToStream
+
+     A classe clumn já está criad, basta utilizar.
+
+ -->
+<h2>03 Diretivas e Hooks</h2>
+<hr>
+
+<div id="app">
+    <button @click="colunaAtiva = !colunaAtiva" >Mudar Coluna</button>
+    <ul :class="{column: colunaAtiva}" @click="geraCor">
+        <li :style="{background: bgColor}">Sobre</li>
+        <li :style="{background: bgColor}">Produtos</li>
+        <li :style="{background: bgColor}">Serviços</li>
+        <li :style="{background: bgColor}">Contato</li>
+    </ul>
+</div>
+
+
+<script>
+    const vm = new Vue({
+        el:"#app",
+        data:{
+            colunaAtiva: false,
+            bgColor: "",
+        },
+        methods: {
+            geraCor(){
+                const color = `hsl(${Math.random() * 360}, 100%, 50% )`;
+                this.bgColor = color
+            }
+        },
+    });
+</script>
+
+<style>
+ ul {
+      display: flex;
+      flex-wrap: wrap;
+      font-family: monospace;
+      list-style: none;
+      padding: 0px;
+      margin: 0px;
+    }
+    .column {
+      flex-direction: column;
+    }
+    li {
+      padding: 20px;
+      background: #84e;
+      color: white;
+      border-radius: 4px;
+      margin: 10px;
+      flex: 1;
+      text-align: center;
+    }
+</style>
+</body>
+```
+
 - 0303 v-model 1
 - 0303 v-model 2
 - 0304 v-on e Eventos Globais
