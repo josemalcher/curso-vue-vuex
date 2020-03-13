@@ -31,7 +31,22 @@
     <p :class="{ativo: estaAtivo, cor:possuiCor }">Texto AZUL</p>
     <button @click="estaAtivo = !estaAtivo" > Ativar/Desativar </button>
 </div>
+<hr>
 
+<div id="app3">
+    <p :class="[fundo, cor]">TEXTO ATIVO</p>
+</div>
+<hr>
+
+<div id="app4">
+    <p :style="{background: bgColor, color: textColor, fontSize: tamanho +  'px'}">Texto ATIVO</p>
+    <button @click="tamanho++">Aumentar</button>
+</div>
+
+<div id="app5">
+    <p :style="estiloBotao">TEXTO - Style e Objetos</p>
+    <p :style="estiloParagrafo">TEXTO - Style e Objetos</p>
+</div>
 
 <script>
     const vm = new Vue({
@@ -48,6 +63,40 @@
             estaAtivo: false,
             possuiCor: false,
         }
+    });
+    const vm3 = new Vue({
+        el:"#app3",
+        data:{
+            fundo: "ativo",
+            cor: "azul"
+        }
+    });
+    const vm4 = new Vue({
+        el: "#app4",
+        data:{
+            bgColor: "tomato",
+            textColor: "#FFF",
+            tamanho: 20
+        }
+    });
+
+    const vm5 = new Vue({
+        el:"#app5",
+        data:{
+            estiloBotao: {
+                background: "tomato",
+                color: "#FFF",
+                fontSize:"10px"
+            }
+        },
+        computed: {
+            estiloParagrafo(){
+                const tamanho = Math.random() * 20;
+                return {
+                    fontSize: tamanho + 'px',
+                }
+            }
+        },
     });
 </script>
 </body>

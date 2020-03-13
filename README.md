@@ -1377,8 +1377,74 @@ Banana
 
 ```vue
 
+<div id="app3">
+    <p :class="[fundo, cor]">TEXTO ATIVO</p>
+</div>
+
+<script>
+    const vm3 = new Vue({
+        el:"#app3",
+        data:{
+            fundo: "ativo",
+            cor: "azul"
+        }
+    });
+</script>
 ```
 
+  - :style - é possível passar um objeto com os estolos, quse como fazemos  com CSS direto. Utilizar camelCase, ao invés de font-size use fontSiza, até dá para usar font-size mas teria que ser antes das aspas.
+
+```vue
+
+<div id="app4">
+    <p :style="{background: bgColor, color: textColor, fontSize: tamanho +  'px'}">Texto ATIVO</p>
+    <button @click="tamanho++">Aumentar</button>
+</div>
+
+<script>
+    
+    const vm4 = new Vue({
+        el: "#app4",
+        data:{
+            bgColor: "tomato",
+            textColor: "#FFF",
+            tamanho: 20
+        }
+    });
+</script>
+
+```
+
+  - :style e objetos - O objeto não precisa ser escrito diretamente no style.
+
+```vue
+
+<div id="app5">
+    <p :style="estiloBotao">TEXTO - Style e Objetos</p>
+    <p :style="estiloParagrafo">TEXTO - Style e Objetos</p>
+</div>
+
+<script>
+    const vm5 = new Vue({
+        el:"#app5",
+        data:{
+            estiloBotao: {
+                background: "tomato",
+                color: "#FFF",
+                fontSize:"10px"
+            }
+        },
+        computed: {
+            estiloParagrafo(){
+                const tamanho = Math.random() * 20;
+                return {
+                    fontSize: tamanho + 'px',
+                }
+            }
+        },
+    });
+</script>
+```
 
 - 0302 Class e Style 2
 - 0303 v-model 1
