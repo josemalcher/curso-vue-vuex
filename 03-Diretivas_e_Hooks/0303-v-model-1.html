@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <title>03 Diretivas e Hooks</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <input v-model="nome" />
+    <textarea v-model="mensagem"></textarea>
+    <p>{{nome}}</p>
+    <p>{{mensagem}}</p>
+</div>
+
+<script>
+const vm = new Vue({
+    el:"#app",
+    data:{
+        nome: "",
+        mensagem: ""
+    }
+});
+</script>
+
+<style>
+
+</style>
+</body>
+</html>

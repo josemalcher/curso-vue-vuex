@@ -1518,6 +1518,28 @@ Banana
 ```
 
 - 0303 v-model 1
+
+  - v-model: é utilizado para tornar reativo o consteúdo de formulários. Chamado de two-way data binding
+
+```vue
+<div id="app">
+    <input v-model="nome" />
+    <textarea v-model="mensagem"></textarea>
+    <p>{{nome}}</p>
+    <p>{{mensagem}}</p>
+</div>
+
+<script>
+const vm = new Vue({
+    el:"#app",
+    data:{
+        nome: "",
+        mensagem: ""
+    }
+});
+</script>
+```
+
 - 0303 v-model 2
 - 0304 v-on e Eventos Globais
 - 0305 Lifecycle Hooks 1
