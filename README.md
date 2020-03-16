@@ -1804,6 +1804,91 @@ const vm6 = new Vue({
 
 
 - 0304 v-on e Eventos Globais
+  
+  - v-on:key : podemos utilizar modificadores diretamente no evento, para identificarmos a tecla clicada
+
+```vue
+
+<div id="app">
+   <input @keyup="ativar" type="text">
+   <input @keyup.enter="ativar" type="text">
+   <input @keyup.esc="ativar" type="text">
+   <input @keyup.up="ativar" type="text">
+</div>
+
+<script>
+const vm = new Vue({
+    el:"#app",
+    data:{
+
+    },
+    methods: {
+        ativar(event){
+            event.currentTarget.style.border = "4px solid blue";
+        }
+    },
+});
+</script>
+```
+
+  - v-on:click
+
+```vue
+<div id="app2">
+    <p @click="ativar">CLICK</p>
+    <p @click.alt="ativar">CLICK ALT</p>
+    <p @click.left="ativar">CLICK ESQUERDO</p>
+    <p @click.right="ativar">CLICK DIREITO</p>
+    <p @click.middle="ativar">CLICK Meio</p>
+</div>
+
+<script>
+const vm2 = new Vue({
+    el:"#app2",
+    data:{
+
+    },
+    methods: {
+        ativar(event){
+            event.currentTarget.style.color = "blue";
+        }
+    },
+});
+</script>
+```
+
+  - Eventos globais : com o vue.js você não consegue adicionar diretamente eventos ao body utilizando diretivas. Para isso utilize JS normal.
+
+```vue
+
+<div id="app3">
+    <p style="position: fixed">{{totalScroll}}</p>
+</div>
+
+<script>
+const vm3 = new Vue({
+    el:"#app3",
+    data:{
+        totalScroll: 0
+    },
+    methods:{
+        handleScroll(){
+            this.totalScroll = window.scrollY;
+        }
+    },
+    created() {
+        window.addEventListener("scroll", this.handleScroll);
+    },
+});
+</script>
+   
+<style>
+ body{
+        height: 2500px;
+    }
+</style>
+```
+
 - 0305 Lifecycle Hooks 1
 - 0305 Lifecycle Hooks 2
 
