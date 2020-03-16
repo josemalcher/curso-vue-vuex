@@ -1890,6 +1890,118 @@ const vm3 = new Vue({
 ```
 
 - 0305 Lifecycle Hooks 1
+
+  - Métodos que são ativados durante o ciclo de um componente vue.js. 
+  - https://br.vuejs.org/v2/guide/instance.html
+
+![Ciclo de vida](imgs/lifecycle.png)
+
+  - Created > O "beforeCreate" é o primeiro método ativado, ele é ativado antes mesmo das propriedades de data se tornarem Reativas. Já no "created", é possível ter acesso aos dados reativos.
+  "created" é o Hook ideal para iniciarmos requisições fetch.
+
+  - Mounted - O "beforeMount" acontece após o created. Em seguida o hook "mounded" acontece, durante essa fase o virtual dom é criado e podemos ter acesso ao this.$el.
+  Ideal para quando queremoso modificar o DOM ou adicionar eventos globais (scroll, keyup e outros)
+
+```vue
+<script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          mensagem: "Mensagem no DATA",
+          github : {}
+        },
+        methods: {
+          puxarGithub() {
+            fetch("https://api.github.com/users/josemalcher")
+              .then(r => r.json())
+              .then(resposta => {
+                this.github = resposta;
+              }); 
+          }
+        },
+        beforeCreate() {
+          console.log("BeforeCreated: ", this.mensagem);
+          console.log("ANTES da CRIAÇÃO");
+        },
+        created() {
+          console.log("Created: ", this.mensagem);
+          console.log("FOI CRIADO");
+          this.puxarGithub();
+          console.log("ELEMENTO: ", this.$el); // ELement Undefined
+        },
+        beforeMount() {
+          console.log("BeforMounted: ", this.mensagem);
+          console.log("ELEMENTO BeforMounted: ", this.$el); // ELemento criado mas não reativo
+        },
+        mounted() {
+            console.log("Mounted: ", this.mensagem);
+            console.log("ELEMENTO Mounted: ", this.$el); // ELemento criado e populado
+        },
+      });
+    </script>
+```
+
+  - Updated : o "beforeUpdate" acontece sempre que houver uma mudança em um dado reativo. Em seguida o hook "updated" acontece, este após o dom ser modificado.
+
+```vue
+  <div id="app2">
+        <button @click="contador++">Add - {{contador}}</button>
+    </div>
+
+    <script>
+        const vm2 = new Vue({
+          el:"#app2",
+          data:{
+              contador: 0
+          },
+          beforeUpdate() {
+              console.log("TESTE");
+          },
+          updated() {
+              console.log("UPDATE OK");
+          },
+      });
+    </script>
+```
+
+  - destroyed - O "beforeDestroy acontece antes do componente ser destruido.
+  Em seguida o hook "destroyed" acontece, este após o componente ser detruído.
+  É utilizado quando dividimos a interface em componentes, como veremos mais adiante.
+
+```vue
+  <div id="app3">
+        <button @click="contador++">Add - {{contador}}</button>
+        <button @click="destruir">Destruir</button>
+    </div>
+
+    <script>
+      const vm3 = new Vue({
+          el:"#app3",
+          data:{
+              contador: 0
+          },
+          methods: {
+            destruir(){
+                this.$destroy();
+            }
+          },
+          beforeUpdate() {
+              console.log("TESTE");
+          },
+          updated() {
+              console.log("UPDATE OK");
+          },
+          beforeDestroy() {
+              console.log("Vai DESTRUIR");
+          },
+          destroyed() {
+              console.log("DESTRUIU")
+          },
+      });
+    </script>
+```
+
+
 - 0305 Lifecycle Hooks 2
 
 
