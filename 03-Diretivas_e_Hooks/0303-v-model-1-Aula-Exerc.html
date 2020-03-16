@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt_BR">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>03 Diretivas e Hooks</title>
     <script src="./vue.js"></script>
-</head>
-<body>
-
+  </head>
+  <body>
     <!-- 
 
         1 - Crie um criador de botões
@@ -19,16 +18,95 @@
 
         As escolhas serão feitas em campos de formulario.
         Cada escolha deverá ser refletida em um elemento (o botão).
-        
+
+        2 - Crie um formulário com, nome, email, telefone e mensagem.
+        Ao clicar em enviar, as ifnrmações preenchidas no formulário
+        devem aparecer abaixo do mesmo.
+        (previna o comportamento padrão do botão enviar)
 
      -->
+    <div id="app">
+      <input type="color" v-model="btn.background" />
+      <label for="width">Width</label>
+      <input id="width" type="text" v-model="btn.width" />
+      <label for="height">Height</label>
+      <input id="height" type="text" v-model="btn.height" />
+      <label for="fontSize">Font Size</label>
+      <input id="fontSize" type="text" v-model="btn.fontSize" />
+      <label for="fontFamily">Font Family</label>
+      <input id="fontFamily" type="text" v-model="btn.fontFamily" />
+      {{btn.background}}
+      <a :style="btn" href="">Clique Aqui</a>
+    </div>
+    <br>
+    <hr>
+    <div id="app2">
+        <form>
+          <label for="nome">Nome</label>
+          <input type="text" name="nome" id="nome" v-model="nome">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" v-model="email">
+          <label for="telefone">Telefone</label>
+          <input type="text" name="telefone" id="telefone" v-model="telefone">
+          <label for="mensagem">Mensagem</label>
+          <textarea name="mensagem" id="mensagem" v-model="mensagem"></textarea>
+          <br>
+          <input @click.prevent="enviarFormulario" type="submit">
+        </form>
+        <div>
+          <ul>
+            <li v-for="(valor, chave) in resultado">
+              {{chave}}: {{valor}}
+            </li>
+          </ul>
+        </div>
+      </div>
 
-<script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          btn: {
+            background: "#000",
+            width: "100px",
+            height: "40px",
+            fontSize: "20px",
+            fontFamily: "monospace"
+          }
+        }
+      });
+     
+      const vm2 = new Vue({
+      el: "#app2",
+      data: {
+        nome: "",
+        email: "",
+        telefone: "",
+        mensagem: "",
+        resultado: {}
+      },
+      methods: {
+        enviarFormulario() {
+          this.resultado = {
+            nome: this.nome,
+            email: this.email,
+            telefone: this.telefone,
+            mensagem: this.mensagem,
+          }
+        }
+      }
+    });
+    </script>
 
-</script>
+    <style>
+      label {
+        display: block;
+      }
 
-<style>
-
-</style>
-</body>
+      a {
+        margin-top: 100px;
+        display: block;
+      }
+    </style>
+  </body>
 </html>
