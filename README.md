@@ -1540,6 +1540,150 @@ const vm = new Vue({
 </script>
 ```
 
+  - Two-way vs One-way: Por padrão todo o conteúdo VUE.js é One-way, isso significa que mudança no JS criam mudanças no DOM. Já no two-way, tanto mudanças no DOM como no JS, mudam o conteúdo.
+
+```vue
+<div id="app2">
+    <input v-model="texto" />
+    <input :value="texto" />
+    <p>{{texto}}</p>
+</div>
+
+<script>
+const vm2 = new Vue({
+    el:"#app2",
+    data:{
+        texto:""
+    }
+});
+</script>
+```
+
+  - Checkbox : retorna um valor true ou false.
+
+```vue
+
+<div id="app3">
+    <input type="checkbox" v-model="receberEmail" id="receberEmail" />
+    <label for="receberEmail">Receber Email</label> <br>
+    <input type="checkbox" v-model="termos" id="termos" />
+    <label for="termos">Termos e Condições</label>
+
+    <p>Receber Email: {{receberEmail}}</p>
+    <p>Leu os Termos: {{termos}}</p>
+</div>
+
+<script>
+const vm3 = new Vue({
+    el:"#app3",
+    data:{
+        receberEmail: true,
+        termos: false
+    }
+});
+</script>
+```
+
+  - Radio : Retorna o valor do campo seleciona.
+
+```vue
+<div id="app4">
+    <input name="cor" type="radio" v-model="cor" id="azul" value="Azul">
+    <label for="azul">Azul</label> <br>
+    <input name="cor" type="radio" v-model="cor" id="vermelho" value="Vermelho">
+    <label for="vermelho">Vermelho</label> <br>
+    <p>cor: {{cor}}</p>
+</div>
+
+<script>
+const vm4 = new Vue({
+    el:"#app4",
+    data: {
+        cor: ""
+    }
+});
+</script>
+```
+
+  - Select : é imporatante colocar uma opção inicial desabilitada com o valor vazio, para resolver um bug no IOS.
+
+```vue
+<div id="app5">
+    <select id="fruta" v-model="fruta">
+        <option disabled value="">Selecione uma fruta</option>
+        <option value="banana">Banana</option>
+        <option value="morango">Morango</option>
+        <option value="uva">Uva</option>
+    </select>
+    <p>FRUTA: {{fruta}}</p>
+</div>
+
+<script>
+const vm = new Vue({
+    el:"#app",
+    data:{
+        nome: "",
+        mensagem: ""
+    }
+});
+
+const vm2 = new Vue({
+    el:"#app2",
+    data:{
+        texto:""
+    }
+});
+
+const vm3 = new Vue({
+    el:"#app3",
+    data:{
+        receberEmail: true,
+        termos: false
+    }
+});
+
+const vm4 = new Vue({
+    el:"#app4",
+    data: {
+        cor: ""
+    }
+});
+
+const vm5 = new Vue({
+    el: "#app5",
+    data:{
+        fruta: ""
+    }
+});
+</script>
+```
+
+  - Modifiers : Com o .lazy, a reatividade só acontecendo ao change(quando o usuário muda o campo). O ".number" irá automaticamente transformar o input em número e não string. O ".trim" automaticamente elima espaços em branco.
+
+```vue
+<div id="app6">
+    <textarea v-model.lazy="mensagem" name="mensagem" id="mensagem" cols="30" rows="10"></textarea>
+    <input v-model.number="total" />
+    <input v-model.trim="email" />
+
+    <p>Mensagem: {{mensagem}}</p>
+    <p>Numero: {{total}}</p>
+    <p>Email: {{email}}</p>
+</div>
+
+<script>
+
+const vm6 = new Vue({
+    el: "#app6",
+    data: {
+        mensagem: "",
+        total: 0,
+        email: ""
+    }
+});
+</script>
+```
+
 - 0303 v-model 2
 - 0304 v-on e Eventos Globais
 - 0305 Lifecycle Hooks 1
