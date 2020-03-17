@@ -2004,6 +2004,73 @@ const vm3 = new Vue({
 
 - 0305 Lifecycle Hooks 2
 
+```vue
+<!DOCTYPE html>
+<html lang="pt_BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>03 Diretivas e Hooks</title>
+    <script src="./vue.js"></script>
+  </head>
+  <body>
+    <!-- 
+
+<!-- 
+  
+  Utilize a api do github para
+  mostrar todos os seus dados na tela.
+  Faça o fetch das informações utilizando
+  um dos hooks do vue:
+
+  https://api.github.com/users/origamid (utilize o seu usuário)
+
+  Crie um contador, onde seja possível clicar em
+  um botão e adicionar +1 ao número.
+
+  Toda vez que o contador mudar, mude o título da página
+  para o total do contador. Utilize um hook para isso
+ 
+-->
+
+    <div id="app">
+      <button @click="contador++">Adicionar {{contador}}</button>
+      <hr />
+      <ul>
+        <li v-for="(valor, chave) in github">{{chave}}: {{valor}}</li>
+      </ul>
+    </div>
+    <hr />
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          github: {},
+          contador: 0
+        },
+        methods: {
+          puxarGithub() {
+            fetch("https://api.github.com/users/josemalcher")
+              .then(r => r.json())
+              .then(resposta => {
+                this.github = resposta;
+              });
+          }
+        },
+        updated() {
+          document.title = this.contador;
+        },
+        created() {
+          this.puxarGithub();
+        }
+      });
+    </script>
+
+    <style></style>
+  </body>
+</html>
+
+```
 
 [Voltar ao Índice](#indice)
 
