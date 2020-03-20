@@ -73,7 +73,7 @@
         el: "#app",
         data:{
             titulo: "Curso de JS",
-            conteudo: "Esse curso é bom...",
+            conteudo: "Esse curso é bom",
             lado: 5,
             comprou: false,
         }
@@ -110,7 +110,7 @@
         el: "#app",
         data: {
             titulo: "Curso de JS",
-            conteudo: "Esse curso é bom...",
+            conteudo: "Esse curso é bom",
             lado: 5,
             comprou: true,
             cor: "#333",
@@ -606,7 +606,7 @@ const vm = new Vue({
 </script>
 ```
 
-  - Outros eventos: podemos adicionar diversos eventos como @keyup @mouseenter, @change e mais...
+  - Outros eventos: podemos adicionar diversos eventos como @keyup @mouseenter, @change e mais
   - 02-Vue-js_Para_Iniciantes\0205-v-on-aula.html
 
 
@@ -778,7 +778,7 @@ const vm = new Vue({
 
 ```vue
     <div id="app2">
-        <div v-text="fruta"> Custa R$ 100,00 </div><!-- Não renderiza "Custa R$..." -->
+        <div v-text="fruta"> Custa R$ 100,00 </div><!-- Não renderiza "Custa R$" -->
         <div>{{fruta}}</div>
         <div>{{fruta2}}</div>
     </div>
@@ -2079,7 +2079,94 @@ const vm3 = new Vue({
 
 ## <a name="parte4">4 - Techno Projeto</a>
 
+- 0401 Projeto Introdução
+- 0402 Projeto API
+- 0403 Lista Produtos
+- 0404 Filters
 
+  - 04-Techno_Projeto\index.html
+
+```html
+<!doctype html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+<!--    <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,700&display=swap" rel="stylesheet">-->
+    <link rel="stylesheet" href="style.css">
+    <title>Proj. Prático - Loja</title>
+</head>
+<body>
+<div id="app">
+    <section class="produtos">
+        <div v-for="produto in produtos" :key="produto.id" class="produto">
+            <img :src="produto.img" :alt="produto.nome" class="produto_img">
+            <div class="produto_info">
+                <span class="produto_preco">{{formatPreco(produto.preco)}}</span>
+                <h2 class="produto_titulo">{{produto.nome}}</h2>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
+```
+
+  - 04-Techno_Projeto\app.js
+
+```vue
+const vm = new Vue({
+    el: "#app",
+    data: {
+        produtos: []
+    },
+    filters: {
+        /*
+        * 01 OCT 2016
+        * Com a nova versão do Vue.js a possibilidade de aplicar filtros
+        * no v-for deixou de existir. Porém esse recurso sempre trouxe
+        * certa confusão e até mesmo perda de performance.
+        * FONTE: https://vuejs-brasil.com.br/vue-js-2-filtros-em-listas/
+        * */
+        // numeroPreco(valor){
+        //     return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+        // }
+    },
+    methods: {
+        fetchProdutos() {
+            fetch("./api/produtos.json")
+                .then(r => r.json())
+                .then(r => {
+                    this.produtos = r;
+                })
+        },
+        // Em substuião dos filters
+        formatPreco(valor){
+          return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+        }
+    },
+    created() {
+        this.fetchProdutos();
+    }
+});
+```
+
+- 0405 Fetch Produto
+- 0406 Modal Produto
+- 0407 Estilo Produto
+- 0408 Fechar Produto
+- 0409 Carrinho
+- 0410 Localstorage Carrinho
+- 0411 Alerta
+- 0412 Router
+- 0413 Estilo Carrinho
+- 0414 Controle Estoque
+- 0415 Responsivo
 
 [Voltar ao Índice](#indice)
 
@@ -2088,7 +2175,17 @@ const vm3 = new Vue({
 
 ## <a name="parte5">5 - Componentes</a>
 
-
+- 0501 Componentes Básico 1
+- 0501 Componentes Básico 2
+- 0501 Componentes Básico 3
+- 0502 Props 1
+- 0502 Props 2
+- 0503 Events
+- 0504 Vue CLI
+- 0505 Vue Estrutura
+- 0506 Slots
+- 0507 Dynamic
+- 0508 Async
 
 [Voltar ao Índice](#indice)
 
@@ -2097,6 +2194,10 @@ const vm3 = new Vue({
 
 ## <a name="parte6">6 - Animações</a>
 
+- 0601 Transition 1
+- 0601 Transition 2
+- 0602 Components 
+- 0603 List
 
 
 [Voltar ao Índice](#indice)
@@ -2106,7 +2207,20 @@ const vm3 = new Vue({
 
 ## <a name="parte7">7 - Vue Router</a>
 
-
+- 0701 Router
+- 0702 Dynamic Route
+- 0703 Navigation Guard
+- 0704 Transitions
+- 0705 Fetch
+- 0706 Mais Router
+- 0707 JSON Server
+- 0708 Projeto Header
+- 0709 Mixins
+- 0710 Loading
+- 0711 Home
+- 0712 Contato
+- 0713 Cursos
+- 0714 Aula 
 
 [Voltar ao Índice](#indice)
 
@@ -2115,7 +2229,12 @@ const vm3 = new Vue({
 
 ## <a name="parte8">8 - Vuex</a>
 
-
+- 0801 State
+- 0802 Mutations 1
+- 0802 Mutations 2
+- 0803 Actions
+- 0804 Getters
+- 0805 Modules 
 
 [Voltar ao Índice](#indice)
 
@@ -2124,7 +2243,42 @@ const vm3 = new Vue({
 
 ## <a name="parte9">9 - Projeto Final</a>
 
-
+- 0901 Ranek Início
+- 0902 Header e Footer
+- 0903 Home
+- 0904 Produtos
+- 0905 Axios 
+- 0906 Busca
+- 0907 Produtos Estilo
+- 0908 Input Estilo
+- 0909 Paginação
+- 0910 Paginacao Range
+- 0911 Transição
+- 0912 Produto Filter
+- 0913 Login
+- 0914 Vuex Login 
+- 0915 Usuário Formulário
+- 0916 Vuex Formulário
+- 0917 CEP API
+- 0918 POST Usuário
+- 0919 Usuário Router
+- 0920 Usuário Estilo
+- 0921 Usuário Produtos
+- 0922 Produto Adicionar
+- 0923 Produto Deletar
+- 0924 Usuário Atualizar
+- 0925 Transação
+- 0926 Compras e Vendas
+- 0927 REST API
+- 0928 JWT JSON Web Token
+- 0929 Criar e Logar
+- 0930 Fotos Upload 
+- 0931 Catch Error
+- 0932 Navigation Guard
+- 0933 Estilo Responsivo
+- 0934 API Servidor
+- 0935 Vue.js Servidor
+- 0936 Title e Mais 
 
 [Voltar ao Índice](#indice)
 
@@ -2133,9 +2287,8 @@ const vm3 = new Vue({
 
 ## <a name="parte10">10 - Considerações Finais</a>
 
-
+- 1001 Vue.js
 
 [Voltar ao Índice](#indice)
 
 ---
-

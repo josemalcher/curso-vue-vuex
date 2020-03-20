@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+<!--    <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,700&display=swap" rel="stylesheet">-->
+    <link rel="stylesheet" href="style.css">
+    <title>Proj. Prático - Loja</title>
+</head>
+<body>
+<div id="app">
+    <section class="produtos">
+        <div v-for="produto in produtos" :key="produto.id" class="produto">
+            <img :src="produto.img" :alt="produto.nome" class="produto_img">
+            <div class="produto_info">
+                <span class="produto_preco">{{formatPreco(produto.preco)}}</span>
+                <h2 class="produto_titulo">{{produto.nome}}</h2>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
