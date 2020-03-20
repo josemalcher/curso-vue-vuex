@@ -1,6 +1,7 @@
 const vm = new Vue({
     el: "#app",
     data: {
+        item: false,
         produtos: []
     },
     filters: {
@@ -26,6 +27,13 @@ const vm = new Vue({
         // Em substuião dos filters
         formatPreco(valor){
           return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+        },
+        fetchItem(id){
+            fetch(`./api/produtos/${id}/dados.json`)
+            .then(r => r.json())
+            .then(r => {
+                this.item = r
+            })
         }
     },
     created() {
