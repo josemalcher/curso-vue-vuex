@@ -1,21 +1,49 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt_BR">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <script src="vue.js"></script>
-<!--    <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,700&display=swap" rel="stylesheet">-->
-    <link rel="stylesheet" href="style.css">
+    <!--    <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,700&display=swap" rel="stylesheet">-->
+    <link rel="stylesheet" href="style.css"/>
     <title>Proj. Prático - Loja</title>
 </head>
 <body>
 <div id="app">
+
+    <header class="header">
+        <img src="./assets/techno.svg" alt="Techno">
+        <div class="carrinho_menu">{{formatPreco(carrinhototal)}} | {{carrinho.length}}</div>
+        <ul>
+            <li v-for="(item, index) in carrinho">
+                <p>{{item.nome}}</p>
+                <button @click="removerItem(index)">X</button>
+            </li>
+        </ul>
+    </header>
+
+    <section class="produtos">
+        <div
+                v-for="produto in produtos"
+                @click="abrirModal(produto.id)"
+                :key="produto.id"
+                class="produto"
+        >
+            <img :src="produto.img" :alt="produto.nome" class="produto_img"/>
+            <div class="produto_info">
+                <span class="produto_preco">{{formatPreco(produto.preco)}}</span>
+                <h2 class="produto_titulo">{{produto.nome}}</h2>
+            </div>
+        </div>
+    </section>
+
     <section class="modal" v-if="item" @click="fecharModal">
         <div class="modal_container">
             <div class="modal_img">
-                <img :src="item.img" :alt="item.nome">
+                <img :src="item.img" :alt="item.nome"/>
             </div>
             <div class="modal_dados">
                 <button @click="item = false" class="modal_fechar">X</button>
@@ -24,26 +52,21 @@
                 </span>
                 <h2 class="modal_titulo">{{item.nome}}</h2>
                 <p><small>{{item.descricao}}</small></p>
-                <button class="modal_btn">Adicionar Item</button>
+                <button v-if="item.estoque > 0" class="modal_btn" @click="adicionarItem">Adicionar Item</button>
+                <button v-else class="modal_btn esgotado" disabled>Item Esgotado</button>
             </div>
             <div class="avaliacoes">
                 <h2 class="modal_avaliacoes_subtitulo">Avaliações</h2>
                 <ul>
                     <li v-for="avaliacao in item.avaliacoes" class="avaliacao">
-                        <p class="avaliacao_descricao"><small>{{avaliacao.descricao}}</small></p>
-                        <p class="avaliacao_usuario"><small>{{avaliacao.nome}} | {{avaliacao.estrelas}} estrelas</small></p>
+                        <p class="avaliacao_descricao">
+                            <small>{{avaliacao.descricao}}</small>
+                        </p>
+                        <p class="avaliacao_usuario">
+                            <small>{{avaliacao.nome}} | {{avaliacao.estrelas}} estrelas</small>
+                        </p>
                     </li>
                 </ul>
-            </div>
-        </div>
-    </section>
-
-    <section class="produtos">
-        <div v-for="produto in produtos" @click="abrirModal(produto.id)" :key="produto.id" class="produto">
-            <img :src="produto.img" :alt="produto.nome" class="produto_img">
-            <div class="produto_info">
-                <span class="produto_preco">{{formatPreco(produto.preco)}}</span>
-                <h2 class="produto_titulo">{{produto.nome}}</h2>
             </div>
         </div>
     </section>
