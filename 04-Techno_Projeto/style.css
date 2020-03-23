@@ -3,125 +3,129 @@ h1,
 h2,
 ul,
 li {
-  padding: 0px;
-  margin: 0px;
+    padding: 0px;
+    margin: 0px;
 }
+
 ul {
-  list-style: none;
+    list-style: none;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  background: linear-gradient(to right, #1a1a1a 30%, #ffffff 30%);
-  font-family: "Noto Serif";
+    background: linear-gradient(to right, #1a1a1a 30%, #ffffff 30%);
+    font-family: "Noto Serif";
 }
 
 #app {
-  padding: 0 80px;
+    padding: 0 80px;
 }
 
 /* HEADER */
 
-.header{
-  display: flex;
-  justify-content: space-between;
-  max-width: 900px;
-  padding: 20px 0;
-  margin: 0 auto;
-}
-.logo{
-  width: 80px;
+.header {
+    display: flex;
+    justify-content: space-between;
+    max-width: 900px;
+    padding: 20px 0;
+    margin: 0 auto;
 }
 
-.carrinho_menu::after{
-  content: "";
-  display: inline-block;
-  background: url("./assets/carrinho.svg") no-repeat;
-  width: 25px;
-  height: 25px;
-  margin-left: 10px;
+.logo {
+    width: 80px;
 }
 
-.carrinho_menu{
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+.carrinho_menu::after {
+    content: "";
+    display: inline-block;
+    background: url("./assets/carrinho.svg") no-repeat;
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+}
+
+.carrinho_menu {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }
 
 /* LISTA PRODUTOS */
 .produtos {
-  max-width: 900px;
-  margin: 100px auto 0 auto;
+    max-width: 900px;
+    margin: 100px auto 0 auto;
 }
 
 .produto {
-  display: flex;
-  align-items: center;
-  margin-bottom: 40px;
-  background: #ffffff;
-  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
-  cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    background: #ffffff;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
 
 .produto_img {
-  max-width: 300px;
-  margin-right: 40px;
+    max-width: 300px;
+    margin-right: 40px;
 }
+
 .produto_titulo {
-  font-size: 3rem;
-  line-height: 1;
+    font-size: 3rem;
+    line-height: 1;
 }
+
 .produto_preco {
-  color: rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 0.5);
 }
 
 /* MODAL */
 
 .modal::before {
-  content: "";
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
+    content: "";
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .modal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  padding: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    padding: 80px;
 }
 
 .modal_container {
-  position: relative;
-  background: linear-gradient(to right, transparent 250px, white 250px);
-  z-index: 1;
-  display: grid;
-  align-items: end;
-  grid-gap: 50px;
-  padding: 50px 50px 50px 0;
-  animation: fadeIn .3s forwards;
+    position: relative;
+    background: linear-gradient(to right, transparent 250px, white 250px);
+    z-index: 1;
+    display: grid;
+    align-items: end;
+    grid-gap: 50px;
+    padding: 50px 50px 50px 0;
+    animation: fadeIn .3s forwards;
 }
 
 @keyframes fadeIn {
     from {
-      opacity: 0;
-      transform: translate3D(50px, 0, 0);
+        opacity: 0;
+        transform: translate3D(50px, 0, 0);
     }
     to {
-      opacity: 1;
-      transform: translate3D(0px, 0, 0);
+        opacity: 1;
+        transform: translate3D(0px, 0, 0);
     }
-  }
+}
 
 .modal_fechar {
     border-radius: 50%;
@@ -132,67 +136,103 @@ body {
     top: -10px;
     right: -10px;
     font-size: 1rem;
-    box-shadow: 0px 3px 4px rgba(0,0,0,.1), 0px 4px 10px rgba(0,0,0,.2);
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, .1), 0px 4px 10px rgba(0, 0, 0, .2);
     cursor: pointer;
-  }
+}
 
 .modal_img {
-  grid-column: 1;
-  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.1), 0px 4px 10px rgba(0, 0, 0, 0.2);
+    grid-column: 1;
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.1), 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .modal_img img {
-  max-width: 300px;
-  display: block;
+    max-width: 300px;
+    display: block;
 }
 
 .modal_dados {
-  grid-column: 2;
-  max-width: 600px;
+    grid-column: 2;
+    max-width: 600px;
 }
 
 .modal_titulo {
-  font-size: 3rem;
+    font-size: 3rem;
 }
 
 .modal_btn {
-  margin-top: 80px;
-  background: #000;
-  cursor: pointer;
-  color: #ffffff;
-  border: none;
-  font-size: 1rem;
-  padding: 10px 25px;
-  font-family: "Noto Serif";
+    margin-top: 80px;
+    background: #000;
+    cursor: pointer;
+    color: #ffffff;
+    border: none;
+    font-size: 1rem;
+    padding: 10px 25px;
+    font-family: "Noto Serif";
 }
-.modal_btn.esgotado{
-  background: #808080;
+
+.modal_btn.esgotado {
+    background: #808080;
 }
 
 .modal_btn:active {
-  background: #808080;
+    background: #808080;
 }
 
 /* AVALIACOES */
 
 .avaliacoes {
-  grid-column: 2;
+    grid-column: 2;
 }
 
 .avaliacoes_subtitulo {
-  font-size: 1.75rem;
+    font-size: 1.75rem;
 }
 
 .avaliacao {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 20px;
 }
 
 .avaliacao_descricao {
-  color: rgba(0, 0, 0, 0.7);
-  margin: 20px 0 5px 0;
+    color: rgba(0, 0, 0, 0.7);
+    margin: 20px 0 5px 0;
 }
 
 .avaliacao_usuario {
-  font-weight: bold;
+    font-weight: bold;
+}
+
+/* ALERTA */
+.alerta {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    text-align: center;
+    display: none;
+}
+
+.alerta.ativo {
+    display: block;
+    animation: fadeInDown .3s forwards;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translate3D(0, -30px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3D(0, 0px, 0);
+    }
+}
+
+.alerta_mensagem {
+    background: #ffffff;
+    display: inline-block;
+    padding: 20px 40px;
+    border: 2px solid black;
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.1), 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
