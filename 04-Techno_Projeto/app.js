@@ -69,13 +69,25 @@ const vm = new Vue({
             setTimeout(() => {
                 this.alertaAtivo = false;
             }, 1500);
+        },
+        router(){
+            const hash = document.location.hash;
+            if(hash){
+                this.fetchItem(hash.replace("#", ""));
+            }
         }
     },
     created() {
         this.fetchProdutos();
         this.checarLocalStorage();
+        this.router();
     },
     watch: {
+        item() {
+            document.title = this.item.nome || "Tecno";
+            const hash = this.item.id || "";
+            history.pushState(null, null, `#${hash}`)
+        },
         carrinho() {
             window.localStorage.carrinho = JSON.stringify(this.carrinho);
         }
