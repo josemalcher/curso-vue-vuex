@@ -2256,6 +2256,103 @@ const vm = new Vue({
 ## <a name="parte5">5 - Componentes</a>
 
 - 0501 Componentes Básico 1
+  - Vue.component() - é possível registrar componentes utilizando o método "Vue.component()". 
+  Compoenentes podem ser utilizados em uma instância vue. 
+  Dois argumentos devem ser utilizados, uma string com o nome e um objeto com as opções.
+  
+  - Template é a pripriedade que possui o código HTML do componente. Template deve possuir sempre apenas um elemento pai, caso seja um elemento completo, envolva todo ele em uma tag div por exemplo.
+
+```vue
+<body>
+<div id="app">
+    <p>{{mensagem}}</p>
+    <botao-contador></botao-contador>
+</div>
+<script>
+
+    Vue.component("BotaoContador", {
+        data() {
+            return {
+                mensagem: "Mensagem aqui!",
+                total: 0,
+            };
+        },
+        template: `<button @click="mostrarConsole">TOTAL:  {{total}}</button>`,
+        methods: {
+            mostrarConsole(){
+                console.log("ATIVOU!!!");
+            }
+        }
+    });
+
+    const vm = new Vue({
+        el: "#app",
+        data:{
+            mensagem: "Mensagem de DATA"
+        }
+    });
+</script>
+</body>
+```
+
+  - Global vs Local - Componentes globais podem ser utilizados em qualquer instância Vue.js e são registrados com
+  Vue.component(). Componentes locais são registrados na propriedade components.
+  
+ ```vue
+<body>
+<div id="app2">
+    <componente-global></componente-global>
+    <componente-local></componente-local>
+    <componente-local2></componente-local2>
+</div>
+
+<script>
+    // ----------- Global vs Local ----------------------------------------------
+
+    Vue.component("ComponenteGlobal",{
+        template: `<p>GLOBAL</p>`
+    });
+
+    const ComponenteLocal = {
+        name:"ComponenteLocal",
+        template: `<p>Local</p>`
+    };
+    const ComponenteLocal2 = {
+        name:"ComponenteLocal2",
+        data(){
+            return{
+                contar: 2
+            }
+        },
+        template: `<div>
+                    <p>Local 2</p>
+                    <p>Local ELementos - DOBRO {{contarDobro}} </p>
+                    <p>global dentro do componente: </p><componente-global></componente-global>
+                   </div>`, // adicionando componente GLOBAL
+        computed:{
+            contarDobro(){
+                return this.contar * 2;
+            }
+        }
+    };
+
+    // Para adicionar componente LOCAL, como um global,  é necessário registrar
+    Vue.component("ComponenteLocal2", ComponenteLocal2);
+
+    const vm2 = new Vue({
+        el: "#app2",
+        components: {
+            //ComponenteLocal: ComponenteLocal
+            ComponenteLocal,
+            ComponenteLocal2
+        }
+    });
+</script>
+
+
+</body>
+```
+
 - 0501 Componentes Básico 2
 - 0501 Componentes Básico 3
 - 0502 Props 1

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue - COmpoenntes</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>{{mensagem}}</p>
+    <botao-contador></botao-contador>
+</div>
+
+<div id="app2">
+    <componente-global></componente-global>
+    <componente-local></componente-local>
+    <componente-local2></componente-local2>
+</div>
+
+<script>
+    Vue.component("BotaoContador", {
+        data() {
+            return {
+                mensagem: "Mensagem aqui!",
+                total: 0,
+            };
+        },
+        template: `<button @click="mostrarConsole">TOTAL:  {{total}}</button>`,
+        methods: {
+            mostrarConsole() {
+                console.log("ATIVOU!!!");
+            }
+        }
+    });
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            mensagem: "Mensagem de DATA"
+        }
+    });
+
+    // ----------- Global vs Local ----------------------------------------------
+
+    Vue.component("ComponenteGlobal",{
+        template: `<p>GLOBAL</p>`
+    });
+
+    const ComponenteLocal = {
+        name:"ComponenteLocal",
+        template: `<p>Local</p>`
+    };
+    const ComponenteLocal2 = {
+        name:"ComponenteLocal2",
+        data(){
+            return{
+                contar: 2
+            }
+        },
+        template: `<div>
+                    <p>Local 2</p>
+                    <p>Local ELementos - DOBRO {{contarDobro}} </p>
+                    <p>global dentro do componente: </p><componente-global></componente-global>
+                   </div>`, // adicionando componente GLOBAL
+        computed:{
+            contarDobro(){
+                return this.contar * 2;
+            }
+        }
+    };
+
+    // Para adicionar componente LOCAL, como um global,  é necessário registrar
+    Vue.component("ComponenteLocal2", ComponenteLocal2);
+
+    const vm2 = new Vue({
+        el: "#app2",
+        components: {
+            //ComponenteLocal: ComponenteLocal
+            ComponenteLocal,
+            ComponenteLocal2
+        }
+    });
+</script>
+
+
+</body>
+</html>
