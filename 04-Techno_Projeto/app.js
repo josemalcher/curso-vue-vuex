@@ -3,7 +3,7 @@ const vm = new Vue({
     data: {
         item: false,
         carrinho: [],
-        carrinhoAtivo:false,
+        carrinhoAtivo: false,
         produtos: [],
         mensagemAlerta: "Produto Adicionado",
         alertaAtivo: false
@@ -48,7 +48,7 @@ const vm = new Vue({
         fecharModal({target, currentTarget}) {
             if (target === currentTarget) this.item = false;
         },
-        clickForaCarrinho({target, currentTarget}){
+        clickForaCarrinho({target, currentTarget}) {
             if (target === currentTarget) this.carrinhoAtivo = false;
         },
         adicionarItem() {
@@ -74,11 +74,24 @@ const vm = new Vue({
                 this.alertaAtivo = false;
             }, 1500);
         },
-        router(){
+        router() {
             const hash = document.location.hash;
-            if(hash){
+            if (hash) {
                 this.fetchItem(hash.replace("#", ""));
             }
+        },
+        compararEstoque() {
+            /*const items = this.carrinho.filter(({id}) => {
+                console.log(id);
+                if (id === this.item.id) {
+                    return true;
+                }
+            });
+            this.item.estoque = this.item.estoque - items.length;
+            console.log(items);*/
+            //Refatorando
+            const items = this.carrinho.filter(({id}) => id === this.item.id);
+            this.item.estoque -= items.length;
         }
     },
     created() {
@@ -91,6 +104,7 @@ const vm = new Vue({
             document.title = this.item.nome || "Tecno";
             const hash = this.item.id || "";
             history.pushState(null, null, `#${hash}`)
+            this.compararEstoque();
         },
         carrinho() {
             window.localStorage.carrinho = JSON.stringify(this.carrinho);
