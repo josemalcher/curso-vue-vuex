@@ -2354,6 +2354,125 @@ const vm = new Vue({
 ```
 
 - 0501 Componentes Básico 2
+
+  - PascalCase vs Kebab-case - Regras de estilo, sempre utilize PascalCase ou Keb-case para nomear componentes. É importante
+  ter consistência no estilo escolhido. Sempre utilize nomes compostos para os componentes, assim você evita conflitos com tags HTML;
+  
+```vue
+<div id="app">
+    <componente-local></componente-local>
+    <componente-global></componente-global>
+</div>
+<script>
+    const ComponenteLocal = {
+        name: "ComponenteLocal",
+        template: `<p>Local</p>` 
+    };
+    
+    Vue.component("ComponentGlobal", {
+        template: `<p>GLOBAL</p>`
+    });
+    
+    const vm = new Vue({
+        el:"#app",
+        component:{
+            ComponenteLocal
+        }
+    });
+
+</script>
+```  
+  - Module Import/Export - É comum Criarmos cada componentes em seu próprio arquivo assim fica mais simples fazer a manutenção
+
+```vue
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue - COmpoenntes</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <botao-contador></botao-contador>
+    <menu-principal></menu-principal>
+</div>
+
+<script type="module">
+
+    import BotaoContador from "./BotaoContador.js";
+    import MenuPrincipal from "./MenuPrincipal.js";
+
+    //Vue.component("BotaoContador", BotaoContador); // global
+    Vue.component("MenuPrincipal", MenuPrincipal);
+
+    const vm = new Vue({
+        el:"#app",
+        components: {
+            BotaoContador // LOCAL
+        }
+    });
+</script>
+</body>
+</html>
+```
+
+```vue
+/*
+const BotaoContador = {
+    name:"BotaoContador",
+    template: `<button>Contador</button>`
+};
+
+export default BotaoContador;
+*/
+
+export default {
+    name: "BotaoContador",
+    data(){
+        return {total: 0}
+    },
+    template: `<button @click="total++">Contador {{total}}</button>`
+}
+```
+
+  - Componentes dentro de Componente - Para acessar um componente dentro de outro componente, 
+  é preciso registrar ele Globalmente e no componente
+
+
+```vue
+import BotaoContador from "./BotaoContador.js";
+
+export default {
+    name: "MenuPrincipal",
+    template: `
+                <ul>
+                    <li>Home</li>
+                    <li>Contado</li>
+                    <li><botao-contador></botao-contador></li>
+                </ul>
+    
+    `,
+    components:{
+        BotaoContador
+    }
+}
+```
+
+  - Entenda a Sintax JS
+  
+```vue
+function component(){
+    // codigo da função
+}
+const OpcoesComponente = {
+    template:`<p>Menu 1</p>` 
+}
+component("MenuPrincipal", OpcoesComponente)
+```  
+
+
 - 0501 Componentes Básico 3
 - 0502 Props 1
 - 0502 Props 2
