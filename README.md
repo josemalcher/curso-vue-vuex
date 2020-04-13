@@ -2474,6 +2474,146 @@ component("MenuPrincipal", OpcoesComponente)
 
 
 - 0501 Componentes Básico 3
+
+```vue
+<!DOCTYPE html>
+<html lang="pt_BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./vue.js"></script>
+    <title>Vue.js</title>
+</head>
+
+<body>
+<!--
+  Crie uma tela com 3 diferentes Componentes.
+
+  1 - Mostre o tempo do dia usando a API:
+  https://www.metaweather.com/api/location/455825/ (Código do Rio de Janeiro)
+
+  2 - Mostre a relação dolar/real
+  https://api.exchangeratesapi.io/latest?base=USD
+
+  3 - Mostre o valor de mercado da Apple (marketCap)
+  https://api.iextrading.com/1.0/stock/aapl/quote
+
+  Crie os componentes em arquivos separados e utilize import/export
+  O componente 1 deve ser registrado globalmente
+  O componente 2 deve ser registrado localmente dentro do componente 3.
+  O componente 3 deve ser registrado localmente da instância Vue.js
+ -->
+
+
+<div id="app">
+    <tempo-hoje></tempo-hoje>
+    <acao-hoje></acao-hoje>
+</div>
+
+<script type="module">
+    import TempoHoje from "./componentes/TempoHoje.js";
+    import AcaoHoje from "./componentes/AcaoIbmHoje.js";
+
+
+    Vue.component("TempoHoje", TempoHoje);
+
+    const vm = new Vue({
+        el: "#app",
+        components: {
+            AcaoHoje
+        }
+    })
+</script>
+
+</body>
+</html>
+```
+
+```js
+export default {
+    name: "TempoHoje",
+    data(){
+        return {
+            temperaturaMaxima: 0,
+        }
+    },
+    template: `<p>RJ, máxima de: {{temperaturaMaxima}}</p>`,
+    methods:{
+        puxarTempo(){
+            fetch("https://www.metaweather.com/api/location/455825/")
+                .then(r => r.json())
+                .then(r=>{
+                    this.temperaturaMaxima = r.consolidated_weather[0].max_temp.toFixed(2);
+                })
+        }
+    },
+    created(){
+        this.puxarTempo();
+    }
+}
+```
+
+```js
+export default {
+    name: "DolarHoje",
+    data(){
+        return{
+            valorDolar: 0,
+        }
+    },
+    template:
+        `<p>Dollar/Real: {{valorDolar}}</p>`
+    ,
+    methods: {
+        puxarDola(){
+            fetch("https://api.exchangeratesapi.io/latest?base=USD")
+                .then(r => r.json())
+                .then(r => {
+                    this.valorDolar = r.rates.BRL
+                })
+        }
+    },
+    created(){
+        this.puxarDola()
+    }
+
+}
+```
+
+```js
+import DolarHoje from "./DolarHoje.js";
+
+export default {
+    name: "AcaoHoje",
+    components: {
+        DolarHoje
+    },
+    data() {
+        return {
+            valorMercado: 0
+        }
+    },
+    template: `
+        <div>
+            <p>Valor de Mercado: {{valorMercado}}</p>
+            <dolar-hoje></dolar-hoje>
+        </div>
+    `,
+    methods: {
+        // API FORA DO AR
+        puxaAcao() {
+            this.valorMercado = 20000
+        }
+    },
+    created() {
+        this.puxaAcao();
+    }
+}
+```
+
+
 - 0502 Props 1
 - 0502 Props 2
 - 0503 Events
