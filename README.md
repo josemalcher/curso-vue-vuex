@@ -2615,6 +2615,95 @@ export default {
 
 
 - 0502 Props 1
+  - Devemos utilizar "props" para passarmos data de um componente pai para um filho. O dado passado como
+    valor de um atributo html.
+
+```vue
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue - COmpoenntes</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <lista-produtos :produtos="listaItens" titulo="Fruta é" ></lista-produtos>
+</div>
+
+<script type="module">
+
+    const ItemProduto = {
+        name: "ItemProduto",
+        props: ["nomeFruta"],
+        template: `<li>Esse é o nome: {{nomeFruta}}</li>`,
+    };
+
+    const ListaProdutos = {
+        name: "ListaProdutos",
+        props: ["produtos","titulo"],
+        components:{
+            ItemProduto
+        },
+        template: `
+                    <ul>
+<!--                        <li v-for="produto in produtos"> <small>{{titulo}}</small> {{produto}}</li>-->
+                        <item-produto
+                        v-for="produto, index in produtos"
+                        :key="produto + index"
+                        :nomeFruta="produto"
+                        ></item-produto>
+                    </ul>
+
+        `,
+    };
+
+    const vm = new Vue({
+        el: "#app",
+        data:{
+            listaItens: ["Item 1", "Item 2"]
+        },
+        components: {
+            ListaProdutos
+        }
+    });
+</script>
+
+
+</body>
+</html>
+```
+
+  - Estátiva/Dinâmica
+  É possível passar qualquer tipo de Dados JS, como array's, objetos, boolen, números e mais.
+  Para isso utilize sempre a dinâmica com "v-bind" ou ":"
+
+  - Validação
+  É sempre recomendado validar o tipo de dados, para que o desenvolvedor não quebre a aplicação
+  passando uma prop com um dado diferente do esperado.
+
+```vue
+    const BlogPost = {
+        name: "BlogPost",
+        props:{
+            titulo: String,
+            likes: Number,
+            tags:{
+                type: Array,
+                required: true
+            },
+            thumb:{
+                type: String,
+                default: "./img/img.png"
+            }
+        }
+    };
+```
+
+  - One-way Data Flow - Não é recomendado mudar a propriedade no elemento filho. Se você
+  modificar a mesma, ela não será refletida no elemento pai.
+
 - 0502 Props 2
 - 0503 Events
 - 0504 Vue CLI
