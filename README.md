@@ -1,5 +1,7 @@
 # Curso de VUE/VUEX
 
+Restartando projeto Setembro/2020
+
 ## <a name="indice">Índice</a>
 
 1. [Vue.JS](#parte1)     
