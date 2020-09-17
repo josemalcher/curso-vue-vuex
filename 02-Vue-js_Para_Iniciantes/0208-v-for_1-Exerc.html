@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+      <!-- 
+            Utilizando a API:
+            http://viacep.com.br/ws/04538133/json
+
+            Mostre o CEP, logradouro, complemento bairro, localidade, etc
+
+            Use o arquivo json da aula, para listar os recursos e as matérias
+
+       -->
+    <div id="app">
+        <button @click="puxarCEP">Puxar CEP</button>
+       <!-- <div>{{local}}</div> -->
+       <ul>
+           <li v-for="dado, key in local">
+               {{key}}: dado
+           </li>
+       </ul>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el:"#app",
+            data:{
+                local: {}
+            },
+            methods: {
+                puxarCEP(){
+                    fetch("http://viacep.com.br/ws/04538133/json")
+                    .then(r => r.json())
+                    .then(r => {
+                        this.local = r
+                    })
+                }
+            },
+        });
+
+     
+    </script>
+  </body>
+</html>

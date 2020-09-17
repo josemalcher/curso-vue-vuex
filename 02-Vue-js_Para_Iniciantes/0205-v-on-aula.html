@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="vue.js"></script>
+    <style>
+      .verde {
+        background-color: green;
+      }
+      .vermelho {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <button v-on:click="handleClick">Click aqui</button> -->
+      <button @click="handleClick">Click aqui</button>
+    </div>
+
+    <div id="app2">
+      <button @click="ativo = !ativo">Click aqui Segundo Exempli</button>
+      <p :class="ativo ? 'verde': 'vermelho'">Texto de teste</p>
+      <p v-if="ativo">Mostra texto!</p>
+    </div>
+
+    <div id="app3">
+      <a @click.prevent="scrollSuave" href="#interno">Prevent</a>
+      <a @click.once="scrollSuave" href="#interno">ONCE</a>
+      <a @click.prevent.once="scrollSuave" href="#interno">Prevent ONCE</a>
+    </div>
+
+    <div id="app4">
+      <br />
+      <div @mousemove="handleMousex">Mouse X: {{mouse.x}}</div>
+      <input @keyup="handleClickUp" type="text" /><br />
+      <!-- Evento dispara quando tem a letra f -->
+      <input @keyup.f="handleClickUp" type="text" /><label for="">Letra F</label
+      ><br />
+      <!-- Evento dispara quando tecla Enter -->
+      <input @keyup.enter="handleClickUp" type="text" /><label for=""
+        >Enter</label
+      ><br />
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {},
+        methods: {
+          handleClick(event) {
+            console.log(event);
+          }
+        }
+      });
+
+      const vm2 = new Vue({
+        el: "#app2",
+        data: {
+          ativo: true
+        }
+      });
+      const vm3 = new Vue({
+        el: "#app3",
+        methods: {
+          scrollSuave() {
+            //event.preventDefault();
+            console.log("Scroll SUAVE");
+          }
+        }
+      });
+
+      const vm4 = new Vue({
+        el: "#app4",
+        data: {
+          mouse: ""
+        },
+        methods: {
+          handleClickUp(event) {
+            console.log(event);
+          },
+          handleMousex(event) {
+            this.mouse = event;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

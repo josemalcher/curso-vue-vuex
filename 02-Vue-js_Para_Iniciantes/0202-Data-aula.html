@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+  <div id="app">
+    {{cor}}
+  </div>
+  <div id="app2">
+    <p>{{titulo}}</p>
+    <!-- <p>{{$preco}}</p> -->
+  </div>
+  <div id="app3">
+    <h2>{{logado}}</h2>
+  </div>
+
+  <div id="app4">
+    <p>{{frutas[0]}}</p>
+    <p>{{frutas[1]}}</p>
+    <p>{{objeto.item}}</p>
+    <p>{{comprou}}</p>
+  </div>
+
+<script>
+  const vm  = new Vue({
+    el:"#app",
+    data:{
+      cor:"Vermelho",
+    }
+  });
+  const vm2 = new Vue({
+    el: "#app2",
+    data:{
+      titulo: "Vue completo!",
+      //$preco: 390,
+    }
+  });
+  /* 
+  vm2.$data.titulo; // Vue completo
+  vm2.titulo; // Vue completo
+
+  vm2.$data.$preco // 59
+  vm2.$preco/ // undefined
+  */
+const vm3 = new Vue({
+  el: "#app3",
+  data:{
+    logado: ""
+  }
+});
+setTimeout(()=>{
+  vm3.logado = "SIM"
+}, 4000 );
+
+const vm4 = new Vue({
+  el:"#app4",
+  data: {
+    comprou: true,
+    tatal: 55,
+    vitalicio: null,
+    objeto:{
+      item: "Item 1"
+    },
+    frutas:["Banana", "Uva"]
+  }
+});
+
+</script>
+</body>
+</html>
