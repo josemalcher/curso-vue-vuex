@@ -142,3 +142,4 @@ npm-debug.log
 yarn-error.log
 
 # End of https://www.gitignore.io/api/vim,vuejs,linux,phpstorm+all,visualstudiocode
+/02-Vue-para-iniciantes/package-lock.json
