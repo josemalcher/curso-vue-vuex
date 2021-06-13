@@ -1,6 +1,6 @@
 # Curso de VUE/VUEX
 
-Restartando projeto Setembro/2020
+Restartando projeto Junho/2021
 
 ## <a name="indice">Índice</a>
 
@@ -18,7 +18,139 @@ Restartando projeto Setembro/2020
 
 ## <a name="parte1">Vue.JS</a>
 
+- [01-Vue-JS/0104-instalacao-do-vuejs.html](01-Vue-JS/0104-instalacao-do-vuejs.html)
 
+```vue
+
+<div id="app">
+    {{nome}}, {{idade}}, {{faculdade.curso}}
+</div>
+<script>
+    /*    options = {
+            el: "#app",
+            data: {
+                nome: "José",
+                idade: 35,
+                faculdade: {
+                    possui: "sim",
+                    curso: "Analista de sistemas"
+                }
+            }
+        }*/
+
+    const vm = new Vue(
+        {
+            el: "#app",
+            data: {
+                nome: "José",
+                idade: 35,
+                faculdade: {
+                    possui: "sim",
+                    curso: "Analista de sistemas"
+                }
+            }
+        }
+    );
+    console.log(vm);
+</script>
+
+```
+
+- [01-Vue-JS/0105-reatividade-e-virtual-dom.html](01-Vue-JS/0105-reatividade-e-virtual-dom.html)
+
+```vue
+
+<div id="comercio">
+    <p>Bermudas - R$ <span>{{preco}}</span></p>
+    <button @click="total++">Adicionar</button>
+    <button @click="total--">Remover</button>
+    <span>{{total}}</span>
+    <p>Total: <span>{{preco * total}}</span></p>
+</div>
+
+<div>
+    <p>Camisas - R$ <span class="preco"></span></p>
+    <button class="adicionar">Adicionar</button>
+    <button class="remover">Remover</button>
+    <span class="total"></span>
+    <p>Total: <span class="precoTotal"></span></p>
+</div>
+
+<script>
+    const vm = new Vue({
+        el: "#comercio",
+        data: {
+            preco: 69,
+            total: 0
+        }
+    });
+
+    const dados = {
+        preco: 49,
+        total: 0
+    }
+
+    const preco = document.querySelector(".preco");
+    const total = document.querySelector(".total");
+    const precoTotal = document.querySelector(".precoTotal");
+    const adicionar = document.querySelector(".adicionar");
+    const remover = document.querySelector(".remover");
+
+    preco.innerText = dados.preco;
+    total.innerText = dados.total;
+    precoTotal.innerText = dados.preco * dados.total;
+
+    function incrementar() {
+        dados.total++;
+        atualizarUI();
+    }
+
+    function diminuir() {
+        dados.total--;
+        atualizarUI();
+    }
+
+    function atualizarUI() {
+        total.innerText = dados.total;
+        precoTotal.innerText = dados.total * dados.preco;
+    }
+
+    adicionar.addEventListener("click", incrementar);
+    remover.addEventListener("click", diminuir);
+</script>
+
+```
+
+- [01-Vue-JS/0106-template-e-diretivas.html](01-Vue-JS/0106-template-e-diretivas.html)
+
+```vue
+
+<div id="app">
+    <h1>{{titulo}}</h1>
+    <div v-show="comprou" :style="{background: cor}">
+        <p>{{conteudo}}</p>
+        <p>{{lado * lado - lado / 100}}</p>
+        <p>{{comprou ? 'Sim ele Comprou' : 'Não comprou, compre aqui'}}</p>
+        <input v-model="cor" type="color">
+        {{cor}}
+    </div>
+    <a :href="comprou ? href : ''">{{href}}</a>
+</div>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            titulo: "Curso de JavaScript",
+            conteudo: "Esse é o conteúdo",
+            lado: 5,
+            comprou: true,
+            href: "https://www.josemalcher.net",
+            cor: "#333"
+        }
+    })
+</script>
+
+```
 
 [Voltar ao Índice](#indice)
 

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../lib/vue.js"></script>
+    <title>Vue.js</title>
+</head>
+<body>
+<div id="app">
+    <h1>{{titulo}}</h1>
+    <div v-show="comprou" :style="{background: cor}">
+        <p>{{conteudo}}</p>
+        <p>{{lado * lado - lado / 100}}</p>
+        <p>{{comprou ? 'Sim ele Comprou' : 'Não comprou, compre aqui'}}</p>
+        <input v-model="cor" type="color">
+        {{cor}}
+    </div>
+    <a :href="comprou ? href : ''">{{href}}</a>
+</div>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            titulo: "Curso de JavaScript",
+            conteudo: "Esse é o conteúdo",
+            lado: 5,
+            comprou: true,
+            href: "https://www.josemalcher.net",
+            cor: "#333"
+        }
+    })
+</script>
+</body>
+</html>
