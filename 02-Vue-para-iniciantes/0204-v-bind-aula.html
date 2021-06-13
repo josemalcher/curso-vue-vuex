@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js</title>
+</head>
+<body>
+<div id="app">
+    <a :href="link">Link Google</a>
+    <p :class="cor" class="ativo">Texto</p>
+    <p :class="comprou ? liberar : naoliberar">O cliente comprou?</p>
+</div>
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            link: "https://www.google.com",
+            cor: "azul",
+            liberar: "verde",
+            naoliberar: "vermelho",
+            comprou: false,
+        }
+    })
+</script>
+</body>
+</html>

@@ -228,13 +228,7 @@ Restartando projeto Junho/2021
 - [02-Vue-para-iniciantes/0203-methods-exerc.html](02-Vue-para-iniciantes/0203-methods-exerc.html)
 
 ```vue
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Vue.js</title>
-</head>
-<body>
+
 <div id="app">
     {{total}}
     <button @click="incrementar">Incrementar</button>
@@ -273,10 +267,149 @@ Restartando projeto Junho/2021
         }
     })
 </script>
-</body>
-</html>
+
 ```
 
+- [02-Vue-para-iniciantes/0204-v-bind-aula.html](02-Vue-para-iniciantes/0204-v-bind-aula.html)
+- [02-Vue-para-iniciantes/0204-v-bind-exerc.html](02-Vue-para-iniciantes/0204-v-bind-exerc.html)
+
+```vue
+
+<div id="app">
+    <a :href="link">Link Google</a>
+    <p :class="cor" class="ativo">Texto</p>
+    <p :class="comprou ? liberar : naoliberar">O cliente comprou?</p>
+</div>
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            link: "https://www.google.com",
+            cor: "azul",
+            liberar: "verde",
+            naoliberar: "vermelho",
+            comprou: false,
+        }
+    })
+</script>
+
+```
+
+- [02-Vue-para-iniciantes/0205-v-on-aula.html](02-Vue-para-iniciantes/0205-v-on-aula.html)
+- [02-Vue-para-iniciantes/0205-v-on-exerc.html](02-Vue-para-iniciantes/0205-v-on-exerc.html)
+
+```vue
+
+<div id="app">
+  <button @click="contador++">Clique Aqui</button>
+  {{contador}}
+  <button @click="ativo = !ativo">Toggle</button>
+  <p v-if="ativo">Mostrar texto</p>
+  {{ativo}}
+  <a href="#interno" @click.prevent.once="handleClick">Link Interno</a>
+  <input type="text" @keyup.enter="handleClick">
+  <p @mousemove="handleMove">Esse é o mouse x: {{mouse.x}}</p>
+</div>
+<script src="../lib/vue.js"></script>
+<script>
+  const vm = new Vue({
+    el: "#app",
+    data: {
+      contador: 0,
+      ativo: true,
+      mouse: ""
+    },
+    methods: {
+      handleClick(event) {
+        console.log(event.key);
+      },
+      handleMove(event) {
+        this.mouse = event;
+      }
+    }
+  })
+</script>
+
+```
+
+- [02-Vue-para-iniciantes/0206-v-if-aula.html](02-Vue-para-iniciantes/0206-v-if-aula.html)
+- [02-Vue-para-iniciantes/0206-v-if-exerc.html](02-Vue-para-iniciantes/0206-v-if-exerc.html)
+
+```vue
+<div id="app">
+    <p v-if="logado">Usuário está logado.</p>
+    <p v-show="logado">Usuário está logado.</p>
+</div>
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            logado: true
+        }
+    })
+</script>
+```
+
+- [02-Vue-para-iniciantes/0207-v-html-e-v-text-aula.html](02-Vue-para-iniciantes/0207-v-html-e-v-text-aula.html)
+- [02-Vue-para-iniciantes/0207-v-html-e-v-text-exerc.html](02-Vue-para-iniciantes/0207-v-html-e-v-text-exerc.html)
+
+```vue
+<div id="app">
+  <div v-html="link"></div>
+  
+  <p>{{fruta}} custa R$ 20</p>
+  <p v-text="fruta">custa R$ 20</p>
+
+  <p v-once>Valor inicial: R$ {{total - gasto}}</p>
+  <button @click="gasto += 5">Comprar Banana R$ 5</button>
+  <p>Total gasto: R$ {{gasto}}</p>
+  <p>Valor final: R$ {{total - gasto}}</p>
+</div>
+<script src="../lib/vue.js"></script>
+<script>
+  const vm = new Vue({
+    el: "#app",
+    data: {
+      link: "<a href='https://www.origamid.com'>Origamid</a>",
+      fruta: "<b>Banana</b>",
+      total: 150,
+      gasto: 20
+    },
+  })
+</script>
+```
+
+- [02-Vue-para-iniciantes/0208-v-for-aula.html](02-Vue-para-iniciantes/0208-v-for-aula.html)
+- [02-Vue-para-iniciantes/0208-v-for-exerc.html](02-Vue-para-iniciantes/0208-v-for-exerc.html)
+- [02-Vue-para-iniciantes/0208-v-for-exerc-cep.html](02-Vue-para-iniciantes/0208-v-for-exerc-cep.html)
+
+```vue
+<div id="app">
+    <div v-html="link"></div>
+
+    <p>{{fruta}} custa R$ 20</p>
+    <p v-text="fruta">custa R$ 20</p>
+
+    <p v-once>Valor inicial: R$ {{total - gasto}}</p>
+    <button @click="gasto += 5">Comprar Banana R$ 5</button>
+    <p>Total gasto: R$ {{gasto}}</p>
+    <p>Valor final: R$ {{total - gasto}}</p>
+</div>
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            link: "<a href='https://www.origamid.com'>Origamid</a>",
+            fruta: "<b>Banana</b>",
+            total: 150,
+            gasto: 20
+        },
+    })
+</script>
+```
 
 [Voltar ao Índice](#indice)
 

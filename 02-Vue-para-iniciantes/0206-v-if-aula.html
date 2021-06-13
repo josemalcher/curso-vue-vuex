@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js</title>
+</head>
+<body>
+<div id="app">
+    <p v-if="logado">Usuário está logado.</p>
+    <p v-show="logado">Usuário está logado.</p>
+</div>
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            logado: true
+        }
+    })
+</script>
+</body>
+</html>
