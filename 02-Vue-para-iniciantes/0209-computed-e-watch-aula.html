@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="carro in carrosAzuis">
+            {{carro.marca}}
+        </li>
+        <button @click="removerCarro">Remover</button>
+
+        <p>{{contador}}</p>
+        <button @click="contador++">Adicionar</button>
+    </ul>
+</div>
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            contador: 0,
+            carros: [
+                {
+                    marca: "VW",
+                    cor: "Azul"
+                },
+                {
+                    marca: "Ford",
+                    cor: "Preto"
+                },
+                {
+                    marca: "Tesla",
+                    cor: "Azul"
+                }
+            ]
+        },
+        computed: {
+            carrosAzuis() {
+                return this.carros.filter(({cor}) => cor === "Azul");
+            }
+        },
+        methods: {
+            removerCarro() {
+                this.carros.pop();
+            }
+        },
+        watch: {
+            contador(valorNovo, valorAntigo) {
+                console.log(valorNovo);
+                console.log(valorAntigo);
+            },
+            carros(valorNovo, valorAntigo) {
+                console.log(valorNovo);
+            }
+        }
+    });
+</script>
+</body>
+</html>

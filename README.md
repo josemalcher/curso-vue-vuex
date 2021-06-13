@@ -411,6 +411,68 @@ Restartando projeto Junho/2021
 </script>
 ```
 
+- [02-Vue-para-iniciantes/0209-computed-e-watch-aula.html](02-Vue-para-iniciantes/0209-computed-e-watch-aula.html)
+- [02-Vue-para-iniciantes/0209-computed-e-watch-exerc.html](02-Vue-para-iniciantes/0209-computed-e-watch-exerc.html)
+- [02-Vue-para-iniciantes/0209-computed-e-watch-exerc-2.html](02-Vue-para-iniciantes/0209-computed-e-watch-exerc-2.html)
+- [02-Vue-para-iniciantes/0209-computed-e-watch-exerc-cep.html](02-Vue-para-iniciantes/0209-computed-e-watch-exerc-cep.html)
+
+```vue
+<div id="app">
+    <ul>
+        <li v-for="carro in carrosAzuis">
+            {{carro.marca}}
+        </li>
+        <button @click="removerCarro">Remover</button>
+
+        <p>{{contador}}</p>
+        <button @click="contador++">Adicionar</button>
+    </ul>
+</div>
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            contador: 0,
+            carros: [
+                {
+                    marca: "VW",
+                    cor: "Azul"
+                },
+                {
+                    marca: "Ford",
+                    cor: "Preto"
+                },
+                {
+                    marca: "Tesla",
+                    cor: "Azul"
+                }
+            ]
+        },
+        computed: {
+            carrosAzuis() {
+                return this.carros.filter(({cor}) => cor === "Azul");
+            }
+        },
+        methods: {
+            removerCarro() {
+                this.carros.pop();
+            }
+        },
+        watch: {
+            contador(valorNovo, valorAntigo) {
+                console.log(valorNovo);
+                console.log(valorAntigo);
+            },
+            carros(valorNovo, valorAntigo) {
+                console.log(valorNovo);
+            }
+        }
+    });
+</script>
+```
+
+
 [Voltar ao Índice](#indice)
 
 ---
