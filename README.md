@@ -159,7 +159,68 @@ Restartando projeto Junho/2021
 
 ## <a name="parte2"> Vue para iniciantes</a>
 
+- [02-Vue-para-iniciantes/0201-instancia-exerc.html](02-Vue-para-iniciantes/0201-instancia-exerc.html)
 
+```vue
+<div id="app">
+    {{nomeProduto}}
+</div>
+<script src="../lib/vue.js"></script>
+<script>
+    function VueClone(options) {
+        this.options = options;
+        this.$el = document.querySelector(options.el);
+        this.data = options.data;
+    }
+
+    const vmClone = new VueClone({
+        el: "#app",
+        data: {
+            nome: "Martelo",
+        }
+    });
+    console.log(vmClone);
+
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            instrumento: "Violão",
+            cor: "Vermelho"
+        },
+        computed: {
+            nomeProduto() {
+                setTimeout(() => {
+                    console.log('This do timeout:', this.instrumento);
+                }, 1000)
+                return this.instrumento + ' ' +  this.cor;
+            }
+        }
+    });
+    console.log(vm);
+
+</script>
+```
+
+- [02-Vue-para-iniciantes/0202-data-aula.html](02-Vue-para-iniciantes/0202-data-aula.html)
+
+```vue
+<div id="app">
+    {{logado}}
+</div>
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            logado: ""
+        }
+    })
+
+    setTimeout(() => {
+        vm.logado = "Sim"
+    }, 1000);
+</script>
+```
 
 [Voltar ao Índice](#indice)
 

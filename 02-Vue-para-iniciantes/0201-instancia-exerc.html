@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="node_modules/vue/dist/vue.js"></script>
     <title>Vue.js</title>
 </head>
 <body>
 <div id="app">
-
+    {{nome}}
 </div>
 <div id="app1">
     {{ferramenta}}
@@ -15,35 +14,30 @@
 <div id="app2">
     {{instrumento}}
 </div>
+<script src="../lib/vue.js"></script>
 <script>
-    function VueClone(options){
-        this.options = options;
-        this.el = document.querySelector(options.el);
-    }
-    const vmClone = new VueClone({
-        el: '#app',
+    // Crie uma tag com o id app e inicie uma instância de Vue
+    const vm = new Vue({
+        el: "#app",
         data: {
-            nome: "Martelo Data",
+            nome: "Martelo"
         }
     });
-    console.log(vmClone);
-    const vm = new Vue();
-    console.log(vm);
 
+    // Faça o HTML abaixo funcionar com Vue
     const vm1 = new Vue({
         el: "#app1",
         data: {
             ferramenta: "Furadeira"
         }
-
-    });
-    const vm12 = new Vue({
+    })
+    const vm2 = new Vue({
         el: "#app2",
         data: {
             instrumento: "Violão"
         }
+    })
 
-    });
 </script>
 </body>
 </html>
