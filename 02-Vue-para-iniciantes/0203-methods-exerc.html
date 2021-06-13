@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js</title>
+</head>
+<body>
+<div id="app">
+
+    <p>Cidade: {{tempo.city}}</p>
+    <p>Data: {{tempo.date}}</p>
+    <p>Tempo Agora: {{tempo.description}}</p>
+    <button @click="puxarAcoes">Puxar Tempo</button>
+</div>
+
+<!--
+  Utilizando a API
+  https://api.iextrading.com/1.0/stock/aapl/quote (Não responde!)
+
+  Crie um método que faça o fetch da resposta acima
+  O método deve ser ativado ao clique no botão Ver Preço
+
+  Coloque a resposta json do fetch em uma data e
+  mostre o valor de latestPrice, latestTime e o
+  companyName na interface.
+-->
+
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            tempo: {},
+        },
+        methods: {
+            puxarAcoes() {
+                fetch("https://api.hgbrasil.com/weather?woeid=455942")
+                    .then(response => response.json())
+                    .then(json => {
+                        this.tempo = json.results;
+                        //console.log(this.tempo.city)
+                    })
+            }
+        }
+    })
+</script>
+</body>
+</html>

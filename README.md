@@ -159,6 +159,7 @@ Restartando projeto Junho/2021
 
 ## <a name="parte2"> Vue para iniciantes</a>
 
+- [02-Vue-para-iniciantes/0201-instancia-aula.html](02-Vue-para-iniciantes/0201-instancia-aula.html)
 - [02-Vue-para-iniciantes/0201-instancia-exerc.html](02-Vue-para-iniciantes/0201-instancia-exerc.html)
 
 ```vue
@@ -202,6 +203,7 @@ Restartando projeto Junho/2021
 ```
 
 - [02-Vue-para-iniciantes/0202-data-aula.html](02-Vue-para-iniciantes/0202-data-aula.html)
+- [02-Vue-para-iniciantes/0202-data-exerc.html](02-Vue-para-iniciantes/0202-data-exerc.html)
 
 ```vue
 <div id="app">
@@ -221,6 +223,60 @@ Restartando projeto Junho/2021
     }, 1000);
 </script>
 ```
+
+- [02-Vue-para-iniciantes/0203-methods-aula.html](02-Vue-para-iniciantes/0203-methods-aula.html)
+- [02-Vue-para-iniciantes/0203-methods-exerc.html](02-Vue-para-iniciantes/0203-methods-exerc.html)
+
+```vue
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js</title>
+</head>
+<body>
+<div id="app">
+    {{total}}
+    <button @click="incrementar">Incrementar</button>
+    <button @click="diminuir">Diminuir</button>
+    <p>{{instrumento}}</p>
+    <button @click="mudarNome('Violão')">Violão</button>
+    <button @click="mudarNome('Guitarra')">Guittara</button>
+    <button @click="verEvento">Evento</button>
+</div>
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            total: 0,
+            instrumento: ""
+        },
+        methods: {
+            incrementar() {
+                this.total++
+                this.teste();
+            },
+            diminuir() {
+                this.total--
+                this.teste();
+            },
+            mudarNome(instrumento) {
+                this.instrumento = instrumento;
+            },
+            verEvento(event) {
+                console.log(event)
+            },
+            teste() {
+                console.log("Método ativado")
+            }
+        }
+    })
+</script>
+</body>
+</html>
+```
+
 
 [Voltar ao Índice](#indice)
 

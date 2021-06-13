@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js</title>
+</head>
+<body>
+<div id="app">
+    {{total}}
+    <button @click="incrementar">Incrementar</button>
+    <button @click="diminuir">Diminuir</button>
+    <p>{{instrumento}}</p>
+    <button @click="mudarNome('Violão')">Violão</button>
+    <button @click="mudarNome('Guitarra')">Guittara</button>
+    <button @click="verEvento">Evento</button>
+</div>
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            total: 0,
+            instrumento: ""
+        },
+        methods: {
+            incrementar() {
+                this.total++
+                this.teste();
+            },
+            diminuir() {
+                this.total--
+                this.teste();
+            },
+            mudarNome(instrumento) {
+                this.instrumento = instrumento;
+            },
+            verEvento(event) {
+                console.log(event)
+            },
+            teste() {
+                console.log("Método ativado")
+            }
+        }
+    })
+</script>
+</body>
+</html>
