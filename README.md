@@ -480,6 +480,139 @@ Restartando projeto Junho/2021
 
 ## <a name="parte3"> Directivas e Hooks</a>
 
+- [imgs/argumentos-modifiers.png](imgs/argumentos-modifiers.png)
+
+- [03-Directivas-e-Hooks/0302-class-e-style.html](03-Directivas-e-Hooks/0302-class-e-style.html)
+- [03-Directivas-e-Hooks/0302-class-e-style-exerc.html](03-Directivas-e-Hooks/0302-class-e-style-exerc.html)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03 Diretivas e Hooks</title>
+    <style>
+        .vermelho {
+            background: red;
+        }
+
+        .azul {
+            color: blue;
+        }
+
+        .verde {
+            color: green;
+        }
+
+        .ativo {
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <p :class="[cor, {ativo: estaAtivo}]">Texto Azul</p>
+    <p :class="{ativo: estaAtivo, verde: elementoVerde}">Mostrar texto</p>
+    <button @click="estaAtivo = !estaAtivo">Click</button>
+
+    <a :style="{background: bgColor, fontSize: tamanho + 'px'}">Estilize Ele</a>
+    <button @click="tamanho++">Aumentar</button>
+
+    <p :style="estiloBotao">Novo Texto</p>
+    <p :style="estiloParagrafo">Novo Texto</p>
+
+    {{estiloParagrafo}}
+</div>
+
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            cor: "verde",
+            background: "vermelho",
+            estaAtivo: false,
+            elementoVerde: false,
+            bgColor: "tomato",
+            tamanho: 20,
+            estiloBotao: {
+                background: "tomato",
+                fontSize: "20px",
+                color: "#fff"
+            }
+        },
+        computed: {
+            estiloParagrafo() {
+                const tamanho = Math.random() * 100;
+                return {
+                    fontSize: tamanho + 'px',
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
+```
+
+- [03-Directivas-e-Hooks/0303-v-model-aula.html](03-Directivas-e-Hooks/0303-v-model-aula.html)
+- [03-Directivas-e-Hooks/0303-v-model-btn.html](03-Directivas-e-Hooks/0303-v-model-btn.html)
+- [03-Directivas-e-Hooks/0303-v-model-exerc.html](03-Directivas-e-Hooks/0303-v-model-exerc.html)
+
+```html
+<div id="app">
+    <input v-model.lazy="nome"/><br>
+    <input v-model.trim="email"/>
+    <br>
+    <input type="text" v-model.number="ano">
+    {{ano}}
+    <br>
+
+    <input type="checkbox" id="receberEmail" v-model="receberEmail">
+    <label for="receberEmail">Receber Email</label>
+    {{receberEmail}}
+    <p>nome: {{nome}}</p>
+    <p>email: {{email}}</p>
+
+    <div>
+        <input type="radio" name="azul" id="azul" v-model="cor" value="Azul">
+        <label for="azul">Azul</label>
+        <input type="radio" name="vermelho" id="vermelho" v-model="cor" value="Vermelho">
+        <label for="vermelho">Vermelho</label>
+        <input type="radio" name="verde" id="verde" v-model="cor" value="Verde">
+        <label for="verde">Verde</label>
+
+        {{cor}}
+
+
+    </div>
+
+    <div>
+        <select v-model="fruta">
+            <option disabled value="">Selecione uma Fruta</option>
+            <option value="banana">Banana</option>
+            <option value="morango">Morango</option>
+            <option value="uva">Uva</option>
+        </select>
+        {{fruta}}
+    </div>
+</div>
+
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            nome: "José Malcher",
+            email: "contato@josemalcher.net",
+            receberEmail: true,
+            cor: "",
+            fruta: "",
+            ano: 0
+        }
+    });
+</script>
+```
 
 
 [Voltar ao Índice](#indice)

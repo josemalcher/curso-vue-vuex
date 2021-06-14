@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03 Diretivas e Hooks</title>
+    <style>
+        .vermelho {
+            background: red;
+        }
+
+        .azul {
+            color: blue;
+        }
+
+        .verde {
+            color: green;
+        }
+
+        .ativo {
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <p :class="[cor, {ativo: estaAtivo}]">Texto Azul</p>
+    <p :class="{ativo: estaAtivo, verde: elementoVerde}">Mostrar texto</p>
+    <button @click="estaAtivo = !estaAtivo">Click</button>
+
+    <a :style="{background: bgColor, fontSize: tamanho + 'px'}">Estilize Ele</a>
+    <button @click="tamanho++">Aumentar</button>
+
+    <p :style="estiloBotao">Novo Texto</p>
+    <p :style="estiloParagrafo">Novo Texto</p>
+
+    {{estiloParagrafo}}
+</div>
+
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            cor: "verde",
+            background: "vermelho",
+            estaAtivo: false,
+            elementoVerde: false,
+            bgColor: "tomato",
+            tamanho: 20,
+            estiloBotao: {
+                background: "tomato",
+                fontSize: "20px",
+                color: "#fff"
+            }
+        },
+        computed: {
+            estiloParagrafo() {
+                const tamanho = Math.random() * 100;
+                return {
+                    fontSize: tamanho + 'px',
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

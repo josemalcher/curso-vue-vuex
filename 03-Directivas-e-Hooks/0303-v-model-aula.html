@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03 Diretivas e Hooks</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <input v-model.lazy="nome"/><br>
+    <input v-model.trim="email"/>
+    <br>
+    <input type="text" v-model.number="ano">
+    {{ano}}
+    <br>
+
+    <input type="checkbox" id="receberEmail" v-model="receberEmail">
+    <label for="receberEmail">Receber Email</label>
+    {{receberEmail}}
+    <p>nome: {{nome}}</p>
+    <p>email: {{email}}</p>
+
+    <div>
+        <input type="radio" name="azul" id="azul" v-model="cor" value="Azul">
+        <label for="azul">Azul</label>
+        <input type="radio" name="vermelho" id="vermelho" v-model="cor" value="Vermelho">
+        <label for="vermelho">Vermelho</label>
+        <input type="radio" name="verde" id="verde" v-model="cor" value="Verde">
+        <label for="verde">Verde</label>
+
+        {{cor}}
+
+
+    </div>
+
+    <div>
+        <select v-model="fruta">
+            <option disabled value="">Selecione uma Fruta</option>
+            <option value="banana">Banana</option>
+            <option value="morango">Morango</option>
+            <option value="uva">Uva</option>
+        </select>
+        {{fruta}}
+    </div>
+</div>
+
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            nome: "José Malcher",
+            email: "contato@josemalcher.net",
+            receberEmail: true,
+            cor: "",
+            fruta: "",
+            ano: 0
+        }
+    });
+</script>
+</body>
+</html>
