@@ -480,7 +480,7 @@ Restartando projeto Junho/2021
 
 ## <a name="parte3"> Directivas e Hooks</a>
 
-- [imgs/argumentos-modifiers.png](imgs/argumentos-modifiers.png)
+- ![imgs/argumentos-modifiers.png](imgs/argumentos-modifiers.png)
 
 - [03-Directivas-e-Hooks/0302-class-e-style.html](03-Directivas-e-Hooks/0302-class-e-style.html)
 - [03-Directivas-e-Hooks/0302-class-e-style-exerc.html](03-Directivas-e-Hooks/0302-class-e-style-exerc.html)
@@ -609,6 +609,159 @@ Restartando projeto Junho/2021
             cor: "",
             fruta: "",
             ano: 0
+        }
+    });
+</script>
+```
+
+- [03-Directivas-e-Hooks/0304-v-on-e-eventos-globais-aula.html](03-Directivas-e-Hooks/0304-v-on-e-eventos-globais-aula.html)
+
+```html
+<div id="app">
+    <p style="position: fixed;">{{totalScroll * 20}}</p>
+</div>
+
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            totalScroll: 0,
+        },
+        methods: {
+            handleScroll(event) {
+                console.log(event);
+                if (event.key === "Enter") {
+                    this.totalScroll = window.scrollY;
+                }
+            }
+        },
+        created() {
+            window.addEventListener("keyup", this.handleScroll);
+        }
+    });
+</script>
+```
+
+![imgs/lifecycle.png](imgs/lifecycle.png)
+
+![imgs/hooks.png](imgs/hooks.png)
+
+- [03-Directivas-e-Hooks/0305-lifecycle-hooks-aula.html](03-Directivas-e-Hooks/0305-lifecycle-hooks-aula.html)
+
+```html
+<div id="app">
+    <p>{{mensagem}}</p>
+    <div>{{github}}</div>
+    <button @click="puxarGithub">Puxar Github</button>
+</div>
+
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            mensagem: "Essa é uma mensagem",
+            github: {},
+        },
+        methods: {
+            puxarGithub() {
+                fetch("https://api.github.com/users/josemalcher")
+                    .then(r => r.json())
+                    .then(r => {
+                        this.github = r;
+                    })
+            }
+        },
+        beforeCreate() {
+            console.log(this.mensagem);
+        },
+        created() {
+            this.puxarGithub();
+            console.log(this.mensagem);
+            console.log("Elemento", this.$el)
+        },
+        beforeMount() {
+            console.log("BeforeMount", this.mensagem)
+            console.log("Elemento", this.$el)
+
+        },
+        mounted() {
+            console.log("Elemento", this.$el)
+        }
+    });
+</script>
+```
+
+- [03-Directivas-e-Hooks/0305-lifecycle-hooks-aula-2.html](03-Directivas-e-Hooks/0305-lifecycle-hooks-aula-2.html)
+
+```html
+
+<div id="app">
+    <button @click="contador++">Total: {{contador}}</button>
+    <button @click="destruir">Destruir</button>
+</div>
+
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            contador: 0,
+        },
+        methods: {
+            destruir() {
+                this.$destroy();
+            }
+        },
+        beforeUpdate() {
+            console.log("teste");
+        },
+        updated() {
+            console.log("teste updateds");
+        },
+        beforeDestroy() {
+            console.log("Vai destruir");
+        },
+        destroyed() {
+            console.log("Destruiu");
+        }
+    });
+</script>
+```
+
+- [03-Directivas-e-Hooks/0305-lifecycle-hooks-exerc.html](03-Directivas-e-Hooks/0305-lifecycle-hooks-exerc.html)
+
+```html
+<div id="app">
+    <button @click="contador++">Adicionar {{contador}}</button>
+    <ul>
+        <li v-for="(valor, chave) in github">{{chave}}: {{valor}}</li>
+    </ul>
+</div>
+
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            github: {},
+            contador: 0,
+        },
+        methods: {
+            puxarGithub() {
+                fetch("https://api.github.com/users/josemalcher")
+                    .then(r => r.json())
+                    .then((resposta) => {
+                        this.github = resposta
+                    })
+            }
+        },
+        updated() {
+            document.title = this.contador;
+        },
+        created() {
+            this.puxarGithub();
         }
     });
 </script>

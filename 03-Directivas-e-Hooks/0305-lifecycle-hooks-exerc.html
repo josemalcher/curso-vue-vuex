@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03 Diretivas e Hooks</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <button @click="contador++">Adicionar {{contador}}</button>
+    <ul>
+        <li v-for="(valor, chave) in github">{{chave}}: {{valor}}</li>
+    </ul>
+</div>
+
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            github: {},
+            contador: 0,
+        },
+        methods: {
+            puxarGithub() {
+                fetch("https://api.github.com/users/josemalcher")
+                    .then(r => r.json())
+                    .then((resposta) => {
+                        this.github = resposta
+                    })
+            }
+        },
+        updated() {
+            document.title = this.contador;
+        },
+        created() {
+            this.puxarGithub();
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03 Diretivas e Hooks</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <p>{{mensagem}}</p>
+    <div>{{github}}</div>
+    <button @click="puxarGithub">Puxar Github</button>
+</div>
+
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            mensagem: "Essa é uma mensagem",
+            github: {},
+        },
+        methods: {
+            puxarGithub() {
+                fetch("https://api.github.com/users/josemalcher")
+                    .then(r => r.json())
+                    .then(r => {
+                        this.github = r;
+                    })
+            }
+        },
+        beforeCreate() {
+            console.log(this.mensagem);
+        },
+        created() {
+            this.puxarGithub();
+            console.log(this.mensagem);
+            console.log("Elemento", this.$el)
+        },
+        beforeMount() {
+            console.log("BeforeMount", this.mensagem)
+            console.log("Elemento", this.$el)
+
+        },
+        mounted() {
+            console.log("Elemento", this.$el)
+        }
+    });
+</script>
+</body>
+</html>

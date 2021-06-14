@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03 Diretivas e Hooks</title>
+    <style>
+        body {
+            height: 2000px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <p style="position: fixed;">{{totalScroll * 20}}</p>
+</div>
+
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            totalScroll: 0,
+        },
+        methods: {
+            handleScroll(event) {
+                console.log(event);
+                if (event.key === "Enter") {
+                    this.totalScroll = window.scrollY;
+                }
+            }
+        },
+        created() {
+            window.addEventListener("keyup", this.handleScroll);
+        }
+    });
+</script>
+</body>
+</html>

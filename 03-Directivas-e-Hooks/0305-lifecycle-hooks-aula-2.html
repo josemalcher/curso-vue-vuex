@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03 Diretivas e Hooks</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <button @click="contador++">Total: {{contador}}</button>
+    <button @click="destruir">Destruir</button>
+</div>
+
+<script src="../lib/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            contador: 0,
+        },
+        methods: {
+            destruir() {
+                this.$destroy();
+            }
+        },
+        beforeUpdate() {
+            console.log("teste");
+        },
+        updated() {
+            console.log("teste updateds");
+        },
+        beforeDestroy() {
+            console.log("Vai destruir");
+        },
+        destroyed() {
+            console.log("Destruiu");
+        }
+    });
+</script>
+</body>
+</html>
