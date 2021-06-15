@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Seção 5</title>
+</head>
+<body>
+<div id="app">
+    <!--<componente-global></componente-global>-->
+    <componente-local></componente-local>
+    <componente-local2></componente-local2>
+    <!--<componente-local3></componente-local3>-->
+</div>
+<script src="../../lib/vue.js"></script>
+<script>
+
+    const ComponenteLocal = {
+        name: 'ComponenteLocal',
+        data() {
+            return {
+                contar: 20
+            }
+        },
+        template: `
+          <div>
+          <p>Isso é LOCAL - {{ contar }}</p>
+          <p>Isso é LOCAL - {{ contarDobro }}</p>
+          </div>`,
+        computed: {
+            contarDobro() {
+                return this.contar * 2;
+            }
+        }
+    }
+
+    const ComponenteLocal2 = {
+        name: 'ComponenteLocal',
+        template: `<div>
+                    <p>Isso é LOCAL 2 E mais Global: </p>
+                    <componente-global></componente-global>
+                    <componente-local3></componente-local3>
+                    </div>`
+    }
+
+    const ComponenteLocal3 = {
+        name: 'ComponenteLocal',
+        template: `<div>
+                    <p>Isso é LOCAL 3 </p>
+                    </div>`
+    }
+
+    Vue.component('ComponenteGlobal', {
+        template: `<p>Isso é GLOBAL</p>`
+    });
+
+    Vue.component('ComponenteLocal3',ComponenteLocal3);
+
+    const vm = new Vue({
+        el: "#app",
+        data: {},
+        components: {
+            ComponenteLocal: ComponenteLocal,
+            ComponenteLocal2,
+            //ComponenteLocal3,
+        }
+    });
+</script>
+</body>
+</html>

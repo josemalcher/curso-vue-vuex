@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Seção 5</title>
+</head>
+<body>
+<div id="app">
+    <botao-contador></botao-contador>
+    <botao-contador></botao-contador>
+    <botao-contador></botao-contador>
+    <menu-principal></menu-principal>
+</div>
+<script src="../../lib/vue.js"></script>
+
+<script type="module">
+
+    import BotaoContadorMod from "./BotaoContador.js"
+
+    Vue.component("BotaoContador", BotaoContadorMod)
+
+    import MenuPrincipal from "./MenuPrincipal.js";
+
+    Vue.component('MenuPrincipal', MenuPrincipal);
+
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            mensagem: "isso em VM DATA",
+        }
+    });
+</script>
+</body>
+</html>

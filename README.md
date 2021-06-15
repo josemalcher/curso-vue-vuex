@@ -784,7 +784,225 @@ Restartando projeto Junho/2021
 
 ## <a name="parte5"> Componentes</a>
 
+- [05-Componentes/0501-componentes-basico-aula/0501-componentes-basico.html](05-Componentes/0501-componentes-basico-aula/0501-componentes-basico.html)
 
+```html
+<div id="app">
+    {{mensagem}}
+    <botao-contador></botao-contador>
+    <botao-contador></botao-contador>
+    <botao-contador></botao-contador>
+</div>
+<script src="../../lib/vue.js"></script>
+<script>
+    Vue.component('BotaoContador', {
+        data() {
+            return {
+                total: 0,
+            };
+        },
+        template: `
+          <button @click="total++">Contar: {{total}}</button>`,
+        // methods: {
+        //     mostrarCondole(){
+        //         console.log('ATIVOU')
+        //     }
+        // }
+    });
+
+
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            mensagem: "isso em VM DATA",
+        }
+    });
+</script>
+```
+
+- [05-Componentes/0501-componentes-basico-aula/0501-componentes-basico-local-global.html](05-Componentes/0501-componentes-basico-aula/0501-componentes-basico-local-global.html)
+
+```html
+<div id="app">
+    <!--<componente-global></componente-global>-->
+    <componente-local></componente-local>
+    <componente-local2></componente-local2>
+    <!--<componente-local3></componente-local3>-->
+</div>
+<script src="../../lib/vue.js"></script>
+<script>
+
+    const ComponenteLocal = {
+        name: 'ComponenteLocal',
+        data() {
+            return {
+                contar: 20
+            }
+        },
+        template: `
+          <div>
+          <p>Isso é LOCAL - {{ contar }}</p>
+          <p>Isso é LOCAL - {{ contarDobro }}</p>
+          </div>`,
+        computed: {
+            contarDobro() {
+                return this.contar * 2;
+            }
+        }
+    }
+
+    const ComponenteLocal2 = {
+        name: 'ComponenteLocal',
+        template: `<div>
+                    <p>Isso é LOCAL 2 E mais Global: </p>
+                    <componente-global></componente-global>
+                    <componente-local3></componente-local3>
+                    </div>`
+    }
+
+    const ComponenteLocal3 = {
+        name: 'ComponenteLocal',
+        template: `<div>
+                    <p>Isso é LOCAL 3 </p>
+                    </div>`
+    }
+
+    Vue.component('ComponenteGlobal', {
+        template: `<p>Isso é GLOBAL</p>`
+    });
+
+    Vue.component('ComponenteLocal3',ComponenteLocal3);
+
+    const vm = new Vue({
+        el: "#app",
+        data: {},
+        components: {
+            ComponenteLocal: ComponenteLocal,
+            ComponenteLocal2,
+            //ComponenteLocal3,
+        }
+    });
+</script>
+```
+
+- [05-Componentes/0501-componentes-basico-aula/0501-componentes-basico-module.html](05-Componentes/0501-componentes-basico-aula/0501-componentes-basico-module.html)
+  
+```html
+<div id="app">
+    <botao-contador></botao-contador>
+    <botao-contador></botao-contador>
+    <botao-contador></botao-contador>
+    <menu-principal></menu-principal>
+</div>
+<script src="../../lib/vue.js"></script>
+
+<script type="module">
+
+    import BotaoContadorMod from "./BotaoContador.js"
+
+    Vue.component("BotaoContador", BotaoContadorMod)
+
+    import MenuPrincipal from "./MenuPrincipal.js";
+
+    Vue.component('MenuPrincipal', MenuPrincipal);
+
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            mensagem: "isso em VM DATA",
+        }
+    });
+</script>
+```
+
+- [05-Componentes/0501-componentes-basico-aula/BotaoContador.js](05-Componentes/0501-componentes-basico-aula/BotaoContador.js)
+  
+```javascript
+/*
+const BotaoContadorMod = {
+    name: "BotaoCotnador",
+    template: `<button>Contador</button>`
+
+}
+
+export default BotaoContadorMod;
+*/
+export default {
+    name: "BotaoCotnador",
+    data() {
+        return {
+            total: 0,
+        }
+    },
+    template: `<button @click="total++">Contador Module {{ total }}</button>`
+
+}
+```
+
+- [05-Componentes/0501-componentes-basico-aula/MenuPrincipal.js](05-Componentes/0501-componentes-basico-aula/MenuPrincipal.js)
+
+```javascript
+import BotaoContador from "./BotaoContador.js";
+
+export default {
+    name: "MenuPrincipal",
+    template: `
+        <ul>
+            <li>Home</li>
+            <li>Menu</li>
+            <botao-contador></botao-contador>
+        </ul>
+    `,
+    components: {
+        BotaoContador
+    }
+}
+```
+
+- [05-Componentes/0501-componentes-basico-aula-exerc](05-Componentes/0501-componentes-basico-aula-exerc)
+
+```html
+<!--
+  Crie uma tela com 3 diferentes Componentes.
+
+  1 - Mostre o tempo do dia usando a API:
+  https://www.metaweather.com/api/location/455825/ (Código do Rio de Janeiro)
+
+  2 - Mostre a relação dolar/real
+  https://api.exchangeratesapi.io/latest?base=USD
+
+  3 - Mostre o valor de mercado da Apple (marketCap)
+  https://api.iextrading.com/1.0/stock/aapl/quote
+
+  Crie os componentes em arquivos separados e utilize import/export
+  O componente 1 deve ser registrado globalmente
+  O componente 2 deve ser registrado localmente dentro do componente 3.
+  O componente 3 deve ser registrado localmente da instância Vue.js
+ -->
+<div id="app">
+    <tempo-hoje></tempo-hoje>
+    <acao-hoje></acao-hoje>
+
+</div>
+
+<script src="../../lib/vue.js"></script>
+
+<script type="module">
+    import TempoHoje from "./componentes/TempoHoje.js";
+    import AcaoHoje from "./componentes/AcaoHoje.js";
+
+    Vue.component("TempoHoje", TempoHoje);
+
+    const vm = new Vue({
+        el: "#app",
+        components: {
+            AcaoHoje
+        }
+    })
+</script>
+
+</script>
+```
 
 [Voltar ao Índice](#indice)
 
