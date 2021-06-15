@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt=br">
+<head>
+    <meta charset="UTF-8">
+    <title>Seção 05</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+<div id="app">
+
+    <p>Acesso direto {{ lista }}</p>
+
+<lista-produtos
+        :frutas="lista"
+        titulo="FRUTAS Título Não Dinâmico"
+></lista-produtos>
+
+</div>
+
+<script src="../lib/vue.js"></script>
+
+<script type="module">
+
+    const ItemProduto = {
+        name: "ItemProduto",
+        props: ["nomeFruta", "total"],
+        props:{
+            nomeFruta: String,
+            total: [Number, String],
+            cor: {
+                type: String,
+                required: true
+            },
+            tamanho: {
+                type: String,
+                default: "Grande"
+            }
+        },
+        template: `
+            <li>
+                <h2>{{nomeFruta}}</h2>
+                Esse é o nome: {{nomeFruta}}
+                <p>{{total}}</p>
+                <p>{{cor}}</p>
+                <p>{{tamanho}}</p>
+            </li>
+        `,
+    }
+
+    const ListaProdutos = {
+        name: "ListaProdutos",
+        props: ["frutas", "titulo"],
+        template: `
+            <ul>
+                <p>{{titulo}}</p>
+                <p>No Modulo {{frutas}}</p>
+<!--                <li v-for="fruta in frutas">{{fruta}}</li>        -->
+<!--                <item-produto :nomeFruta="frutas"></item-produto> -->
+                <item-produto
+                    v-for="(fruta, index) in frutas"
+                    :key="fruta+index"
+                    :nomeFruta="fruta"
+                    cor="AZUL"
+                    tamanho="pequeno"
+                    :total="20"
+                ></item-produto>
+            </ul>
+        `,
+        components:{
+            ItemProduto
+        }
+    };
+
+
+    const vm = new Vue({
+        el: "#app",
+        data: {
+          lista: ['Banan', 'Uva', 'Laranja'],
+        },
+        components: {
+            ListaProdutos
+        }
+    })
+
+</script>
+
+</body>
+</html>

@@ -1004,6 +1004,138 @@ export default {
 </script>
 ```
 
+- [05-Componentes/0502-props-aula.html](05-Componentes/0502-props-aula.html)
+
+```html
+
+<div id="app">
+
+    <p>Acesso direto {{ lista }}</p>
+
+<lista-produtos
+        :frutas="lista"
+        titulo="FRUTAS Título Não Dinâmico"
+></lista-produtos>
+
+</div>
+
+<script src="../lib/vue.js"></script>
+
+<script type="module">
+
+    const ItemProduto = {
+        name: "ItemProduto",
+        props: ["nomeFruta", "total"],
+        props:{
+            nomeFruta: String,
+            total: [Number, String],
+            cor: {
+                type: String,
+                required: true
+            },
+            tamanho: {
+                type: String,
+                default: "Grande"
+            }
+        },
+        template: `
+            <li>
+                <h2>{{nomeFruta}}</h2>
+                Esse é o nome: {{nomeFruta}}
+                <p>{{total}}</p>
+                <p>{{cor}}</p>
+                <p>{{tamanho}}</p>
+            </li>
+        `,
+    }
+
+    const ListaProdutos = {
+        name: "ListaProdutos",
+        props: ["frutas", "titulo"],
+        template: `
+            <ul>
+                <p>{{titulo}}</p>
+                <p>No Modulo {{frutas}}</p>
+<!--                <li v-for="fruta in frutas">{{fruta}}</li>        -->
+<!--                <item-produto :nomeFruta="frutas"></item-produto> -->
+                <item-produto
+                    v-for="(fruta, index) in frutas"
+                    :key="fruta+index"
+                    :nomeFruta="fruta"
+                    cor="AZUL"
+                    tamanho="pequeno"
+                    :total="20"
+                ></item-produto>
+            </ul>
+        `,
+        components:{
+            ItemProduto
+        }
+    };
+
+
+    const vm = new Vue({
+        el: "#app",
+        data: {
+          lista: ['Banan', 'Uva', 'Laranja'],
+        },
+        components: {
+            ListaProdutos
+        }
+    })
+
+</script>
+```
+
+![imgs/one-way-data-flow.png](imgs/one-way-data-flow.png)
+
+- [05-Componentes/0502-props-aula_2.html](05-Componentes/0502-props-aula_2.html)
+
+```html
+
+<div id="app">
+    <botao-contador :valor="0"></botao-contador>
+</div>
+
+<script src="../lib/vue.js"></script>
+
+<script type="module">
+
+    const BotaoContador = {
+        name: "BotaoContador",
+        props: {
+            valor: Number,
+        }, data(){
+            return{
+                valorAtual: this.valor
+            }
+        },
+        template: `
+            <button @click="valorAtual++">Esse é o Valor Atual {{valorAtual}}</button>
+        `,
+    }
+
+
+    const vm = new Vue({
+        el: "#app",
+        data:{
+            total: 0
+        },
+        components: {
+            BotaoContador
+        }
+    })
+</script>
+```
+
+- [05-Componentes/0502-props-aula_exerc.html](05-Componentes/0502-props-aula_exerc.html) 
+
+---
+
+
+
+
+
 [Voltar ao Índice](#indice)
 
 ---
