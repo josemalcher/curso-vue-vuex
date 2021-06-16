@@ -1132,8 +1132,181 @@ export default {
 
 ---
 
+- Events
+
+```html
+
+<div id="app">
+    {{mensagem}}<br>
+    {{totalClientes}}
+    <meu-botao @mensagemevent="mostrarMensagem"></meu-botao>
+</div>
+
+<script src="../lib/vue.js"></script>
+<script type="module">
+
+    const MeuBotao = {
+        name: "MeuBotao",
+        data(){
+            return {
+                totalClientes: 200,
+            }
+        },
+        template: `
+          <button @click="handleClick">CLIQUE</button>
+        `,
+        methods: {
+            handleClick() {
+                //console.log('TESTE')
+                //this.$emit("mensagem")
+            }
+        },
+        created(){
+            setTimeout(()=>{
+                this.$emit("mensagemevent", this.totalClientes)
+            },1000)
+        }
+    }
 
 
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            mensagem: "",
+            totalClientes: 0
+        },
+        components: {
+            MeuBotao
+        },
+        methods: {
+            mostrarMensagem(mensagem){
+                console.log('MENSAGEM OCORREU')
+                this.mensagem = "OCORREU A MENSAGEM!"
+
+                this.totalClientes = mensagem
+            }
+        }
+    })
+
+</script>
+```
+
+- Events [05-Componentes/0503-events-aula.html](05-Componentes/0503-events-aula.html)
+
+```html
+
+<div id="app">
+    {{contador}}
+    <meu-botao
+            :contador.sync="contador"
+    ></meu-botao>
+            <!-- @updade:contador="contador = $event" -->
+</div>
+
+<script src="../lib/vue.js"></script>
+<script type="module">
+
+    const MeuBotao = {
+        name: "MeuBotao",
+        props: ["contador"] ,
+        data(){
+            return {
+                contadorComponente: this.contador
+            }
+        },
+        template: `
+          <button @click="incrementar">CLIQUE {{contadorComponente}}</button>
+        `,
+        methods: {
+            incrementar() { 
+                this.contadorComponente++;
+                this.$emit("update:contador", this.contadorComponente)
+                //@updade:contador="contador = $event"
+            }
+        }
+    }
+
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            contador: 0
+        },
+        components: {
+            MeuBotao
+        },
+        methods: {
+
+        }
+    })
+
+</script>
+```
+
+- [05-Componentes/0503-events-aula_2.html](05-Componentes/0503-events-aula_2.html)
+
+EventBus não é recomendável para paras mais complexos, o ideal é usar o Vuex
+
+```html
+
+<div id="app">
+    <componente-um></componente-um>
+    <componente-dois></componente-dois>
+</div>
+
+<script src="../lib/vue.js"></script>
+
+<script type="module">
+
+    const EventBus = new Vue();
+
+    const ComponenteUm = {
+        name: "ComponenteUm",
+        template: `<p @click="emitirEvento">Componente 1</p>`,
+        data(){
+            return {
+                mensagem: "Esse é o componente 1"
+            }
+        },
+        methods:{
+            emitirEvento(){
+                EventBus.$emit("meuevento", this.mensagem)
+            }
+        }
+
+    }
+/*    EventBus.$on("meuevento", (event) => {
+        console.log("EVENTBUS OCORREU")
+        console.log(event)
+    })*/
+
+    const ComponenteDois = {
+        name: "ComponenteDois",
+        data(){
+            return {
+                mensagem: ""
+            }
+        },
+        template: `<p>{{mensagem}}</p>`,
+        created(){
+            EventBus.$on("meuevento", (event) => {
+         /*       console.log("EVENTBUS OCORREU")
+                console.log(event)*/
+                this.mensagem = event
+            })
+        }
+    }
+
+    const vm = new Vue({
+        el: "#app",
+        data: {
+        },
+        components: {
+            ComponenteDois, ComponenteUm
+        }
+    })
+
+</script>
+```
 
 
 [Voltar ao Índice](#indice)
