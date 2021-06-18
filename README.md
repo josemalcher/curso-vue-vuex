@@ -1308,6 +1308,54 @@ EventBus não é recomendável para paras mais complexos, o ideal é usar o Vuex
 </script>
 ```
 
+- 0504 Vue CLI
+```
+$ npm install -g @vue/cli
+
+$  npm install -g @vue/cli-service-global
+```
+
+
+- [05-Componentes/0505-app-vue/app.vue](05-Componentes/0505-app-vue/app.vue)
+```vue
+<template>
+  <div>
+    <div id="app">{{mensagem}}</div>
+    <HeaderPrincipal/>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      mensagem: "Essa é uma mensagem teste"
+    };
+  }
+};
+</script>
+
+<style>
+</style>
+
+```
+
+```
+vue serve app.vue
+
+vue build app.vue
+```
+
+- 0505 Vue Estrutura
+
+- [05-Componentes/0505-Vue-Estrutura/app-proj0505](05-Componentes/0505-Vue-Estrutura/app-proj0505)
+
+
+- 0506 Slots
+
+- 0507 Dynamic
+
+- 0508 Async
 
 [Voltar ao Índice](#indice)
 
