@@ -1435,6 +1435,50 @@ export default {
 
 - 0507 Dynamic
 
+- [05-Componentes/0507-dynamic-proj/src/components/AulaDescricao.vue](05-Componentes/0507-dynamic-proj/src/components/AulaDescricao.vue)
+- [05-Componentes/0507-dynamic-proj/src/components/AulaDownload.vue](05-Componentes/0507-dynamic-proj/src/components/AulaDownload.vue)
+
+- [05-Componentes/0507-dynamic-proj/src/App.vue](05-Componentes/0507-dynamic-proj/src/App.vue)
+
+```vue
+<template>
+  <div id="app">
+
+    <button @click="componenteAtivo = 'AulaDescricao'">Descrição</button>
+    <button @click="componenteAtivo = 'AulaDownload'">Download</button>
+
+    <keep-alive>
+      <component :is="componenteAtivo"></component>
+    </keep-alive>
+  </div>
+</template>
+
+<script>
+import AulaDescricao from "./components/AulaDescricao.vue";
+import AulaDownload from "./components/AulaDownload.vue";
+
+export default {
+  name: 'App',
+  components: {
+    AulaDescricao, AulaDownload
+  }, data() {
+    return {
+      componenteAtivo: 'AulaDescricao'
+    }
+  }
+}
+</script>
+
+<style>
+
+</style>
+
+```
+
+
+
+
+
 - 0508 Async
 
 [Voltar ao Índice](#indice)
