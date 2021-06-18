@@ -1518,9 +1518,65 @@ export default {
 
 ```
 
-
-
 - 0508 Async
+
+- [05-Componentes/0508-async/src/App.vue](05-Componentes/0508-async/src/App.vue)
+
+```vue
+<template>
+  <div id="app">
+    <ul>
+      <li @click="componenteAtivo = 'SobreEmpresa'">Sobre</li>
+<!--      <li @click="componenteAtivo = 'ServicosEmpresa'">Serviços</li>-->
+      <li @click="componenteAtivo = 'ContatoEmpresa'">Contato</li>
+    </ul>
+    <keep-alive>
+      <component :is="componenteAtivo"></component>
+    </keep-alive>
+  </div>
+</template>
+
+<script>
+import SobreEmpresa from "./components/SobreEmpresa.vue";
+//import ContatoEmpresa from "./components/ContatoEmpresa.vue";
+//import ServicosEmpresa from "./components/ServicosEmpresa.vue";
+
+export default {
+  name: 'App',
+  components: {
+    SobreEmpresa,
+    /*ServicosEmpresa,*/
+    ContatoEmpresa: () => import("./components/ContatoEmpresa.vue")
+  },
+  data() {
+    return {
+      componenteAtivo: "SobreEmpresa"
+    }
+  }
+}
+</script>
+
+<style>
+</style>
+
+```
+
+- [05-Componentes/0508-async/src/main.js](05-Componentes/0508-async/src/main.js)
+
+```javascript
+import Vue from 'vue'
+import App from './App.vue'
+
+Vue.config.productionTip = false
+
+Vue.component("ServicosEmpresa", () => import("./components/ServicosEmpresa.vue"))
+
+new Vue({
+  render: h => h(App),
+}).$mount('#app')
+
+```
+
 
 [Voltar ao Índice](#indice)
 
