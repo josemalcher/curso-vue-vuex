@@ -1353,6 +1353,86 @@ vue build app.vue
 
 - 0506 Slots
 
+- [05-Componentes/0506-slots-proj/src/components/ModalPrincipal.vue](05-Componentes/0506-slots-proj/src/components/ModalPrincipal.vue)
+
+```vue
+<template>
+  <div class="modal">
+
+    <slot name="header" :logo_url="logo_url"></slot>
+
+    <h1>Esse é o modal Principal</h1>
+    <h2>{{user.nome}}</h2>
+    <slot :user="user"></slot>
+
+
+    <slot name="footer"></slot>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "ModalPrincipal",
+  data(){
+    return {
+      logo_url: 'https://josemalcher.net/wp-content/uploads/2021/02/josemalcher.net-logo-redu-3-150x150.png',
+      user:{
+        nome: 'José Malcher Jr.'
+      }
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>
+```
+
+- [05-Componentes/0506-slots-proj/src/App.vue05-Componentes/0506-slots-proj/src/components/ModalPrincipal.vue](05-Componentes/0506-slots-proj/src/App.vue05-Componentes/0506-slots-proj/src/components/ModalPrincipal.vue)
+
+```vue
+<template>
+  <div id="app">
+    <modal-principal>
+
+      <template #header="{logo_url}">
+        <div>
+          <h2>Esse é o Header</h2>
+          <p>{{logo_url}}</p>
+        </div>
+      </template>
+
+      <template #default="{user}">
+        <p>Esse é um DEFAULT</p>
+        <h2>Usuário: {{ user.nome }}</h2>
+        <button>Button TEste in default</button>
+      </template>
+
+      <template #footer>
+        <p>Footer aqui!!!</p>
+      </template>
+
+    </modal-principal>
+  </div>
+</template>
+<script>
+import ModalPrincipal from "./components/ModalPrincipal.vue";
+
+export default {
+  name: 'App',
+  components: {
+    ModalPrincipal
+  }
+}
+</script>
+
+<style>
+</style>
+
+```
+
+
 - 0507 Dynamic
 
 - 0508 Async
