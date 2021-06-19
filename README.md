@@ -1585,6 +1585,13 @@ new Vue({
 
 ## <a name="parte6"> Animações</a>
 
+- 0601 Transition 1
+
+- 0601 Transition 2
+
+- 0602 Components
+
+- 0603 List
 
 
 [Voltar ao Índice](#indice)
