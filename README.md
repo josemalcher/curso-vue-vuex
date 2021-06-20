@@ -1587,12 +1587,19 @@ new Vue({
 
 - 0601 Transition 1
 
+    - [06-Animacoes/0601-Transition.vue](06-Animacoes/0601-Transition.vue)
+
 - 0601 Transition 2
+
+    - [06-Animacoes/0601-Transition-modal.vue](06-Animacoes/0601-Transition-modal.vue)
 
 - 0602 Components
 
+    - [06-Animacoes/0602-components/home.vue](06-Animacoes/0602-components/home.vue)
+
 - 0603 List
 
+  - [06-Animacoes/0603-list](06-Animacoes/0603-list)
 
 [Voltar ao Índice](#indice)
 
