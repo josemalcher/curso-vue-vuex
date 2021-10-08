@@ -784,7 +784,74 @@ Restartando projeto Junho/2021
 
 ## <a name="parte5"> Componentes</a>
 
+- [0501 Componentes Básico 1](05-Componentes/0501-Componentes-Basico-1-localGlobal.html)
 
+```html
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../lib/vue.js"></script>
+    <title>Vue.js</title>
+</head>
+
+<body>
+<div id="app">
+    <componente-local></componente-local>
+</div>
+
+<script>
+    const ComponenteLocal = {
+        name: "ComponenteLocal",
+        template: `
+      <div>
+        <p>Componente Local</p>
+        <componente-global></componente-global>
+        <componente-local2></componente-local2>
+      </div>
+    `
+    }
+
+    const ComponenteLocal2 = {
+        name: "ComponenteLocal",
+        data() {
+            return {
+                contar: 20,
+            }
+        },
+        template: `
+          <div>
+          <p>Componente Local 2 {{contarDobro}}</p>
+          <p>Segundo {{contar}}</p>
+          </div>
+        `,
+        computed: {
+            contarDobro() {
+                return this.contar * 2;
+            }
+        }
+    }
+
+    Vue.component("ComponenteGlobal", {
+        template: `<p>Isso é Global</p>`
+    })
+
+    Vue.component("ComponenteLocal2", ComponenteLocal2)
+
+    const vm = new Vue({
+        el: "#app",
+        components: {
+            ComponenteLocal,
+        }
+    })
+</script>
+
+</body>
+</html>
+```
 
 [Voltar ao Índice](#indice)
 
