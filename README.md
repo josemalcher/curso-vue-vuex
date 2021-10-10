@@ -853,6 +853,94 @@ Restartando projeto Junho/2021
 </html>
 ```
 
+- [0501 Componentes Básico 2](05-Componentes/0501-Componentes-Basico-2.html)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>0501 Componentes Básico 2</title>
+    <script src="../lib/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <menu-principal></menu-principal>
+    <hr>
+    <botao-contador></botao-contador>
+    <botao-contador></botao-contador>
+    <botao-contador></botao-contador>
+</div>
+
+<script type="module">
+
+import BotaoContador from "./BotaoContador.js";
+import MenuPrincipal from "./MenuPrincipal.js";
+
+
+//Vue.component("BotaoContador", BotaoContador);
+Vue.component("MenuPrincipal", MenuPrincipal);
+
+const vm = new Vue({
+    el: "#app",
+    components: {
+        BotaoContador,
+
+    }
+})
+</script>
+
+</body>
+</html>
+
+```
+
+```javascript
+// const BotaoContador = {
+//     name: "BotaoContador",
+//     template: `<button>Contador</button>`
+// }
+//
+// export default BotaoContador;
+
+export default {
+    name: "BotaoContador",
+    data(){
+      return{
+          total: 0
+      }
+    },
+    template: `<button @click="total++">Contador - {{total}}</button>`
+}
+
+```
+
+```javascript
+import BotaoContador from "./BotaoContador.js";
+
+export default {
+    name: "MenuPrincipal",
+    template: `
+        <ul>
+            <li>Home</li>
+            <li>Contato</li>
+            <botao-contador></botao-contador>
+        </ul>
+    `,
+    components:{
+        BotaoContador
+    }
+}
+```
+
+- []()
+
+```html
+
+```
+
+
+
 [Voltar ao Índice](#indice)
 
 ---

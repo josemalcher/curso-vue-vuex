@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>0501 Componentes Básico 3 </title>
+    <script src="../../lib/vue.js"></script>
+</head>
+<body>
+<!--
+  Crie uma tela com 3 diferentes Componentes.
+
+  1 - Mostre o tempo do dia usando a API:
+  https://www.metaweather.com/api/location/455825/ (Código do Rio de Janeiro)
+
+  2 - Mostre a relação dolar/real
+  https://api.exchangeratesapi.io/latest?base=USD
+
+  3 - Mostre o valor de mercado da Apple (marketCap)
+  https://api.iextrading.com/1.0/stock/aapl/quote
+
+  Crie os componentes em arquivos separados e utilize import/export
+  O componente 1 deve ser registrado globalmente
+  O componente 2 deve ser registrado localmente dentro do componente 3.
+  O componente 3 deve ser registrado localmente da instância Vue.js
+ -->
+<div id="app">
+    <tempo-hoje></tempo-hoje>
+    <hr>
+    <imagem-dog></imagem-dog>
+</div>
+
+<script type="module">
+import TempoHoje from "./TempoHoje.js";
+import ImagemDog from "./ImagemDog.js";
+
+Vue.component("TempoHoje",TempoHoje)
+
+const vm = new Vue({
+    el: "#app",
+    components: {
+        ImagemDog
+    }
+})
+</script>
+
+</body>
+</html>
