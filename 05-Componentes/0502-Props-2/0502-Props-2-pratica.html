@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>0502 Props 2 - Prática</title>
+    <script src="../../lib/vue.js"></script>
+</head>
+<body>
+<!--
+  Crie um componente com um campo de input e um botão para enviar o valor.
+  Nesse campo de input será possível escrever o simbolo de empresas americanas
+
+  simbolos ex:
+  aapl -> Apple
+  goog -> Google
+  msft -> Microsoft
+  amzn -> Amazon
+  fb -> Facebook
+
+  Ao clicar no botão, faça um fetch com a API:
+  https://api.iextrading.com/1.0/stock/${SIMBOLO}/quote
+
+  O resultado do fetch deverá ser mostrado em um componente filho do formulário.
+  Envia as informações utilizando prop
+
+  Mostre todas as informações do fetch utilizando um loop.
+ -->
+<div id="app">
+    <formulario-acoes></formulario-acoes>
+</div>
+
+<script type="module">
+
+    const DadosAcao = {
+        name: "DadosAcao",
+        props: ['acao'],
+        template: `
+          <ul>
+            <li v-for="(dado, chave) in acao">
+              {{chave}} : {{dado}}
+            </li>
+          </ul>
+        `,
+
+    }
+
+    const FormularioAcoes = {
+        name: "FormularioAcoes",
+        components: {
+            DadosAcao
+        },
+        data() {
+            return {
+                simbolo: "",
+                quote: {}
+            }
+        },
+        template: `
+          <div>
+          <h4>{{ simbolo }}</h4>
+          <input type="text" v-model="simbolo">
+          <button @click="puxarAcoes">Puxar Ações</button>
+          <hr>
+          <dados-acao :acao="quote"></dados-acao>
+          </div>
+        `,
+        methods: {
+            puxarAcoes() {
+                fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${this.simbolo}&interval=5min&apikey=********`)
+                    .then(r => r.json())
+                    .then(r => {
+                        this.quote = r;
+                    })
+                    .catch(e => {
+                        console.log('ERRO ao puxar os dados ', e)
+                    })
+            }
+        }
+    }
+
+    const vm = new Vue({
+        el: "#app",
+        components: {
+            FormularioAcoes
+        }
+    })
+</script>
+</body>
+</html>
