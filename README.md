@@ -1171,6 +1171,128 @@ export default {
 </html>
 ```
 
+- [05-Componentes/0503-Events.html](05-Componentes/0503-Events.html)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>0503 Events</title>
+    <script src="../lib/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <p>{{ mensagem }}</p>
+    <meu-botao @eventoemitido="mostrarEmitEvento"></meu-botao>
+    <p>Total Clientes {{ totalClientes }}</p>
+</div>
+
+<script type="module">
+
+    const MeuBotao = {
+        name: "MeuBotao",
+        template: `
+          <button @click="handleClick">Click</button>
+        `,
+        data() {
+            return {
+                mesagem: '',
+                totalClientes: 200
+            }
+        },
+        methods: {
+            handleClick() {
+                console.log("Teste");
+                this.$emit('eventoemitido', this.totalClientes)
+            }
+        },
+        created() {
+            setTimeout(() => {
+                this.$emit('eventoemitido', this.totalClientes)
+            }, 2000)
+        }
+
+    }
+
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            mensagem: "",
+            totalClientes: 0
+        },
+        components: {
+            MeuBotao
+        },
+        methods: {
+            mostrarEmitEvento(emitmensagens) {
+                console.log(emitmensagens)
+                this.totalClientes = emitmensagens
+                this.mensagem = "Emit Ocorreu!"
+            },
+        }
+    })
+</script>
+</body>
+</html>
+```
+
+- [05-Componentes/0503-Events-2.html](05-Componentes/0503-Events-2.html)
+
+```html
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>0503 Events - 2</title>
+    <script src="../lib/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <meu-botao
+            :contador.sync="contador"> <!-- @update:contador ="contador = $event" -->
+    ></meu-botao>
+    {{contador}}
+</div>
+
+<script type="module">
+
+    const MeuBotao = {
+        name: 'MeuBotao',
+        props: ['contador'],
+        data(){
+            return{
+                contadorComponente: this.contador
+            }
+        },
+        template: `
+          <button @click="incrementar">Click {{contadorComponente}}</button>`,
+        methods: {
+            incrementar(){
+                this.contadorComponente++
+                this.$emit("update:contador", this.contadorComponente) // $event
+            }
+        }
+    }
+
+
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            contador: 20,
+        },
+        components: {
+            MeuBotao
+        },
+        methods: {}
+    })
+</script>
+</body>
+</html>
+```
+
 
 [Voltar ao Índice](#indice)
 

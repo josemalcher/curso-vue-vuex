@@ -8,7 +8,9 @@
 <body>
 
 <div id="app">
+    <p>{{ mensagem }}</p>
     <meu-botao @eventoemitido="mostrarEmitEvento"></meu-botao>
+    <p>Total Clientes {{ totalClientes }}</p>
 </div>
 
 <script type="module">
@@ -18,11 +20,22 @@
         template: `
           <button @click="handleClick">Click</button>
         `,
-        methods:{
+        data() {
+            return {
+                mesagem: '',
+                totalClientes: 200
+            }
+        },
+        methods: {
             handleClick() {
                 console.log("Teste");
-                this.$emit('eventoemitido')
+                this.$emit('eventoemitido', this.totalClientes)
             }
+        },
+        created() {
+            setTimeout(() => {
+                this.$emit('eventoemitido', this.totalClientes)
+            }, 2000)
         }
 
     }
@@ -30,14 +43,18 @@
     const vm = new Vue({
         el: "#app",
         data: {
+            mensagem: "",
+            totalClientes: 0
         },
         components: {
             MeuBotao
         },
         methods: {
-            mostrarEmitEvento(){
-                console.log('Emit Ocorreu')
-            }
+            mostrarEmitEvento(emitmensagens) {
+                console.log(emitmensagens)
+                this.totalClientes = emitmensagens
+                this.mensagem = "Emit Ocorreu!"
+            },
         }
     })
 </script>
