@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>0503 Events</title>
+    <script src="../lib/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <meu-botao @eventoemitido="mostrarEmitEvento"></meu-botao>
+</div>
+
+<script type="module">
+
+    const MeuBotao = {
+        name: "MeuBotao",
+        template: `
+          <button @click="handleClick">Click</button>
+        `,
+        methods:{
+            handleClick() {
+                console.log("Teste");
+                this.$emit('eventoemitido')
+            }
+        }
+
+    }
+
+    const vm = new Vue({
+        el: "#app",
+        data: {
+        },
+        components: {
+            MeuBotao
+        },
+        methods: {
+            mostrarEmitEvento(){
+                console.log('Emit Ocorreu')
+            }
+        }
+    })
+</script>
+</body>
+</html>
