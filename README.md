@@ -1366,6 +1366,19 @@ export default {
 </html>
 ```
 
+- [0504 Vue CLI](0504 Vue CLI)
+
+- https://cli.vue.org
+
+```
+$ vue create nome-do-projeto
+
+$ vue serve arquivo.vue
+
+$ vue i
+```
+
+
 
 [Voltar ao Índice](#indice)
 
