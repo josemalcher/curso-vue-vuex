@@ -1451,6 +1451,51 @@ export default {
 
 ```
 
+- [05-Componentes/0507-Dynamic](05-Componentes/0507-Dynamic)
+
+```vue
+<template>
+  <div id="app">
+    <!--    <component :is="componenteAtivo"></component>
+        <AulaDescricao></AulaDescricao>-->
+
+    <button @click="componenteAtivo='AulaDownload'">Download</button>
+    <button @click="componenteAtivo='AulaDescricao'">Descrição</button>
+    <keep-alive>
+      <component :is="componenteAtivo"></component>
+    </keep-alive>
+  </div>
+</template>
+
+<script>
+import AulaDescricao from "./components/AulaDescricao";
+import AulaDownload from "./components/AulaDownload";
+
+export default {
+  name: 'App',
+  data() {
+    return {
+      componenteAtivo: "AulaDescricao"
+    }
+  },
+  components: {
+    AulaDescricao, AulaDownload
+  }
+}
+</script>
+
+<style>
+
+</style>
+
+```
+
+- [0508 Async](0508 Async)
+
+![component_async_1](imgs/component_async_1.png)
+
+![component_async_2](imgs/component_async_2.png)
+
 
 [Voltar ao Índice](#indice)
 
