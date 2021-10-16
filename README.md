@@ -1380,7 +1380,76 @@ $ vue i
 
 - [0505 Vue Estrutura](0505 Vue Estrutura)
 
+- [0506 Slots ](0506 Slots)
 
+```vue
+<template>
+  <div class="modal">
+    <slot name="header" :logo="logo"></slot>
+    <h1>Data Nome: {{user.nome}}</h1>
+    <slot :user="user"></slot>
+    <slot name="footer"></slot>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "ModalPrincipal",
+  data(){
+    return{
+      user: {
+        nome: "José"
+      },
+      logo: 'Tecno'
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>
+```
+
+```vue
+<template>
+  <div id="app">
+    <ModalPrincipal>
+      <!--      <template v-slot:header>-->
+      <template v-slot:header="{logo}">
+        <p>Esse é o header</p>
+        <p>Logo: {{ logo }}</p>
+      </template>
+
+      <template v-slot:default="{ user }">
+        <p>Esse é um teste: Data de Modal = {{user.nome}}</p>
+
+        <button>Enviar!</button>
+      </template>
+
+      <template v-slot:footer>
+        <p>Esse é o header</p>
+      </template>
+    </ModalPrincipal>
+  </div>
+</template>
+
+<script>
+import ModalPrincipal from "./components/ModalPrincipal";
+
+export default {
+  name: 'App',
+  components: {
+    ModalPrincipal
+  }
+}
+</script>
+
+<style>
+
+</style>
+
+```
 
 
 [Voltar ao Índice](#indice)
