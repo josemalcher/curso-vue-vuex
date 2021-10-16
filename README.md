@@ -1378,6 +1378,9 @@ $ vue serve arquivo.vue
 $ vue i
 ```
 
+- [0505 Vue Estrutura](0505 Vue Estrutura)
+
+
 
 
 [Voltar ao Índice](#indice)
