@@ -1504,7 +1504,55 @@ export default {
 
 ## <a name="parte6"> Animações</a>
 
+- [06-Animacoes/transition.vue](06-Animacoes/transition.vue)
 
+```vue
+<template>
+  <div>
+    <button @click="ativo = !ativo">Ativar</button>
+    <transition appear name="fade" @enter="enter" @leave="leave">
+      <h1>Serviços</h1>
+    </transition>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      ativo: false
+    };
+  },
+  methods: {
+    enter(elemento) {
+      console.log(elemento.classList.add("teste"));
+    },
+    leave() {
+      console.log("elemento sumiu");
+    }
+  }
+};
+</script>
+
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 2s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
+
+```
+
+- [06-Animacoes/modal.vue](06-Animacoes/modal.vue)
+
+- [06-Animacoes/0602-Components](06-Animacoes/0602-Components)
+
+- [06-Animacoes/0603-List](06-Animacoes/0603-List)
 
 [Voltar ao Índice](#indice)
 
