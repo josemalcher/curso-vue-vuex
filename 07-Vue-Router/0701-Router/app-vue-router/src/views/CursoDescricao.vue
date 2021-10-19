@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <h1>Página inicial</h1>
-  </div>
+<div>
+  <p>Essa e a descrição do curso</p>
+</div>
 </template>
 
 <script>
 export default {
-  name: "Home"
+  name: "CursoDescricao"
 }
 </script>
 
