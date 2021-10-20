@@ -1645,6 +1645,27 @@ export default new Router({
 });
 ```
 
+- [07-Vue-Router/0701-Router/app-vue-router/src/main.js](07-Vue-Router/0701-Router/app-vue-router/src/main.js)
+
+```vue
+router.beforeEach((to, from, next)=>{
+  console.log("TO", to)
+  console.log("FROM", from)
+  next()
+})
+
+router.afterEach((to, from)=>{
+  console.log("TO", to)
+  console.log("FROM", from)
+})
+```
+
+![](imgs/route_componentes.png)
+
+
+
+
+
 [Voltar ao Índice](#indice)
 
 ---

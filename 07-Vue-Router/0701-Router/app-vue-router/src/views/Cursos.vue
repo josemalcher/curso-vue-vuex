@@ -24,11 +24,27 @@ export default {
       return this.$route.params.curso;
     }*/
   },
+  methods: {
+    puxarDados() {
+      console.log("Puxei a API...");
+    }
+  },
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      vm.puxarDados()
+    });
+  },
   beforeRouteUpdate(to, from, next) {
-    console.log(to.params.curso, from);
-    next()
+    this.puxarDados()
+    next();
+  },
+  beforeRouteLeave(to, from, next) {
+    const confirmar = confirm("Voce deseja sair mesmo?");
+    if(confirmar){
+      next();
+    }
   }
-}
+};
 </script>
 
 <style scoped>

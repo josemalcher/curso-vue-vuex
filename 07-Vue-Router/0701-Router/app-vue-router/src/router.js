@@ -22,6 +22,12 @@ export default new Router({
             path: "/cursos",
             component: Cursos,
             props: true,
+            beforeEnter: (to, from, next) => {
+                // console.log("TO", to)
+                // console.log("FROM", from)
+                console.log("Entrou em CURSOS")
+                next()
+            },
             children: [
                 {
                     name: "curso",
