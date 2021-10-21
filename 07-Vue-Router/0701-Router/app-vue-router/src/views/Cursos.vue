@@ -11,7 +11,9 @@
     <hr>
     <h2>Curso Ativo: {{ curso }}</h2>
     <hr>
-    <router-view></router-view>
+    <transition mode="out-in">
+      <router-view :key="curso"></router-view>
+    </transition>
   </div>
 </template>
 
@@ -40,7 +42,7 @@ export default {
   },
   beforeRouteLeave(to, from, next) {
     const confirmar = confirm("Voce deseja sair mesmo?");
-    if(confirmar){
+    if (confirmar) {
       next();
     }
   }
@@ -49,4 +51,14 @@ export default {
 
 <style scoped>
 
+.v-enter,
+.v-leave-to {
+  transform: translate3d(-20px, 0, 0);
+  opacity: 0;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.3s;
+}
 </style>

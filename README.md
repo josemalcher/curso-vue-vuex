@@ -1663,7 +1663,29 @@ router.afterEach((to, from)=>{
 ![](imgs/route_componentes.png)
 
 
+- [07-Vue-Router/0701-Router/app-vue-router/src/views/Cursos.vue](07-Vue-Router/0701-Router/app-vue-router/src/views/Cursos.vue)
 
+```vue
+
+    <transition mode="out-in">
+      <router-view :key="curso"></router-view>
+    </transition>
+
+    <style scoped>
+
+    .v-enter,
+    .v-leave-to {
+      transform: translate3d(-20px, 0, 0);
+      opacity: 0;
+    }
+
+    .v-enter-active,
+    .v-leave-active {
+      transition: all 0.3s;
+    }
+    </style>
+
+```
 
 
 [Voltar ao Índice](#indice)
