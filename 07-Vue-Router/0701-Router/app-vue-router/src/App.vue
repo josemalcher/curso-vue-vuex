@@ -4,6 +4,7 @@
     <nav>
       <router-link to="/">Home</router-link>
       <router-link to="/cursos">Cursos</router-link>
+      <router-link to="/acoes">Ações</router-link>
       <!--      <router-link to="/cursos/php">Curso PHP</router-link>-->
     </nav>
     <transition mode="out-in">
