@@ -1645,6 +1645,8 @@ export default new Router({
 });
 ```
 
+![](imgs/0703-navigationGuard.png)
+
 - [07-Vue-Router/0701-Router/app-vue-router/src/main.js](07-Vue-Router/0701-Router/app-vue-router/src/main.js)
 
 ```vue
@@ -1658,6 +1660,20 @@ router.afterEach((to, from)=>{
   console.log("TO", to)
   console.log("FROM", from)
 })
+```
+
+![](imgs/0703-navigationGuard-locais.png)
+
+```vue
+path: "/cursos",
+            component: Cursos,
+            props: true,
+            beforeEnter: (to, from, next) => {
+                // console.log("TO", to)
+                // console.log("FROM", from)
+                console.log("Entrou em CURSOS")
+                next()
+            },
 ```
 
 ![](imgs/route_componentes.png)
@@ -1686,6 +1702,8 @@ router.afterEach((to, from)=>{
     </style>
 
 ```
+
+
 
 
 [Voltar ao Índice](#indice)
