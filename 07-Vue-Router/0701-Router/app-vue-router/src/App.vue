@@ -9,6 +9,7 @@
     </nav>
     <transition mode="out-in">
       <router-view></router-view>
+      <router-view name="sidebar"></router-view>
     </transition>
   </div>
 </template>
@@ -32,6 +33,7 @@ export default {
 
 nav {
   padding: 20px 0;
+  /* margin-top: 2000px; */
 }
 
 a {

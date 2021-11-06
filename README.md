@@ -1761,6 +1761,57 @@ export default {
 
 ```
 
+- 0706 Mais Router
+
+```js
+<script>
+export default {
+  name: "Home",
+  methods: {
+    navegaCursos(){
+      setTimeout(()=>{
+        this.$router.push('acoes')
+      }, 1000)
+    }
+  }
+}
+</script>
+```
+
+
+```vue
+import Home     from "./views/Home";
+
+/*import Cursos   from "./views/Cursos"
+import Curso    from "./views/Curso"
+import CursoAulas       from "./views/CursoAulas"
+import CursoDescricao   from "./views/CursoDescricao"*/
+
+const Cursos         = () => import("./views/Cursos.vue")
+const Curso          = () => import(/* webpackChunkName: "Curso" */"./views/Curso.vue")
+const CursoAulas     = () => import(/* webpackChunkName: "Curso" */"./views/CursoAulas.vue")
+const CursoDescricao = () => import(/* webpackChunkName: "Curso" */"./views/CursoDescricao.vue")
+
+import Acoes        from "./views/Acoes"
+import AcoesDados   from "./views/AcoesDados";
+
+Vue.use(Router);
+
+export default new Router({
+    mode: "history",
+    base: process.env.BASE_URL,
+    routes: [
+        {
+            path:"/portal",
+            redirect: "/"
+        },
+        {
+            path:"*",
+            redirect: "/"
+        },
+
+```
+
 
 [Voltar ao Índice](#indice)
 

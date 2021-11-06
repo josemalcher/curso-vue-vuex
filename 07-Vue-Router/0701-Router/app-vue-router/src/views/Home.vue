@@ -1,12 +1,19 @@
 <template>
   <div>
-    <h1>Página inicial</h1>
+    <h1 @click="navegaCursos">Página inicial</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Home"
+  name: "Home",
+  methods: {
+    navegaCursos(){
+      setTimeout(()=>{
+        this.$router.push('acoes')
+      }, 1000)
+    }
+  }
 }
 </script>
 
