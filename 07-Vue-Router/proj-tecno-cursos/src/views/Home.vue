@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="loading">
-      <p>Carregando...</p>
+      <PageLoading/>
     </div>
     <div v-if="api">
       <h1>Home</h1>
@@ -13,6 +13,7 @@
 <script>
 // @ is an alias to /src
 import fetchData from '@/mixins/fetchData.js'
+import PageLoading from '@/components/PageLoading'
 
 export default {
   name: 'Home',
@@ -20,6 +21,6 @@ export default {
   created () {
     this.fetchData('/home')
   },
-  components: {}
+  components: { PageLoading }
 }
 </script>
