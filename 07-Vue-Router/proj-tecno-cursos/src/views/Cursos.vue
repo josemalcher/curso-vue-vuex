@@ -1,20 +1,36 @@
 <template>
-  <div class="cursos">
+  <div>
     <div v-if="loading">
       <PageLoading/>
     </div>
-    <div v-if="api">
-      <h1>Cursos</h1>
-      <p>{{ api }}</p>
-    </div>
+    <transition>
+      <div v-if="api" class="conteudo">
+        <div>
+          <h1>{{ api.titulo }}</h1>
+          <p>{{ api.descricao }}</p>
+        </div>
+        <ul>
+          <li v-for="curso in api.cursos" :key="curso.id">
+            <h2>
+              <router-link
+                :to="{name: 'curso', params: {curso: curso.id}}"
+              >{{ curso.nome }} – {{ curso.totalAulas }} aulas | {{ curso.horas }} horas
+              </router-link>
+            </h2>
+            <p>{{ curso.descricao }}</p>
+          </li>
+        </ul>
+      </div>
+    </transition>
   </div>
 </template>
+
 <script>
-import fetchData from '@/mixins/fetchData'
-import PageLoading from '@/components/PageLoading'
+import fetchData from '@/mixins/fetchData.js'
+import PageLoading from '../components/PageLoading'
 
 export default {
-  name: 'Cursos',
+  name: 'cursos',
   components: { PageLoading },
   mixins: [fetchData],
   created () {
