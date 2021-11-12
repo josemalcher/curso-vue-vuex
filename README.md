@@ -1828,7 +1828,19 @@ API JSON-SERVER
 
 ## <a name="parte8"> Vuex</a>
 
+- 0801 State
 
+```
+npm install vuex
+```
+
+- [08-Vuex/proj-vuex](08-Vuex/proj-vuex)
+
+- 0802 Mutations 1
+- 0802 Mutations 2
+- 0803 Actions
+- 0804 Getters
+- 0805 Modules
 
 [Voltar ao Índice](#indice)
 
