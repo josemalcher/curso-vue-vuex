@@ -1837,6 +1837,92 @@ npm install vuex
 - [08-Vuex/proj-vuex](08-Vuex/proj-vuex)
 
 - 0802 Mutations 1
+
+- [08-Vuex/proj-vuex/src/store.js](08-Vuex/proj-vuex/src/store.js)
+
+```vue
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex);
+
+export default new Vuex.Store({
+    state: {
+        user:   "Jose",
+        aulasCompletas: 10
+    },
+    mutations:{
+        CHANGE_USER(state, payload) {
+            state.user = payload.user;
+            console.log(payload.totalAulas)
+        },
+        COMPLETAR_AULA(state) {
+            state.aulasCompletas++
+        }
+    }
+})
+
+```
+
+- [08-Vuex/proj-vuex/src/components/Aula.vue](08-Vuex/proj-vuex/src/components/Aula.vue)
+
+```vue
+<template>
+  <div>
+    <h1>Aula</h1>
+    <p>Usuário da Aula: {{ user }}</p>
+    <p>Total de Aulas Assistidas {{ aulasCompletas }}</p>
+    <button @click="mostrarNoConsole">Mostrar usuário Console</button>
+    <button @click="COMPLETAR_AULA">Aula Assistirda </button>
+    <button @click="mudarNomeUsuario">Mudar Nome Usuário</button>
+    <input type="text" v-model="novoUser">
+  </div>
+</template>
+
+<script>
+import {mapState, mapMutations} from "vuex";
+
+export default {
+  name: "Aula",
+  computed: {
+    ...mapState(['user', 'aulasCompletas']),
+    nomeMaiusculo() {
+      return this.nome.toString();
+    }
+  },
+  data() {
+    return {
+      totalAulas: 25,
+      novoUser: ''
+    }
+  },
+  methods: {
+    ...mapMutations(['CHANGE_USER', 'COMPLETAR_AULA']),
+    mostrarNoConsole() {
+      //console.log(this.$store.state.user)
+      console.log(this.user)
+      console.log(this.aulasCompletas)
+    },
+    mudarNomeUsuario() {
+      // this.$store.commit('changeUser', this.novoUser)
+      this.CHANGE_USER({
+        user: this.novoUser,
+        totalAulas: this.totalAulas
+      })
+    },
+    // aulaAssistida() {
+    //   this.$store.commit('completarAula')
+    // }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>
+
+```
+
 - 0802 Mutations 2
 - 0803 Actions
 - 0804 Getters
