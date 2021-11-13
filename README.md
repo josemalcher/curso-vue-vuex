@@ -1928,6 +1928,101 @@ export default {
 - [08-Vuex/app-mutations](08-Vuex/app-mutations)
 
 - 0803 Actions
+
+- [08-Vuex/0803-Actions](08-Vuex/0803-Actions)
+
+- [08-Vuex/0803-Actions/src/store/index.js](08-Vuex/0803-Actions/src/store/index.js)
+
+```vue
+
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+
+export default new Vuex.Store({
+  state: {
+    aulasCompletas: [],
+    photos: null
+  },
+  mutations: {
+    COMPLETAR_AULA (state, payload) {
+      state.aulasCompletas.push(payload)
+    },
+    UPDATE_PHOTOS (state, payload) {
+      state.photos = payload
+    }
+  },
+  actions: {
+    completarAula (context, payload) {
+      context.commit('COMPLETAR_AULA', payload)
+    },
+    carregarPhotos (context) {
+      fetch('https://jsonplaceholder.typicode.com/photos')
+        .then(response => response.json())
+        .then(responseJson => {
+          console.log(responseJson)
+          context.commit('UPDATE_PHOTOS', responseJson)
+        })
+    }
+  },
+  modules: {}
+})
+
+```
+
+- [08-Vuex/0803-Actions/src/App.vue](08-Vuex/0803-Actions/src/App.vue)
+
+```vue
+<template>
+  <div id="app">
+    <Aluno/>
+    <Curso/>
+    <hr>
+    <ul>
+      <li v-for="foto in $store.state.photos" :key="foto.id">
+        <p>{{foto.title}}</p>
+        <img :src="foto.thumbnailUrl" alt="">
+      </li>
+    </ul>
+  </div>
+</template>
+<script>
+import Aluno from './components/Aluno'
+import Curso from './components/Curso'
+
+export default {
+  components: { Curso, Aluno },
+  created () {
+    this.$store.dispatch('carregarPhotos')
+  }
+}
+</script>
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+</style>
+
+
+```
+
 - 0804 Getters
 - 0805 Modules
 
