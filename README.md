@@ -1924,6 +1924,9 @@ export default {
 ```
 
 - 0802 Mutations 2
+
+- [08-Vuex/app-mutations](08-Vuex/app-mutations)
+
 - 0803 Actions
 - 0804 Getters
 - 0805 Modules
