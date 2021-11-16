@@ -4,8 +4,20 @@
     <Curso/>
     <hr>
     <ul>
-      <li v-for="foto in $store.state.photos" :key="foto.id">
-        <p>{{foto.title}}</p>
+      <li v-for="livro in $store.state.livros" :key="livro.nome">
+        {{ livro.nome }}
+      </li>
+    </ul>
+    <p>Livros não lidos:</p>
+    <ul>
+      <li v-for="livro in $store.getters.livrosLidos(false)" :key="livro.nome">
+        {{ livro.nome }}
+      </li>
+    </ul>
+    <hr>
+    <ul>
+      <li v-for="foto in $store.state.title" :key="foto.id">
+        <p>{{ foto.title }}</p>
         <img :src="foto.thumbnailUrl" alt="">
       </li>
     </ul>
@@ -14,11 +26,15 @@
 <script>
 import Aluno from './components/Aluno'
 import Curso from './components/Curso'
+import { mapGetters } from 'vuex'
 
 export default {
   components: { Curso, Aluno },
   created () {
     this.$store.dispatch('carregarPhotos')
+  },
+  computed: {
+    ...mapGetters(['livrosLidos'])
   }
 }
 </script>

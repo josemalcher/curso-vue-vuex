@@ -2024,6 +2024,44 @@ export default {
 ```
 
 - 0804 Getters
+
+```vue
+ livros: [
+      {
+        nome: 'O Senhor dos Anéis',
+        lido: true
+      },
+      {
+        nome: 'Harry Potter',
+        lido: true
+      },
+      {
+        nome: 'As Crônicas de Gelo e Fogo',
+        lido: false
+      }
+    ]
+  },
+  getters: {
+    livrosLidos: state => lido => state.livros.filter(livro => livro.lido === lido)
+  },
+```
+
+```vue
+<hr>
+    <ul>
+      <li v-for="livro in $store.state.livros" :key="livro.nome">
+        {{ livro.nome }}
+      </li>
+    </ul>
+    <p>Livros não lidos:</p>
+    <ul>
+      <li v-for="livro in $store.getters.livrosLidos(false)" :key="livro.nome">
+        {{ livro.nome }}
+      </li>
+    </ul>
+    <hr>
+```
+
 - 0805 Modules
 
 [Voltar ao Índice](#indice)
