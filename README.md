@@ -2099,7 +2099,45 @@ export default {
 
 ## <a name="parte9"> Projeto Final</a>
 
+- 0901 Ranek Início
 
+- [09-Projeto-Final/app-ranek](09-Projeto-Final/app-ranek)
+
+- 0902 Header e Footer
+- 0903 Home
+- 0904 Produtos
+- 0905 Axios
+- 0906 Busca
+- 0907 Produtos Estilo
+- 0908 Input Estilo
+- 0909 Paginação
+- 0910 Paginacao Range
+- 0911 Transição
+- 0912 Produto Filter
+- 0913 Login
+- 0914 Vuex Login
+- 0915 Usuário Formulário
+- 0916 Vuex Formulário
+- 0917 CEP API
+- 0918 POST Usuário
+- 0919 Usuário Router
+- 0920 Usuário Estilo
+- 0921 Usuário Produtos
+- 0922 Produto Adicionar
+- 0923 Produto Deletar
+- 0924 Usuário Atualizar
+- 0925 Transação
+- 0926 Compras e Vendas
+- 0927 REST API
+- 0928 JWT JSON Web Token
+- 0929 Criar e Logar
+- 0930 Fotos Upload
+- 0931 Catch Error
+- 0932 Navigation Guard
+- 0933 Estilo Responsivo
+- 0934 API Servidor
+- 0935 Vue.js Servidor
+- 0936 Title e Mais
 
 [Voltar ao Índice](#indice)
 
