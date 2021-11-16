@@ -2064,6 +2064,34 @@ export default {
 
 - 0805 Modules
 
+- [08-Vuex/0803-Actions/src/store/photos.js](08-Vuex/0803-Actions/src/store/photos.js)
+
+```vue
+export default {
+  namespaced: true,
+  state: {
+    photos: null
+  },
+  mutations: {
+    UPDATE_PHOTOS (state, payload) {
+      state.photos = payload
+    }
+  },
+  actions: {
+    carregarPhotos (context) {
+      fetch('https://jsonplaceholder.typicode.com/photos')
+        .then(response => response.json())
+        .then(responseJson => {
+          console.log(responseJson)
+          context.commit('UPDATE_PHOTOS', responseJson)
+        })
+    }
+  }
+}
+
+
+```
+
 [Voltar ao Índice](#indice)
 
 ---

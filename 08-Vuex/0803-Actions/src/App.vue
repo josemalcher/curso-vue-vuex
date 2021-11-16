@@ -16,9 +16,8 @@
     </ul>
     <hr>
     <ul>
-      <li v-for="foto in $store.state.title" :key="foto.id">
+      <li v-for="foto in $store.state.photos.photos" :key="foto.id">
         <p>{{ foto.title }}</p>
-        <img :src="foto.thumbnailUrl" alt="">
       </li>
     </ul>
   </div>
@@ -31,7 +30,7 @@ import { mapGetters } from 'vuex'
 export default {
   components: { Curso, Aluno },
   created () {
-    this.$store.dispatch('carregarPhotos')
+    this.$store.dispatch('photos/carregarPhotos')
   },
   computed: {
     ...mapGetters(['livrosLidos'])
