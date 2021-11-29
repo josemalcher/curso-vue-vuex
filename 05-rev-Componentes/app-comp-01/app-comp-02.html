@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../lib/vue.js"></script>
+    <title>Vue.js</title>
+</head>
+<body>
+<div id="app">
+    <menu-principal></menu-principal>
+    <hr>
+    <botao-contador></botao-contador>
+    <botao-contador></botao-contador>
+    <botao-contador></botao-contador>
+    <botao-contador></botao-contador>
+</div>
+<script type="module">
+
+    import BotaoContador from "./BotaoContador.js";
+    import MenuPrincipal from "./MenuPrincipal.js";
+    //Vue.component("BotaoContador", BotaoContador);
+
+    Vue.component("MenuPrincipal", MenuPrincipal);
+
+    const vm = new Vue({
+        el: "#app",
+        components: {
+            BotaoContador,
+        }
+    })
+</script>
+</body>
+</html>
