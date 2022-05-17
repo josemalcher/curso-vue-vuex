@@ -2106,6 +2106,13 @@ export default {
 - 0902 Header e Footer
 - 0903 Home
 - 0904 Produtos
+
+[09-Projeto-Final/ranek-api/ranek.json](09-Projeto-Final/ranek-api/ranek.json)
+
+```bash
+$ json-server --watch ranek.json
+```
+
 - 0905 Axios
 - 0906 Busca
 - 0907 Produtos Estilo
