@@ -2115,6 +2115,11 @@ $ json-server --watch ranek.json
 
 - 0905 Axios
 - 0906 Busca
+
+[09-Projeto-Final/app-ranek/src/helpers.js](09-Projeto-Final/app-ranek/src/helpers.js)
+
+[09-Projeto-Final/app-ranek/src/components/ProdutosLista.vue](09-Projeto-Final/app-ranek/src/components/ProdutosLista.vue)
+
 - 0907 Produtos Estilo
 - 0908 Input Estilo
 - 0909 Paginação
