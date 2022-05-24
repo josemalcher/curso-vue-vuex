@@ -2122,6 +2122,9 @@ $ json-server --watch ranek.json
 
 - 0907 Produtos Estilo
 - 0908 Input Estilo
+
+[09-Projeto-Final/app-ranek/src/components/ProdutosBuscar.vue](09-Projeto-Final/app-ranek/src/components/ProdutosBuscar.vue)
+
 - 0909 Paginação
 - 0910 Paginacao Range
 - 0911 Transição
